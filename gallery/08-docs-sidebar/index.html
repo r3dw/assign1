@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center — Handbook</title>
+<style>
+:root{
+  --maroon:#800000; --maroon-d:#5c0000; --maroon-dd:#420000;
+  --paper:#faf6ee; --paper-2:#f1eadb; --ink:#26221f; --ink-2:#5a524b;
+  --gold:#c9a24b; --gold-d:#8a6a1c; --rule:#ddd2bd;
+  --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--sans);color:var(--ink);background:var(--paper);line-height:1.6}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--gold);color:#000;padding:.5rem 1rem;z-index:100}
+.skip:focus{left:0}
+
+/* ---------- LEFT PANEL ---------- */
+.panel{
+  position:fixed;inset:0 auto 0 0;width:40%;
+  background:
+    radial-gradient(120% 60% at 0% 0%,rgba(255,255,255,.07),transparent 60%),
+    linear-gradient(180deg,var(--maroon) 0%,var(--maroon-d) 100%);
+  color:#fff;display:flex;flex-direction:column;padding:2rem clamp(1.5rem,3.4vw,3.5rem) 1.6rem;
+  overflow-y:auto;
+}
+.topline{display:flex;justify-content:space-between;gap:1rem;font-size:.78rem;letter-spacing:.04em;flex-wrap:wrap}
+.topline a{color:#f0dede;text-decoration:none;border-bottom:1px solid transparent}
+.topline a:hover{border-color:var(--gold);color:#fff}
+.util{display:flex;gap:1rem}
+.gal{display:inline-block;margin-top:.5rem;font-size:.72rem;color:#e7c9c9;opacity:.85}
+.brand{margin:2.2rem 0 .9rem;display:flex;gap:1rem;align-items:center}
+.crest{flex:none;width:54px;height:54px;border:2px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--gold);border-radius:50% 50% 8px 8px}
+.brand h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:1.1}
+.brand small{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
+.mission{margin:0 0 1.6rem;max-width:30ch;font-family:var(--serif);font-style:italic;color:#f3dcdc;font-size:1.05rem;line-height:1.45}
+.mainnav ol{list-style:none;margin:0;padding:0;counter-reset:n;border-top:1px solid rgba(255,255,255,.2)}
+.mainnav li{counter-increment:n;border-bottom:1px solid rgba(255,255,255,.2)}
+.mainnav a{display:flex;align-items:baseline;gap:1rem;padding:.55rem 0;text-decoration:none;font-family:var(--serif);font-size:clamp(1.3rem,2.3vw,2rem);line-height:1.15;transition:padding .2s,color .2s}
+.mainnav a::before{content:"0" counter(n);font-family:var(--mono);font-size:.72rem;color:var(--gold);min-width:1.6rem}
+.mainnav a:hover{padding-left:.6rem;color:var(--gold)}
+.mainnav a:focus-visible{outline-offset:-3px}
+.visit{margin-top:auto;padding-top:1.6rem;font-size:.85rem;line-height:1.5;display:grid;grid-template-columns:1fr 1fr;gap:.9rem 1.2rem}
+.visit h2{margin:0 0 .2rem;font-size:.66rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);font-weight:600}
+.visit p{margin:0;color:#f6e8e8}
+.visit .wide{grid-column:1/-1}
+.visit a{color:#fff;text-underline-offset:3px}
+
+/* ---------- RIGHT PANE ---------- */
+.pane{
+  margin-left:40%;height:100vh;overflow-y:auto;position:relative;
+  scroll-snap-type:y proximity;scroll-padding-top:64px;
+}
+.bar{position:sticky;top:0;z-index:20;background:rgba(250,246,238,.94);backdrop-filter:blur(6px);border-bottom:1px solid var(--rule)}
+.bar nav{display:flex;gap:.25rem;padding:.55rem clamp(1rem,3vw,3rem);overflow-x:auto;align-items:center}
+.bar .lab{font-family:var(--mono);font-size:.68rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-2);margin-right:.6rem;white-space:nowrap}
+.bar a{white-space:nowrap;text-decoration:none;font-size:.86rem;padding:.3rem .7rem;border-radius:999px;color:var(--ink-2);border:1px solid transparent}
+.bar a:hover{color:var(--maroon)}
+.bar a[aria-current="true"]{background:var(--maroon);color:#fff}
+.progress{height:3px;background:var(--rule)}
+.progress i{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--gold),var(--maroon))}
+
+section.sec{
+  scroll-snap-align:start;min-height:calc(100vh - 64px);
+  padding:clamp(2.5rem,7vh,5rem) clamp(1.25rem,4vw,4rem);
+  border-bottom:1px solid var(--rule);
+}
+.sec > *{max-width:46rem}
+.eyebrow{font-family:var(--mono);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold-d);margin:0 0 .8rem}
+h2.t{font-family:var(--serif);font-weight:400;font-size:clamp(1.9rem,3.4vw,3rem);line-height:1.1;margin:0 0 1.2rem;color:var(--maroon-d)}
+h2.t::after{content:"";display:block;width:3rem;height:3px;background:var(--gold);margin-top:.9rem}
+.lede{font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.4rem);line-height:1.55}
+.lede::first-letter{float:left;font-size:4.2rem;line-height:.85;padding:.3rem .6rem 0 0;color:var(--maroon);font-weight:700}
+.photo{margin:2rem 0 0;min-height:180px;border:1px solid var(--rule);border-radius:4px;display:flex;align-items:flex-end;padding:.8rem 1rem;font-family:var(--mono);font-size:.72rem;color:var(--ink-2);
+  background:repeating-linear-gradient(135deg,var(--paper-2) 0 14px,#ece3d0 14px 28px)}
+.facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:2rem 0 0;background:var(--rule);border:1px solid var(--rule)}
+.facts div{background:var(--paper);padding:1rem}
+.facts b{display:block;font-family:var(--serif);font-size:1.9rem;color:var(--maroon);font-weight:400}
+.facts span{font-size:.8rem;color:var(--ink-2)}
+
+/* accordions */
+details{border:1px solid var(--rule);background:#fffdf8;margin-bottom:.8rem;border-radius:4px}
+details[open]{border-color:var(--maroon);box-shadow:4px 4px 0 var(--paper-2)}
+summary{cursor:pointer;list-style:none;padding:1.1rem 1.2rem;display:flex;gap:1rem;align-items:center;font-family:var(--serif);font-size:1.3rem}
+summary::-webkit-details-marker{display:none}
+summary .num{font-family:var(--mono);font-size:.75rem;color:var(--gold-d)}
+summary .ico{margin-left:auto;width:1.6rem;height:1.6rem;border:1px solid var(--maroon);border-radius:50%;position:relative;flex:none}
+summary .ico::before,summary .ico::after{content:"";position:absolute;left:50%;top:50%;width:.7rem;height:2px;background:var(--maroon);transform:translate(-50%,-50%)}
+summary .ico::after{transform:translate(-50%,-50%) rotate(90deg);transition:transform .2s}
+details[open] summary .ico::after{transform:translate(-50%,-50%) rotate(0)}
+details .body{padding:0 1.2rem 1.3rem 3.2rem}
+details .body p{margin:0 0 1rem}
+.more{color:var(--maroon);font-weight:600;text-underline-offset:4px}
+.more:hover{color:var(--maroon-dd)}
+
+/* tabs */
+.tabs [role=tablist]{display:flex;flex-wrap:wrap;gap:.4rem;margin:1.2rem 0}
+.tabs [role=tab]{font:600 .85rem var(--mono);width:2.6rem;height:2.6rem;border:1px solid var(--maroon);background:transparent;color:var(--maroon);cursor:pointer;border-radius:4px}
+.tabs [role=tab]:hover{background:var(--paper-2)}
+.tabs [role=tab][aria-selected=true]{background:var(--maroon);color:#fff}
+.tabs [role=tabpanel]{border-left:3px solid var(--gold);padding-left:1.2rem}
+.tabs [role=tabpanel] h3{font-family:var(--serif);font-weight:400;font-size:1.6rem;margin:.2rem 0 .6rem;line-height:1.2}
+.tabs .photo{min-height:220px;margin-top:1rem;background:linear-gradient(160deg,#e8b9a0,#d77f6a 40%,#7aa27a 70%,#3f6d8c)}
+.tabs .photo span{background:rgba(255,255,255,.88);padding:.2rem .5rem;border-radius:2px}
+.steps{display:flex;gap:.6rem;margin-top:1rem}
+.steps button{font:inherit;font-size:.85rem;padding:.4rem .9rem;border:1px solid var(--ink-2);background:none;border-radius:999px;cursor:pointer;color:var(--ink)}
+.steps button:hover{border-color:var(--maroon);color:var(--maroon)}
+
+/* blog */
+.posts{list-style:none;margin:0;padding:0;border-top:2px solid var(--ink)}
+.posts li{display:grid;grid-template-columns:3rem 1fr;gap:1rem;padding:1.4rem 0;border-bottom:1px solid var(--rule)}
+.posts .n{font-family:var(--serif);font-size:2rem;color:var(--gold);line-height:1}
+.posts h3{margin:0 0 .4rem;font-family:var(--serif);font-weight:400;font-size:1.35rem;line-height:1.25}
+.posts h3 a{text-decoration:none}
+.posts h3 a:hover{color:var(--maroon);text-decoration:underline;text-underline-offset:4px}
+.meta{display:flex;flex-wrap:wrap;gap:.5rem;align-items:center;font-size:.8rem;color:var(--ink-2);margin-bottom:.5rem}
+.chip{font-family:var(--mono);font-size:.7rem;padding:.12rem .55rem;border-radius:999px;background:var(--paper-2);border:1px solid var(--rule)}
+.chip.time{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.posts p{margin:0;color:#3d3834;font-size:.95rem}
+.older{display:inline-block;margin-top:1.4rem;font-weight:600;color:var(--maroon)}
+
+/* footer */
+footer.sec{min-height:auto;background:var(--paper-2);border-bottom:0}
+footer h2{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:0 0 .4rem;color:var(--maroon-d)}
+footer ul{list-style:none;padding:0;margin:1.2rem 0;columns:2;column-gap:2rem}
+footer li{margin-bottom:.5rem;break-inside:avoid}
+footer a{text-underline-offset:4px}
+footer small{color:var(--ink-2)}
+
+/* ---------- MOBILE ---------- */
+@media (max-width:860px){
+  .panel{position:relative;width:auto;inset:auto;overflow:visible}
+  .brand{margin-top:1.4rem}
+  .mainnav a{font-size:1.35rem}
+  .pane{margin-left:0;height:auto;overflow:visible;scroll-snap-type:none}
+  .bar{top:0}
+  section.sec{min-height:0}
+  .visit{margin-top:1.6rem}
+  .facts{grid-template-columns:1fr}
+  footer ul{columns:1}
+  details .body{padding-left:1.2rem}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#welcome">Skip to content</a>
+
+<aside class="panel" aria-label="Site header and visit information">
+  <div class="topline">
+    <a href="https://www.uchicago.edu">The University of Chicago</a>
+    <div class="util">
+      <a href="#">News</a><a href="#">Calendar</a>
+      <a href="#">Students ▾</a><a href="#">Instructors ▾</a>
+    </div>
+  </div>
+  <div><a class="gal" href="../index.html">← Gallery</a></div>
+
+  <div class="brand">
+    <div class="crest" aria-hidden="true">C</div>
+    <h1><small>The University of Chicago</small>Chicago Language Center</h1>
+  </div>
+  <p class="mission">A hub for the instructors, students and 50+ languages of the University.</p>
+
+  <nav class="mainnav" aria-label="Main">
+    <ol>
+      <li><a href="#welcome">About</a></li>
+      <li><a href="#units">Language Study</a></li>
+      <li><a href="#stories">Innovative Programming</a></li>
+      <li><a href="#blog">Professional Development</a></li>
+      <li><a href="#search" id="searchlink">Search</a></li>
+    </ol>
+  </nav>
+
+  <address class="visit" style="font-style:normal">
+    <div class="wide"><h2>Visit</h2><p>Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637</p></div>
+    <div><h2>Hours</h2><p>Mon–Fri<br>8:30 AM–5:00 PM</p></div>
+    <div><h2>Contact</h2><p><a href="tel:+17737029772">(773) 702-9772</a><br><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p></div>
+  </address>
+</aside>
+
+<div class="pane" id="pane">
+  <div class="bar">
+    <nav aria-label="On this page">
+      <span class="lab">On this page</span>
+      <a href="#welcome">Welcome</a>
+      <a href="#units">Two units</a>
+      <a href="#stories">Stories</a>
+      <a href="#blog">Blog</a>
+      <a href="#links">Links</a>
+    </nav>
+    <div class="progress" role="progressbar" aria-label="Reading progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><i id="prog"></i></div>
+  </div>
+
+  <main>
+    <section class="sec" id="welcome" aria-labelledby="h-welcome">
+      <p class="eyebrow">§ 1 · Welcome</p>
+      <h2 class="t" id="h-welcome">University of Chicago Language Center</h2>
+      <p class="lede">The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university’s language requirements.</p>
+      <div class="facts">
+        <div><b>50+</b><span>languages taught</span></div>
+        <div><b>2</b><span>units housed in the CLC</span></div>
+        <div><b>Cobb 211</b><span>2nd floor, main quad</span></div>
+      </div>
+      <div class="photo" role="img" aria-label="Photo placeholder: Cobb Hall front desk">Photo: Cobb Hall front desk and lounge</div>
+    </section>
+
+    <section class="sec" id="units" aria-labelledby="h-units">
+      <p class="eyebrow">§ 2 · The two units</p>
+      <h2 class="t" id="h-units">Two units, one center</h2>
+      <details open>
+        <summary><span class="num">2.1</span>Office of Language Assessment<span class="ico" aria-hidden="true"></span></summary>
+        <div class="body">
+          <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University’s language testing and pedagogy programs.</p>
+          <a class="more" href="#">Learn more &gt;</a>
+        </div>
+      </details>
+      <details>
+        <summary><span class="num">2.2</span>English Language Institute<span class="ico" aria-hidden="true"></span></summary>
+        <div class="body">
+          <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost’s Office.</p>
+          <a class="more" href="#">Learn more &gt;</a>
+        </div>
+      </details>
+    </section>
+
+    <section class="sec tabs" id="stories" aria-labelledby="h-stories">
+      <p class="eyebrow">§ 3 · Stories</p>
+      <h2 class="t" id="h-stories">Where Will Language Study Take You?</h2>
+      <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors’ passion for language teaching.</p>
+      <div role="tablist" aria-label="Stories 1 to 9" id="tablist"></div>
+      <div role="tabpanel" id="panel" tabindex="0" aria-live="polite">
+        <p class="eyebrow" id="p-eyebrow"></p>
+        <h3 id="p-title"></h3>
+        <p id="p-text"></p>
+        <div class="photo" role="img" id="p-photo" aria-label="Story photo placeholder"><span id="p-cap"></span></div>
+      </div>
+      <div class="steps"><button type="button" id="prev">← Previous</button><button type="button" id="next">Next →</button></div>
+    </section>
+
+    <section class="sec" id="blog" aria-labelledby="h-blog">
+      <p class="eyebrow">§ 4 · Blog</p>
+      <h2 class="t" id="h-blog">The Latest From Our Blog</h2>
+      <ol class="posts">
+        <li>
+          <span class="n" aria-hidden="true">1</span>
+          <article>
+            <div class="meta"><span class="chip time">3 min read</span><span>Heather Guerrero</span><span>·</span><time datetime="2024-09-19">Sep 19, 2024</time><span class="chip">Instructional Technology</span></div>
+            <h3><a href="#">Setting Ground Rules for AI Use in Language Courses</a></h3>
+            <p>In my previous post I presented some very basic elements of AI literacy. Here I’ll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students…</p>
+          </article>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">2</span>
+          <article>
+            <div class="meta"><span class="chip time">4 min read</span><span>Heather Guerrero</span><span>·</span><time datetime="2024-09-06">Sep 6, 2024</time><span class="chip">Instructional Technology</span></div>
+            <h3><a href="#">Generative AI: The Basics and Guardrails</a></h3>
+            <p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the…</p>
+          </article>
+        </li>
+        <li>
+          <span class="n" aria-hidden="true">3</span>
+          <article>
+            <div class="meta"><span class="chip time">2 min read</span><span>Heather Guerrero</span><span>·</span><time datetime="2024-05-08">May 8, 2024</time><span class="chip">Events</span><span class="chip">Uncategorized</span></div>
+            <h3><a href="#">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</a></h3>
+            <p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses…</p>
+          </article>
+        </li>
+      </ol>
+      <a class="older" href="#">« Older Entries</a>
+    </section>
+
+    <footer class="sec" id="links" aria-labelledby="h-links">
+      <p class="eyebrow">§ 5 · Links</p>
+      <h2 id="h-links">The University of Chicago</h2>
+      <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · 773.702.9772 · <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+      <ul>
+        <li><a href="#">Office of Language Assessment</a></li>
+        <li><a href="#">Mellon Collaborative Partners</a></li>
+        <li><a href="#">Language Pedagogy Innovation Initiative</a></li>
+        <li><a href="#">English Language Institute</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+      <small>© 2019-2026 The University of Chicago All rights reserved</small>
+    </footer>
+  </main>
+</div>
+
+<script>
+(function(){
+  var mq = window.matchMedia('(max-width:860px)');
+  var pane = document.getElementById('pane');
+  var prog = document.getElementById('prog');
+  var pbar = prog.parentNode;
+
+  // progress
+  function update(){
+    var top, max;
+    if(mq.matches){ top = window.scrollY - pane.offsetTop; max = pane.offsetHeight - window.innerHeight; }
+    else { top = pane.scrollTop; max = pane.scrollHeight - pane.clientHeight; }
+    var p = max > 0 ? Math.max(0, Math.min(1, top / max)) : 0;
+    prog.style.width = (p * 100) + '%';
+    pbar.setAttribute('aria-valuenow', Math.round(p * 100));
+  }
+  pane.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('scroll', update, {passive:true});
+  window.addEventListener('resize', update);
+  update();
+
+  // scrollspy
+  var links = {};
+  document.querySelectorAll('.bar a').forEach(function(a){ links[a.getAttribute('href').slice(1)] = a; });
+  function setActive(id){
+    Object.keys(links).forEach(function(k){
+      if(k === id) links[k].setAttribute('aria-current','true'); else links[k].removeAttribute('aria-current');
+    });
+  }
+  setActive('welcome');
+  if('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting) setActive(e.target.id); });
+    }, {rootMargin:'-35% 0px -60% 0px'});
+    document.querySelectorAll('.sec').forEach(function(s){ io.observe(s); });
+  }
+
+  // search link: no search page in this demo; focus-friendly no-op
+  document.getElementById('searchlink').addEventListener('click', function(e){ e.preventDefault(); });
+
+  // stories
+  var stories = [
+    ['A hillside village in Korea','A smiling student stands in front of a colorful hillside village, using Korean far beyond the classroom.','Photo: student in front of a colorful hillside village, Korea'],
+    ['Placeholder story 2','Story slot reserved for a student profile.','Photo slot 2'],
+    ['Placeholder story 3','Story slot reserved for an instructor profile.','Photo slot 3'],
+    ['Placeholder story 4','Story slot reserved for a student profile.','Photo slot 4'],
+    ['Placeholder story 5','Story slot reserved for an instructor profile.','Photo slot 5'],
+    ['Placeholder story 6','Story slot reserved for a student profile.','Photo slot 6'],
+    ['Placeholder story 7','Story slot reserved for an instructor profile.','Photo slot 7'],
+    ['Placeholder story 8','Story slot reserved for a student profile.','Photo slot 8'],
+    ['Placeholder story 9','Story slot reserved for an instructor profile.','Photo slot 9']
+  ];
+  var tl = document.getElementById('tablist'), cur = 0, tabs = [];
+  stories.forEach(function(s,i){
+    var b = document.createElement('button');
+    b.type='button'; b.setAttribute('role','tab'); b.id='tab'+i; b.textContent = (i+1);
+    b.setAttribute('aria-controls','panel'); b.setAttribute('aria-label','Story '+(i+1));
+    b.addEventListener('click', function(){ show(i,false); });
+    b.addEventListener('keydown', function(e){
+      var d = e.key==='ArrowRight'?1 : e.key==='ArrowLeft'?-1 : 0;
+      if(e.key==='Home') d = -i; if(e.key==='End') d = stories.length-1-i;
+      if(d){ e.preventDefault(); show((i+d+stories.length)%stories.length,true); }
+    });
+    tl.appendChild(b); tabs.push(b);
+  });
+  function show(i,focus){
+    cur = i;
+    tabs.forEach(function(t,k){ t.setAttribute('aria-selected', k===i); t.tabIndex = k===i?0:-1; });
+    var s = stories[i], p = document.getElementById('panel');
+    p.setAttribute('aria-labelledby','tab'+i);
+    document.getElementById('p-eyebrow').textContent = 'Story ' + (i+1) + ' of 9';
+    document.getElementById('p-title').textContent = s[0];
+    document.getElementById('p-text').textContent = s[1];
+    document.getElementById('p-cap').textContent = s[2];
+    document.getElementById('p-photo').setAttribute('aria-label', s[2]);
+    if(focus) tabs[i].focus();
+  }
+  document.getElementById('prev').addEventListener('click', function(){ show((cur+8)%9,false); });
+  document.getElementById('next').addEventListener('click', function(){ show((cur+1)%9,false); });
+  show(0,false);
+})();
+</script>
+</body>
+</html>

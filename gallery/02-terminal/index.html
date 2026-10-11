@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>visitor@clc:~ — Chicago Language Center, The University of Chicago</title>
+<meta name="description" content="The Chicago Language Center at the University of Chicago, rendered as a shell session.">
+<style>
+:root{
+  --bg:#0b0a0a; --panel:#141111; --line:#2c2323;
+  --fg:#d8d2c4; --dim:#9a9082;
+  --green:#6df29a; --amber:#ffb84d; --maroon:#800000; --maroon-hi:#ff8f87;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,"Liberation Mono","DejaVu Sans Mono",monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;scroll-padding-top:4.5rem}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important}}
+body{margin:0;background:var(--bg);color:var(--fg);font:15px/1.6 var(--mono);
+  background-image:repeating-linear-gradient(0deg,rgba(255,255,255,.015) 0 1px,transparent 1px 3px)}
+a{color:var(--amber);text-underline-offset:3px}
+a:hover{color:#fff}
+:focus-visible{outline:2px solid var(--green);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--green);color:#000;padding:.4rem .8rem;z-index:20}
+.skip:focus{left:0}
+
+/* top bar */
+.topbar{display:flex;flex-wrap:wrap;gap:.4rem 1.2rem;justify-content:space-between;align-items:center;
+  background:var(--maroon);color:#fff;padding:.35rem 1rem;font-size:.8rem}
+.topbar a{color:#fff}
+.topbar ul{display:flex;gap:1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.topbar details{position:relative}
+.topbar summary{cursor:pointer;list-style:none}
+.topbar summary::after{content:" ▾"}
+.topbar details ul{position:absolute;right:0;top:1.6em;flex-direction:column;gap:.2rem;background:#1a0000;
+  border:1px solid #ffffff55;padding:.5rem .8rem;z-index:15;min-width:11rem}
+.gal{color:#ffd0cc!important;opacity:.9}
+
+/* nav */
+.chips{position:sticky;top:0;z-index:10;background:var(--bg);border-bottom:1px solid var(--line);
+  padding:.55rem 1rem;display:flex;gap:.5rem;flex-wrap:wrap;align-items:center}
+.chips span.lbl{color:var(--dim);font-size:.8rem;margin-right:.3rem}
+.chips a,.chips button{font:inherit;font-size:.82rem;color:var(--green);background:var(--panel);
+  border:1px solid #2f5a40;border-radius:3px;padding:.15rem .6rem;text-decoration:none;cursor:pointer}
+.chips a:hover,.chips button:hover{background:var(--maroon);border-color:var(--maroon-hi);color:#fff}
+.chips a::before{content:"$ ";color:var(--dim)}
+
+main{max-width:62rem;margin:0 auto;padding:1.5rem 1rem 3rem}
+.win{border:1px solid var(--line);border-radius:6px;background:var(--panel);overflow:hidden;
+  box-shadow:0 10px 40px #000a}
+.win-bar{display:flex;gap:.4rem;align-items:center;background:#1d1717;padding:.45rem .8rem;border-bottom:1px solid var(--line);
+  font-size:.75rem;color:var(--dim)}
+.dot{width:.7rem;height:.7rem;border-radius:50%;background:#444}
+.dot:first-child{background:var(--maroon)}
+.win-bar b{margin-left:auto;font-weight:400}
+.screen{padding:1rem 1.2rem 1.5rem}
+
+pre{font:inherit;margin:0;white-space:pre}
+.banner{color:var(--maroon-hi);font-size:clamp(.34rem,1.55vw,.8rem);line-height:1.15;overflow:hidden;margin:.3rem 0 .6rem}
+.banner-sub{color:var(--amber);margin:0 0 1rem}
+.motd{color:var(--dim);margin:0 0 1.4rem}
+.motd b{color:var(--green);font-weight:400}
+
+.cmd{margin:2.2rem 0 .5rem;font-size:1rem;font-weight:400;display:flex;flex-wrap:wrap;gap:0 .6ch}
+.ps{color:var(--green)}.ps i{color:var(--amber);font-style:normal}
+.cmd .c{color:#fff}
+.out{padding-left:1.2ch;border-left:2px solid var(--maroon);margin-left:.2ch}
+.out h3{color:var(--amber);font-size:1rem;margin:1.2rem 0 .3rem;font-weight:700}
+.out h3:first-child{margin-top:0}
+.out p{margin:.4rem 0;max-width:72ch}
+.out .k{color:var(--green)}
+.out .d{color:var(--dim)}
+.out .perm{color:var(--dim)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(18rem,1fr));gap:1.2rem}
+.card{border:1px dashed #4a3a3a;padding:.8rem 1rem}
+.card h3{margin-top:0!important}
+dl{display:grid;grid-template-columns:max-content 1fr;gap:.2rem 2ch;margin:.4rem 0}
+dt{color:var(--green)}dd{margin:0}
+.sec{color:var(--amber);font-weight:700;margin:1rem 0 .2rem;text-transform:uppercase}
+
+/* log */
+.log{list-style:none;margin:0;padding:0}
+.log li{margin:0 0 1.2rem;padding-left:0}
+.log .ts{color:var(--dim)}
+.log .lv{color:var(--green)}
+.log .lv.ev{color:var(--amber)}
+.log h3{display:inline;margin:0;color:#fff;font-size:1rem}
+.log p{margin:.3rem 0 0;padding-left:2ch;color:var(--fg)}
+.log .meta{padding-left:2ch;color:var(--dim);font-size:.85rem}
+.tag{color:var(--maroon-hi)}
+
+/* slides */
+.story{border:1px solid #2f5a40;padding:.8rem 1rem;background:#0f1a13}
+.story .pic{height:7rem;margin:.6rem 0;border:1px solid #2f5a40;display:flex;align-items:flex-end;padding:.4rem .6rem;color:#7fb899;font-size:.75rem;
+  background:linear-gradient(135deg,#1c3a28,#3b1d1d 55%,#5a3a10)}
+.story .ctl{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
+.story button{font:inherit;color:var(--green);background:#0b0a0a;border:1px solid #2f5a40;padding:.1rem .6rem;cursor:pointer}
+.story button:hover{background:var(--maroon);color:#fff}
+.story button[aria-current=true]{background:var(--green);color:#000}
+.story-js{display:none}
+.has-js .story-js{display:flex}
+
+/* languages */
+.langs{columns:15rem;column-gap:2rem;list-style:none;margin:.4rem 0;padding:0}
+.langs li{break-inside:avoid}
+.langs b{color:var(--green);font-weight:400;display:inline-block;min-width:10ch}
+
+/* interactive */
+#live{display:none}
+.has-js #live{display:block}
+#live .hist .row{margin:.9rem 0 .2rem}
+#live .hist .res{margin:0 0 0 .2ch}
+#live form{display:flex;gap:.6ch;align-items:center;margin-top:1rem;flex-wrap:nowrap}
+#live label{white-space:nowrap;color:var(--green)}
+#live label i{color:var(--amber);font-style:normal}
+#cmd{flex:1;min-width:0;background:transparent;border:0;border-bottom:1px solid transparent;color:#fff;font:inherit;caret-color:var(--maroon-hi);padding:.1rem 0}
+#cmd:focus{outline:none;border-bottom:1px solid var(--maroon)}
+#live form:focus-within .blk{opacity:1}
+.blk{display:inline-block;width:.6em;height:1.1em;background:var(--maroon);animation:blink 1.1s steps(1) infinite;vertical-align:text-bottom}
+.static-cursor{margin-top:2rem}
+@keyframes blink{50%{opacity:0}}
+.hint{color:var(--dim);font-size:.8rem;margin-top:.5rem}
+
+footer{max-width:62rem;margin:0 auto;padding:0 1rem 3rem;color:var(--dim);font-size:.85rem}
+footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.6rem;margin:.6rem 0}
+
+@media (max-width:560px){
+  body{font-size:14px}
+  .screen{padding:.8rem .7rem 1.2rem}
+  dl{grid-template-columns:1fr}dt{margin-top:.5rem}
+  .cmd{font-size:.9rem}
+  .chips span.lbl{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header>
+  <div class="topbar">
+    <a href="https://www.uchicago.edu/">The University of Chicago</a>
+    <nav aria-label="Utility">
+      <ul>
+        <li><a href="#blog">News</a></li>
+        <li><a href="#hours">Calendar</a></li>
+        <li><details><summary>Students</summary><ul><li><a href="#languages">Language study</a></li><li><a href="#units">Language assessment</a></li></ul></details></li>
+        <li><details><summary>Instructors</summary><ul><li><a href="#units">Professional development</a></li><li><a href="#blog">Pedagogy blog</a></li></ul></details></li>
+        <li><a class="gal" href="../index.html">← Gallery</a></li>
+      </ul>
+    </nav>
+  </div>
+  <nav class="chips" aria-label="Main">
+    <span class="lbl">try:</span>
+    <a href="#about">cat about.txt</a>
+    <a href="#units">ls units/</a>
+    <a href="#languages">language study</a>
+    <a href="#stories">innovative programming</a>
+    <a href="#blog">tail blog.log</a>
+    <a href="#hours">cat hours.txt</a>
+    <a href="#contact">man contact</a>
+    <a href="#live" id="searchchip">search</a>
+  </nav>
+</header>
+
+<main id="main">
+<div class="win">
+  <div class="win-bar" aria-hidden="true"><span class="dot"></span><span class="dot"></span><span class="dot"></span><b>visitor@clc: ~ — 80×24</b></div>
+  <div class="screen">
+
+<h1 style="margin:0;font-size:0">Chicago Language Center, The University of Chicago</h1>
+<pre class="banner" role="img" aria-label="CHICAGO LANGUAGE CENTER">
+  ____ _   _ ___ ____    _    ____  ___
+ / ___| | | |_ _/ ___|  / \  / ___|/ _ \
+| |   | |_| || | |     / _ \| |  _| | | |
+| |___|  _  || | |___ / ___ \ |_| | |_| |
+ \____|_| |_|___\____/_/   \_\____|\___/
+
+ _        _    _   _  ____ _   _  _    ____ _____
+| |      / \  | \ | |/ ___| | | |/ \  / ___| ____|
+| |     / _ \ |  \| | |  _| | | / _ \| |  _|  _|
+| |___ / ___ \| |\  | |_| | |_| / ___ \ |_| | |___
+|_____/_/   \_\_| \_|\____|\___/_/   \_\____|_____|
+
+  ____ _____ _   _ _____ _____ ____
+ / ___| ____| \ | |_   _| ____|  _ \
+| |   |  _| |  \| | | | |  _| | |_) |
+| |___| |___| |\  | | | | |___|  _ <
+ \____|_____|_| \_| |_| |_____|_| \_\</pre>
+<p class="banner-sub">The University of Chicago &middot; Cobb Hall 211 &middot; 50+ languages &middot; est. Hyde Park</p>
+<p class="motd">Welcome to <b>clc 2026.10 LTS</b>. Last login: Fri Oct 9 on ttys001. All sections below are plain text; with JavaScript on, type <b>help</b> at the prompt at the bottom.</p>
+
+<section id="about" aria-labelledby="h-about">
+  <h2 class="cmd" id="h-about"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">cat about.txt</span></h2>
+  <div class="out">
+    <h3>University of Chicago Language Center</h3>
+    <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+    <p class="d">[ Photo: the CLC front desk and lounge, Cobb Hall ]</p>
+  </div>
+</section>
+
+<section id="units" aria-labelledby="h-units">
+  <h2 class="cmd" id="h-units"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">ls -l units/</span></h2>
+  <div class="out">
+    <p class="d">total 2</p>
+    <div class="cols">
+      <article class="card">
+        <h3>drwxr-xr-x ola/ &mdash; Office of Language Assessment</h3>
+        <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+        <p><a href="#units">cd ola/ &mdash; Learn more &gt;</a></p>
+      </article>
+      <article class="card">
+        <h3>drwxr-xr-x eli/ &mdash; English Language Institute</h3>
+        <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+        <p><a href="#units">cd eli/ &mdash; Learn more &gt;</a></p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section id="languages" aria-labelledby="h-lang">
+  <h2 class="cmd" id="h-lang"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">cat languages.txt | head -48</span></h2>
+  <div class="out">
+    <p>Language study at UChicago: 50+ languages across departments. A sampling, with greetings:</p>
+    <ul class="langs">
+      <li><b>Arabic</b>marhaba</li><li><b>Armenian</b>barev</li><li><b>Akkadian</b>(dead, still taught)</li>
+      <li><b>Bengali</b>nomoshkar</li><li><b>Bulgarian</b>zdravei</li><li><b>Burmese</b>mingalaba</li>
+      <li><b>Catalan</b>hola</li><li><b>Chinese</b>ni hao</li><li><b>Czech</b>ahoj</li>
+      <li><b>Dutch</b>hallo</li><li><b>Egyptian</b>(hieroglyphic)</li><li><b>French</b>bonjour</li>
+      <li><b>German</b>hallo</li><li><b>Greek</b>yassou</li><li><b>Gujarati</b>namaste</li>
+      <li><b>Hebrew</b>shalom</li><li><b>Hindi</b>namaste</li><li><b>Hungarian</b>szia</li>
+      <li><b>Indonesian</b>halo</li><li><b>Irish</b>dia duit</li><li><b>Italian</b>ciao</li>
+      <li><b>Japanese</b>konnichiwa</li><li><b>Kazakh</b>salem</li><li><b>Korean</b>annyeong</li>
+      <li><b>Latin</b>salve</li><li><b>Malayalam</b>namaskaram</li><li><b>Nepali</b>namaste</li>
+      <li><b>Norwegian</b>hei</li><li><b>Persian</b>salaam</li><li><b>Polish</b>czesc</li>
+      <li><b>Portuguese</b>ola</li><li><b>Punjabi</b>sat sri akal</li><li><b>Quechua</b>allillanchu</li>
+      <li><b>Romanian</b>salut</li><li><b>Russian</b>privet</li><li><b>Sanskrit</b>namaste</li>
+      <li><b>Serbian</b>zdravo</li><li><b>Spanish</b>hola</li><li><b>Swahili</b>jambo</li>
+      <li><b>Swedish</b>hej</li><li><b>Tamil</b>vanakkam</li><li><b>Thai</b>sawasdee</li>
+      <li><b>Turkish</b>merhaba</li><li><b>Ukrainian</b>pryvit</li><li><b>Urdu</b>adaab</li>
+      <li><b>Uzbek</b>salom</li><li><b>Vietnamese</b>xin chao</li><li><b>Yiddish</b>sholem aleichem</li>
+      <li><b>Yoruba</b>bawo ni</li><li><b>Zulu</b>sawubona</li><li><b>...</b>and more</li>
+    </ul>
+  </div>
+</section>
+
+<section id="stories" aria-labelledby="h-stories">
+  <h2 class="cmd" id="h-stories"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">less stories/featured.md</span></h2>
+  <div class="out">
+    <div class="story" id="story">
+      <h3>Where Will Language Study Take You?</h3>
+      <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+      <div class="pic" role="img" aria-label="Placeholder for photo: a smiling student in front of a colorful hillside village in Korea">Photo: a smiling student before a colorful hillside village, Korea</div>
+      <p class="d" id="story-n">story 1 of 9 (8 more in the archive)</p>
+      <div class="ctl story-js" role="group" aria-label="Story navigation">
+        <button type="button" id="sprev" aria-label="Previous story">&lt; prev</button>
+        <span id="dots"></span>
+        <button type="button" id="snext" aria-label="Next story">next &gt;</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hours" aria-labelledby="h-hours">
+  <h2 class="cmd" id="h-hours"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">cat hours.txt location.txt</span></h2>
+  <div class="out">
+    <dl>
+      <dt>Open</dt><dd>Mon-Fri: 8:30 AM-5:00 PM</dd>
+      <dt>Location</dt><dd>Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637</dd>
+    </dl>
+    <p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p>
+  </div>
+</section>
+
+<section id="blog" aria-labelledby="h-blog">
+  <h2 class="cmd" id="h-blog"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">tail -n 3 blog.log</span></h2>
+  <div class="out">
+    <p class="d">The Latest From Our Blog &mdash; [ Photo: snow-capped gargoyle on a campus building ]</p>
+    <ol class="log">
+      <li>
+        <span class="ts">[2024-09-19]</span> <span class="lv">INFO</span> <h3>Setting Ground Rules for AI Use in Language Courses</h3>
+        <div class="meta">author=Heather Guerrero tag=<span class="tag">Instructional Technology</span></div>
+        <p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students…</p>
+      </li>
+      <li>
+        <span class="ts">[2024-09-06]</span> <span class="lv">INFO</span> <h3>Generative AI: The Basics and Guardrails</h3>
+        <div class="meta">author=Heather Guerrero tag=<span class="tag">Instructional Technology</span></div>
+        <p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the…</p>
+      </li>
+      <li>
+        <span class="ts">[2024-05-08]</span> <span class="lv ev">EVENT</span> <h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3>
+        <div class="meta">author=Heather Guerrero tag=<span class="tag">Events</span>, <span class="tag">Uncategorized</span></div>
+        <p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses…</p>
+      </li>
+    </ol>
+    <p><a href="#blog">&laquo; Older Entries</a> <span class="d">(tail -n +4 blog.log)</span></p>
+  </div>
+</section>
+
+<section id="contact" aria-labelledby="h-contact">
+  <h2 class="cmd" id="h-contact"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">man contact</span></h2>
+  <div class="out">
+    <div class="sec">NAME</div>
+    <p>contact &mdash; reach the Chicago Language Center</p>
+    <div class="sec">DESCRIPTION</div>
+    <p>For questions, reservations, and further info, please contact us by phone or email:</p>
+    <dl>
+      <dt>PHONE</dt><dd><a href="tel:+17737029772">(773) 702-9772</a></dd>
+      <dt>EMAIL</dt><dd><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></dd>
+    </dl>
+    <div class="sec">SEE ALSO</div>
+    <p><a href="#units">Office of Language Assessment</a>, <a href="#units">English Language Institute</a>, <a href="#footer">accessibility(7)</a></p>
+  </div>
+</section>
+
+<section id="live" aria-label="Interactive shell">
+  <h2 class="cmd" style="font-size:1rem"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">./shell --interactive</span></h2>
+  <div class="out">
+    <p class="d">Type <b class="k">help</b> for commands. Output is appended below.</p>
+    <div class="hist" id="hist" role="log" aria-live="polite"></div>
+    <form id="form" autocomplete="off">
+      <label for="cmd"><span class="ps">visitor@clc:<i>~</i>$</span></label>
+      <input id="cmd" type="text" spellcheck="false" autocapitalize="off" autocorrect="off" aria-describedby="hint">
+      <span class="blk" aria-hidden="true"></span>
+    </form>
+    <div class="hint" id="hint">commands: help about units languages hours contact blog stories search clear (up/down arrows recall history)</div>
+  </div>
+</section>
+
+<p class="static-cursor" aria-hidden="true"><span class="ps">visitor@clc:<i>~</i>$</span> <span class="blk"></span></p>
+
+  </div>
+</div>
+</main>
+
+<footer id="footer">
+  <hr style="border:0;border-top:1px dashed var(--line)">
+  <p><b style="color:var(--fg)">THE UNIVERSITY OF CHICAGO</b><br>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+  <nav aria-label="Footer">
+    <ul>
+      <li><a href="#units">Office of Language Assessment</a></li>
+      <li><a href="#units">Mellon Collaborative Partners</a></li>
+      <li><a href="#units">Language Pedagogy Innovation Initiative</a></li>
+      <li><a href="#units">English Language Institute</a></li>
+      <li><a href="#hours">Accessibility</a></li>
+    </ul>
+  </nav>
+  <p>&copy; 2019-2026 The University of Chicago All rights reserved</p>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('has-js');
+  var hist=document.getElementById('hist'),form=document.getElementById('form'),input=document.getElementById('cmd');
+  var past=[],pi=0;
+  var map={about:'about',units:'units',hours:'hours',contact:'contact',blog:'blog',languages:'languages',stories:'stories'};
+  var alias={ls:'units','cat about.txt':'about','cat hours.txt':'hours','man contact':'contact','tail blog.log':'blog','cat languages.txt':'languages','ls units/':'units',
+    'language study':'languages','innovative programming':'stories','professional development':'units'};
+  function esc(s){return s.replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]})}
+  function add(cmd,html){
+    var row=document.createElement('div');row.className='row';
+    row.innerHTML='<span class="ps">visitor@clc:<i>~</i>$</span> <span style="color:#fff">'+esc(cmd)+'</span>';
+    var res=document.createElement('div');res.className='res out';res.innerHTML=html;
+    hist.appendChild(row);hist.appendChild(res);
+  }
+  function clone(id){
+    var o=document.getElementById(id).querySelector('.out').cloneNode(true);
+    o.querySelectorAll('[id]').forEach(function(n){n.removeAttribute('id')});
+    o.querySelectorAll('.story-js').forEach(function(n){n.remove()});
+    return o.innerHTML;
+  }
+  var HELP='<dl><dt>about</dt><dd>what the CLC is</dd><dt>units</dt><dd>OLA and ELI</dd><dt>languages</dt><dd>50+ languages with hello</dd><dt>hours</dt><dd>when and where</dd><dt>contact</dt><dd>phone and email</dd><dt>blog</dt><dd>latest log entries</dd><dt>stories</dt><dd>featured story</dd><dt>search &lt;term&gt;</dt><dd>find a language or topic</dd><dt>clear</dt><dd>wipe this screen</dd></dl>';
+  function search(q){
+    if(!q)return '<p>usage: search &lt;term&gt;</p>';
+    q=q.toLowerCase();var hits=[];
+    document.querySelectorAll('#languages li').forEach(function(li){if(li.textContent.toLowerCase().indexOf(q)>-1)hits.push('<li>'+li.innerHTML+'</li>')});
+    var out='';
+    if(hits.length)out+='<ul class="langs">'+hits.join('')+'</ul>';
+    document.querySelectorAll('#blog h3, #units article h3, #about h3').forEach(function(h){
+      var box=h.closest('li,article,.out');if(box&&box.textContent.toLowerCase().indexOf(q)>-1)out+='<p>match: <span class="k">'+esc(h.textContent)+'</span></p>';
+    });
+    return out||'<p>search: no matches for "'+esc(q)+'"</p>';
+  }
+  function run(raw){
+    var c=raw.trim(),l=c.toLowerCase();if(!c)return;
+    var key=alias[l]||l;
+    if(l==='clear'){hist.innerHTML='';return}
+    if(l==='help'||l==='?')return add(c,HELP);
+    if(l==='languages'||l==='hello'||l==='hello world'){
+      var items=[].slice.call(document.querySelectorAll('#languages li'));
+      return add(c,'<p>'+items.length+' entries:</p><ul class="langs">'+items.map(function(li){return '<li>'+li.innerHTML+'</li>'}).join('')+'</ul>');
+    }
+    if(map[key])return add(c,clone(map[key]));
+    if(l.indexOf('search')===0)return add(c,search(c.slice(6).trim()));
+    if(l==='whoami')return add(c,'<p>visitor. Welcome. Hours are Mon-Fri 8:30-5:00.</p>');
+    if(l==='pwd')return add(c,'<p>/uchicago/hyde-park/main-quad/cobb/211</p>');
+    if(l.indexOf('sudo')===0)return add(c,'<p>visitor is not in the sudoers file. This incident will be reported to your language requirement.</p>');
+    add(c,'<p>clc: command not found: '+esc(c.split(' ')[0])+'. Try <span class="k">help</span>.</p>');
+  }
+  form.addEventListener('submit',function(e){
+    e.preventDefault();var v=input.value;if(v.trim()){past.push(v);pi=past.length}
+    run(v);input.value='';
+    if(v.trim()&&v.trim().toLowerCase()!=='clear')form.scrollIntoView({block:'end'});
+  });
+  input.addEventListener('keydown',function(e){
+    if(e.key==='ArrowUp'&&past.length){e.preventDefault();pi=Math.max(0,pi-1);input.value=past[pi]}
+    else if(e.key==='ArrowDown'&&past.length){e.preventDefault();pi=Math.min(past.length,pi+1);input.value=past[pi]||''}
+  });
+  document.getElementById('searchchip').addEventListener('click',function(){setTimeout(function(){input.focus();input.value='search ';},50)});
+
+  // stories carousel (9 slides)
+  var titles=['Where Will Language Study Take You?','A semester in Seoul','Teaching Akkadian to undergraduates','From Hyde Park to Hanoi','Heritage speakers in the classroom','Reading Dante in Italian','Swahili on the South Side','Persian poetry club','Instructors on teaching with AI'];
+  var cur=0,dots=document.getElementById('dots'),h=document.querySelector('#story h3'),n=document.getElementById('story-n'),pic=document.querySelector('#story .pic');
+  var btns=[];
+  titles.forEach(function(t,i){var b=document.createElement('button');b.type='button';b.textContent=i+1;b.setAttribute('aria-label','Story '+(i+1)+': '+t);b.onclick=function(){go(i)};dots.appendChild(b);btns.push(b);dots.appendChild(document.createTextNode(' '))});
+  function go(i){cur=(i+9)%9;h.textContent=titles[cur];n.textContent='story '+(cur+1)+' of 9';
+    pic.style.filter='hue-rotate('+(cur*37)+'deg)';
+    btns.forEach(function(b,j){b.removeAttribute('aria-current');if(j===cur)b.setAttribute('aria-current','true')})}
+  document.getElementById('sprev').onclick=function(){go(cur-1)};
+  document.getElementById('snext').onclick=function(){go(cur+1)};
+  go(0);
+})();
+</script>
+</body>
+</html>

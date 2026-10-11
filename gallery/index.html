@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLC Home Page Redesigns — Gallery</title>
+<style>
+  :root { --maroon:#800000; --ink:#1d1d1d; --paper:#f6f3ee; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--paper); }
+  header { padding:48px 24px 24px; max-width:1100px; margin:0 auto; }
+  h1 { margin:0 0 8px; font-size:clamp(28px,4vw,44px); line-height:1.1; }
+  header p { margin:0; max-width:60ch; color:#555; }
+  main { max-width:1100px; margin:0 auto; padding:16px 24px 64px; display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
+  a.card { display:flex; flex-direction:column; text-decoration:none; color:inherit; background:#fff; border:1px solid #ddd; border-radius:10px; overflow:hidden; transition:transform .15s, box-shadow .15s; }
+  a.card:hover, a.card:focus-visible { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.12); outline:2px solid var(--maroon); }
+  .thumb { position:relative; height:190px; overflow:hidden; background:#eee; }
+  .thumb iframe { width:1280px; height:760px; border:0; transform:scale(.25); transform-origin:0 0; pointer-events:none; }
+  .meta { padding:14px 16px 16px; }
+  .meta b { display:block; font-size:18px; }
+  .meta span { color:#666; font-size:14px; }
+  .num { color:var(--maroon); font-variant-numeric:tabular-nums; margin-right:6px; }
+  footer { text-align:center; padding:0 24px 40px; color:#777; font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Chicago Language Center — 10 home page concepts</h1>
+  <p>Ten structurally different takes on the same content: different layouts, information architecture, and interaction models. Click a card to open the full page.</p>
+</header>
+<main>
+  <a class="card" href="01-broadsheet/index.html"><div class="thumb"><iframe src="01-broadsheet/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">01</span>The Broadsheet</b><span>Vintage newspaper front page, lead stories and notices.</span></div></a>
+  <a class="card" href="02-terminal/index.html"><div class="thumb"><iframe src="02-terminal/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">02</span>The Terminal</b><span>A shell session; content is command output.</span></div></a>
+  <a class="card" href="03-bento/index.html"><div class="thumb"><iframe src="03-bento/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">03</span>Bento Dashboard</b><span>One-screen app of tiles with a live open/closed status.</span></div></a>
+  <a class="card" href="04-horizontal/index.html"><div class="thumb"><iframe src="04-horizontal/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">04</span>The Long Hallway</b><span>Horizontal scroll through full-screen rooms.</span></div></a>
+  <a class="card" href="05-greetings/index.html"><div class="thumb"><iframe src="05-greetings/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">05</span>Hello, in 50 Languages</b><span>Brutalist type poster with cycling greetings.</span></div></a>
+  <a class="card" href="06-swiss/index.html"><div class="thumb"><iframe src="06-swiss/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">06</span>Swiss Grid</b><span>International Typographic Style, visible grid.</span></div></a>
+  <a class="card" href="07-boarding-pass/index.html"><div class="thumb"><iframe src="07-boarding-pass/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">07</span>Passport &amp; Boarding Pass</b><span>Travel-themed paper objects.</span></div></a>
+  <a class="card" href="08-docs-sidebar/index.html"><div class="thumb"><iframe src="08-docs-sidebar/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">08</span>Split-screen Handbook</b><span>Pinned maroon panel plus scrolling reading pane.</span></div></a>
+  <a class="card" href="09-conversation/index.html"><div class="thumb"><iframe src="09-conversation/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">09</span>The Conversation</b><span>The home page as a chat with quick replies.</span></div></a>
+  <a class="card" href="10-card-catalog/index.html"><div class="thumb"><iframe src="10-card-catalog/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">10</span>The Card Catalog</b><span>Library drawer with tabbed index cards.</span></div></a>
+</main>
+<footer>Concept designs for review. Plain HTML and CSS, minimal JS, no external assets.</footer>
+</body>
+</html>

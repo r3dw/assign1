@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center — The University of Chicago</title>
+<style>
+:root{
+  --ink:#000; --paper:#fff; --red:#e63312; --red-text:#c92a0b; --hair:rgba(0,0,0,.14);
+  --pad:clamp(16px,3vw,40px);
+  --s1:clamp(.9rem,.85rem + .2vw,1.02rem);
+  --s2:clamp(1.5rem,1.1rem + 1.6vw,2.6rem);
+  --s3:clamp(7rem,3rem + 20vw,22rem);
+  --font:"Helvetica Neue",Helvetica,Arial,"Liberation Sans",sans-serif;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font:400 var(--s1)/1.45 var(--font);color:var(--ink);background:var(--paper);-webkit-font-smoothing:antialiased;display:grid;grid-template-columns:minmax(170px,14vw) 1fr}
+a{color:inherit;text-decoration-thickness:1px;text-underline-offset:3px}
+a:focus-visible{outline:3px solid var(--red);outline-offset:3px}
+a:hover{color:var(--red-text)}
+ul{list-style:none}
+.skip{position:absolute;left:-999px;top:0;background:var(--ink);color:#fff;padding:8px 12px;z-index:20}
+.skip:focus{left:0}
+
+/* margin index */
+.margin{position:sticky;top:0;height:100vh;padding:var(--pad);display:flex;flex-direction:column;justify-content:space-between;border-right:1px solid var(--ink);overflow:auto;font-size:.88rem;line-height:1.3}
+.margin strong{display:block;font-weight:700;font-size:1rem;line-height:1.1;margin-bottom:2.2rem;letter-spacing:-.01em}
+.margin strong span{display:block;font-weight:400}
+.margin nav li{border-top:1px solid var(--hair)}
+.margin nav li:last-child{border-bottom:1px solid var(--hair)}
+.margin nav a{display:flex;gap:.8rem;padding:.45rem 0;text-decoration:none}
+.margin nav a i{font-style:normal;color:var(--red-text);font-variant-numeric:tabular-nums;width:1.6em}
+.margin nav a:hover{background:var(--ink);color:#fff;padding-left:.4rem}
+.margin .util{margin-top:1.5rem;display:grid;gap:.15rem}
+.margin .util a{text-decoration:none}
+.margin .util a:hover{text-decoration:underline}
+.margin .small{font-size:.78rem;opacity:.9}
+.galleryl{display:inline-block;margin-top:1rem;font-size:.75rem;color:#444}
+
+/* grid */
+main{position:relative;min-width:0}
+main::before{content:"";position:absolute;inset:0 var(--pad);pointer-events:none;z-index:0;
+  background:repeating-linear-gradient(to right,var(--hair) 0 1px,transparent 1px calc(100% / 12))}
+main::after{content:"";position:absolute;top:0;bottom:0;right:var(--pad);width:1px;background:var(--hair);pointer-events:none}
+section,footer{position:relative;z-index:1;display:grid;grid-template-columns:repeat(12,1fr);column-gap:0;padding:0 var(--pad);border-top:1px solid var(--ink)}
+section > *,footer > *{padding:0 .9rem 0 .5rem}
+.no{grid-column:1/2;padding-top:1rem;font-size:.8rem;font-weight:700;color:var(--red-text);font-variant-numeric:tabular-nums}
+.label{grid-column:2/5;padding-top:1rem;font-size:.8rem;text-transform:uppercase;letter-spacing:.08em}
+h1,h2{font-weight:700;letter-spacing:-.025em;line-height:1.02;font-size:var(--s2)}
+.fig{font-weight:700;font-size:var(--s3);line-height:.82;letter-spacing:-.06em;margin-left:-.04em}
+.red{color:var(--red)}
+p{max-width:38em}
+
+/* 00 hero */
+.hero{border-top:0;min-height:92vh;align-content:space-between;padding-top:var(--pad);padding-bottom:var(--pad);row-gap:2rem}
+.hero .top{grid-column:1/13;display:flex;justify-content:space-between;font-size:.8rem;padding-bottom:.8rem;border-bottom:1px solid var(--ink)}
+.hero .top a{text-decoration:none}
+.hero .top a:hover{text-decoration:underline}
+.art{grid-column:7/13;grid-row:2;aspect-ratio:1;display:grid;grid-template-columns:repeat(3,1fr);grid-template-rows:repeat(3,1fr);background:#fff;border:1px solid var(--ink);padding:0}
+.art div{border:0;position:relative}
+.art .a{background:var(--red);border-radius:0 100% 0 0}
+.art .b{background:var(--ink);border-radius:50%}
+.art .c{background:var(--ink)}
+.art .d{background:var(--red);border-radius:50%;transform:scale(.5)}
+.art .e{background:var(--ink);border-radius:100% 0 0 0}
+.art .f{background:linear-gradient(var(--ink) 0 33%,#fff 33% 50%,var(--ink) 50% 83%,#fff 83%)}
+.art .g{background:var(--red);border-radius:0 0 0 100%}
+.art .h{background:var(--ink);border-radius:0 0 100% 0}
+.art .i{background:var(--red)}
+.hero .title{grid-column:1/7;grid-row:2;align-self:end}
+.hero h1{font-size:clamp(2.6rem,1.2rem + 6.5vw,7.4rem);letter-spacing:-.045em;line-height:.92}
+.hero .sub{margin-top:1.4rem;font-size:var(--s2);line-height:1.1;letter-spacing:-.02em;font-weight:400}
+.hero .foot{grid-column:1/13;grid-row:3;display:flex;gap:1rem 2rem;flex-wrap:wrap;font-size:.8rem;border-top:1px solid var(--ink);padding-top:.7rem}
+
+/* 01 */
+.s1 h2{grid-column:2/9;margin:3rem 0 1.5rem}
+.s1 .fig{grid-column:2/9;display:flex;align-items:flex-end;gap:1rem}
+.s1 .fig small{font-size:var(--s2);letter-spacing:-.02em;line-height:1;padding-bottom:.5rem;font-weight:400;max-width:6em}
+.s1 .body{grid-column:6/12;margin:2rem 0 4rem}
+.s1 .body p{font-size:var(--s2);line-height:1.12;letter-spacing:-.02em;max-width:none}
+.s1 .body p + p{font-size:var(--s1);letter-spacing:0;line-height:1.45;margin-top:1.5rem;max-width:34em}
+.photo{grid-column:2/6;margin-bottom:4rem;border:1px solid var(--ink);aspect-ratio:4/3;display:flex;align-items:flex-end;padding:.6rem !important;font-size:.75rem;background:repeating-linear-gradient(135deg,#fff 0 10px,#f1f1f1 10px 11px)}
+
+/* 02 units */
+.unit{padding-bottom:3rem}
+.u1{grid-column:2/7;grid-row:2}
+.u2{grid-column:8/13;grid-row:2;margin-top:6rem}
+.unit .fig{font-size:clamp(5rem,2rem + 12vw,13rem);margin:2.5rem 0 1.5rem}
+.unit h3{font-size:var(--s1);font-weight:700;margin-bottom:.6rem}
+.unit p{margin-bottom:1rem}
+.more{display:inline-block;font-weight:700;text-decoration:none;border-top:2px solid var(--ink);padding-top:.35rem;min-width:9rem}
+.more:hover{color:var(--red-text);border-color:var(--red)}
+.s2 .label{grid-row:1}
+.s2 .no{grid-row:1}
+
+/* 03 stories */
+.s3 h2{grid-column:2/9;margin:3rem 0 1rem}
+.s3 .lead{grid-column:2/8;margin-bottom:2.5rem}
+.s3 .idx{grid-column:2/13;display:grid;grid-template-columns:repeat(9,1fr);margin-bottom:0;padding:0}
+.s3 .idx li{border-top:1px solid var(--ink);padding:.5rem .5rem 0 .5rem;font-size:.8rem;font-variant-numeric:tabular-nums;height:5.5rem}
+.s3 .idx li:first-child{background:var(--red);color:#000;font-weight:700}
+.s3 .idx li:not(:first-child){color:#444}
+.s3 .nav{grid-column:2/13;display:flex;justify-content:space-between;padding:1rem .5rem 3rem;font-size:.85rem}
+.s3 .nav a{font-weight:700;text-decoration:none}
+.s3 .nav span{color:#555}
+.s3 .nav a:hover{text-decoration:underline}
+
+/* 04 visit */
+.s4 .fig{grid-column:2/13;margin:2.5rem 0 1rem;font-size:clamp(4rem,1rem + 14vw,17rem)}
+.s4 .fig .red{display:inline-block}
+.s4 .cols{grid-column:2/13;display:grid;grid-template-columns:repeat(11,1fr);padding:0;margin:1rem 0 4rem;row-gap:2rem}
+.cols > div{padding:.8rem .9rem 0 .5rem;border-top:1px solid var(--ink)}
+.c1{grid-column:1/5}.c2{grid-column:5/8}.c3{grid-column:8/12}
+.cols dt{font-size:.8rem;text-transform:uppercase;letter-spacing:.08em;margin-bottom:.6rem}
+.cols dd{margin-bottom:.4rem}
+.cols .big{font-size:var(--s2);letter-spacing:-.02em;line-height:1.08;font-weight:700}
+
+/* 05 blog */
+.s5 h2{grid-column:2/9;margin:3rem 0 2.5rem}
+.table{grid-column:1/13;padding:0;margin:0 calc(var(--pad) * -1);border-top:2px solid var(--ink)}
+.table ol{list-style:none}
+.row{display:grid;grid-template-columns:repeat(12,1fr);padding:0 var(--pad);border-bottom:1px solid var(--ink);position:relative}
+.row > *{padding:1.1rem .9rem 1.1rem .5rem}
+.row.head{border-bottom:1px solid var(--ink);font-size:.78rem;text-transform:uppercase;letter-spacing:.08em}
+.row.head > *{padding:.6rem .9rem .6rem .5rem}
+.row .n{grid-column:1/2;font-variant-numeric:tabular-nums;color:var(--red-text);font-weight:700}
+.row .t{grid-column:2/8;font-weight:700;font-size:1.15rem;line-height:1.15;letter-spacing:-.01em}
+.row .t a{text-decoration:none}
+.row .t a::after{content:"";position:absolute;inset:0}
+.row .d{grid-column:8/10}
+.row .au{grid-column:10/12;grid-row:1}
+.row .cat{grid-column:12/13;font-size:.85rem}
+.row .ex{grid-column:2/8;grid-row:2;padding-top:0;font-size:.9rem;color:#333}
+.row.head .d{grid-column:8/10}
+.row.head .au{grid-column:10/12}
+.item{transition:none}
+.item:hover,.item:focus-within{background:var(--ink);color:#fff}
+.item:hover .n,.item:focus-within .n{color:var(--red)}
+.item:hover .ex,.item:focus-within .ex{color:#ddd}
+.item:hover a,.item:focus-within a{color:#fff}
+.item .t a:focus-visible{outline:3px solid var(--red);outline-offset:-3px}
+.older{grid-column:2/13;margin:1.5rem 0 4rem;font-weight:700}
+
+/* 06 footer */
+footer{padding-bottom:var(--pad)}
+footer h2{grid-column:2/8;margin:3rem 0 2rem}
+footer .addr{grid-column:2/7;margin-bottom:3rem}
+footer .addr .big{font-size:var(--s2);line-height:1.08;letter-spacing:-.02em;font-weight:700;display:block}
+footer .links{grid-column:8/13;margin-bottom:3rem}
+footer .links li{border-top:1px solid var(--ink)}
+footer .links li:last-child{border-bottom:1px solid var(--ink)}
+footer .links a{display:block;padding:.5rem 0;text-decoration:none}
+footer .links a:hover{background:var(--ink);color:#fff;padding-left:.5rem}
+footer .copy{grid-column:2/13;font-size:.78rem;display:flex;justify-content:space-between;flex-wrap:wrap;gap:.5rem;border-top:1px solid var(--ink);padding-top:.7rem}
+.mark{display:inline-block;width:.9em;height:.9em;border-radius:50%;background:var(--red);vertical-align:-.1em;margin-right:.35em}
+
+@media (max-width:1000px){
+  .row .t{grid-column:2/13}
+  .row .d{grid-column:2/6;grid-row:3;padding-top:0;font-size:.85rem}
+  .row .au{grid-column:6/10;grid-row:3;padding-top:0;font-size:.85rem}
+  .row .cat{grid-column:10/13;grid-row:3;padding-top:0}
+  .row .ex{grid-column:2/13;grid-row:2}
+  .row.head{display:none}
+}
+@media (max-width:760px){
+  body{display:block}
+  .margin{position:static;height:auto;border-right:0;border-bottom:1px solid var(--ink);flex-direction:column;gap:1rem}
+  .margin strong{margin-bottom:1rem}
+  .margin nav ul{display:grid;grid-template-columns:1fr 1fr;column-gap:1rem}
+  .margin .util{margin-top:1rem;grid-template-columns:1fr 1fr}
+  main::before{background:repeating-linear-gradient(to right,var(--hair) 0 1px,transparent 1px calc(100% / 6))}
+  .hero .title,.art{grid-column:1/13;grid-row:auto}
+  .art{order:-1;max-width:420px}
+  .hero .top{flex-wrap:wrap;gap:.5rem}
+  .s1 h2,.s1 .fig,.s1 .body,.photo,.s3 h2,.s3 .lead,.s5 h2,footer h2,footer .addr,footer .links,.older,.s4 .cols,.s4 .fig,.s3 .idx,.s3 .nav,footer .copy,.label.l{grid-column:2/13}
+  .label{grid-column:2/13}
+  .s1 .body{grid-column:2/13}
+  .u1,.u2{grid-column:2/13;grid-row:auto;margin-top:0}
+  .s2 .label{grid-row:auto}
+  .s2 .no{grid-row:auto}
+  .s3 .idx{grid-template-columns:repeat(9,1fr)}
+  .s3 .idx li{height:3.5rem;padding:.4rem .1rem 0 .3rem}
+  .s4 .cols{display:block}
+  .cols > div{margin-bottom:1.5rem}
+  .row .t,.row .ex{grid-column:2/13}
+  .row .d{grid-column:2/13}
+  .row .au{grid-column:2/13;grid-row:4}
+  .row .cat{grid-column:2/13;grid-row:5}
+  .row .d,.row .au,.row .cat{padding-top:.1rem;padding-bottom:.1rem}
+  .row .n{padding-right:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+<a class="skip" href="#content">Skip to content</a>
+
+<aside class="margin" aria-label="Site index">
+  <div>
+    <strong>Chicago<span>Language</span>Center</strong>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#about"><i>01</i>About</a></li>
+        <li><a href="#units"><i>02</i>Language Study</a></li>
+        <li><a href="#stories"><i>03</i>Innovative Programming</a></li>
+        <li><a href="#visit"><i>04</i>Visit</a></li>
+        <li><a href="#blog"><i>05</i>Professional Development</a></li>
+        <li><a href="#contact"><i>06</i>Search / Contact</a></li>
+      </ul>
+    </nav>
+    <div class="util" aria-label="Utility">
+      <a href="#">News</a>
+      <a href="#">Calendar</a>
+      <a href="#">Students &darr;</a>
+      <a href="#">Instructors &darr;</a>
+    </div>
+  </div>
+  <div class="small">
+    <a href="https://www.uchicago.edu">The University of Chicago</a><br>
+    <a class="galleryl" href="../index.html">&larr; Gallery</a>
+  </div>
+</aside>
+
+<main id="content">
+  <section class="hero" aria-labelledby="h-hero">
+    <div class="top"><a href="https://www.uchicago.edu">The University of Chicago</a><span>Hyde Park, Chicago &mdash; Cobb Hall 211</span><span>Index 00</span></div>
+    <div class="title">
+      <h1 id="h-hero">Language<br>Center<span class="red">.</span></h1>
+      <p class="sub">Services, testing and teaching for 50+ languages.</p>
+    </div>
+    <div class="art" role="img" aria-label="Geometric composition of circles, quarter-circles and bars in black and red">
+      <div class="a"></div><div class="b"></div><div class="c"></div>
+      <div class="d"></div><div class="e"></div><div class="f"></div>
+      <div class="g"></div><div class="h"></div><div class="i"></div>
+    </div>
+    <div class="foot"><span>Mon&ndash;Fri 8:30&ndash;5:00</span><span>(773) 702-9772</span><span>languages@uchicago.edu</span></div>
+  </section>
+
+  <section class="s1" id="about" aria-labelledby="h-about">
+    <div class="no">01</div><div class="label">About</div>
+    <h2 id="h-about">University of Chicago Language Center</h2>
+    <div class="fig" aria-hidden="true"><span class="red">50+</span><small>languages taught</small></div>
+    <div class="body">
+      <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the <b>50+ languages</b> spread across various departments within the university.</p>
+      <p>We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+    </div>
+    <div class="photo">Photo: Cobb Hall front desk</div>
+  </section>
+
+  <section class="s2" id="units" aria-labelledby="h-units">
+    <div class="no">02</div><div class="label"><h2 id="h-units" style="font-size:inherit;letter-spacing:inherit;text-transform:uppercase;font-weight:400;line-height:inherit">Two units</h2></div>
+    <article class="unit u1">
+      <div class="fig" aria-hidden="true">2016</div>
+      <h3>Office of Language Assessment</h3>
+      <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+      <a class="more" href="#">Learn more &rarr;<span class="sr" style="position:absolute;left:-999px"> about the Office of Language Assessment</span></a>
+    </article>
+    <article class="unit u2">
+      <div class="fig red" aria-hidden="true">2015</div>
+      <h3>English Language Institute</h3>
+      <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+      <a class="more" href="#">Learn more &rarr;<span style="position:absolute;left:-999px"> about the English Language Institute</span></a>
+    </article>
+  </section>
+
+  <section class="s3" id="stories" aria-labelledby="h-stories">
+    <div class="no">03</div><div class="label">Stories</div>
+    <h2 id="h-stories">Where Will Language Study Take You?</h2>
+    <p class="lead">Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+    <ol class="idx" aria-label="Nine stories; story 1 of 9 shown">
+      <li aria-current="true">01</li><li>02</li><li>03</li><li>04</li><li>05</li><li>06</li><li>07</li><li>08</li><li>09</li>
+    </ol>
+    <div class="nav"><a href="#stories">&larr; Previous</a><span>Story 01 / 09 &mdash; a student in a hillside village, Korea</span><a href="#stories">Next &rarr;</a></div>
+  </section>
+
+  <section class="s4" id="visit" aria-labelledby="h-visit">
+    <div class="no">04</div><div class="label"><h2 id="h-visit" style="font-size:inherit;letter-spacing:inherit;text-transform:uppercase;font-weight:400;line-height:inherit">Visit</h2></div>
+    <div class="fig" aria-label="8:30 AM to 5:00 PM">8:30<span class="red">&ndash;</span>5:00</div>
+    <dl class="cols">
+      <div class="c1"><dt>Hours</dt><dd class="big">Mon&ndash;Fri<br>8:30 AM&ndash;5:00 PM</dd></div>
+      <div class="c2"><dt>Location</dt><dd><address style="font-style:normal"><b>Cobb Hall, Suite 211</b><br>5811 S Ellis Ave<br>Chicago, IL 60637</address></dd><dd>2nd floor of Cobb Hall, on the main quadrangle in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</dd></div>
+      <div class="c3"><dt>Contact</dt><dd>For questions, reservations, and further info, please contact us by phone or email:</dd><dd><a class="big" href="tel:+17737029772">(773) 702-9772</a></dd><dd><a href="mailto:languages@uchicago.edu"><b>languages@uchicago.edu</b></a></dd></div>
+    </dl>
+  </section>
+
+  <section class="s5" id="blog" aria-labelledby="h-blog">
+    <div class="no">05</div><div class="label">Blog</div>
+    <h2 id="h-blog">The Latest From Our Blog</h2>
+    <div class="table">
+      <div class="row head" aria-hidden="true"><span class="n">No.</span><span class="t">Title</span><span class="d">Date</span><span class="au">Author</span><span class="cat">Category</span></div>
+      <ol>
+        <li class="row item"><span class="n">01</span>
+          <span class="t"><a href="#">Setting Ground Rules for AI Use in Language Courses</a></span>
+          <span class="d">Sep 19, 2024</span><span class="au">Heather Guerrero</span><span class="cat">Instructional Technology</span>
+          <p class="ex">In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses&hellip;</p></li>
+        <li class="row item"><span class="n">02</span>
+          <span class="t"><a href="#">Generative AI: The Basics and Guardrails</a></span>
+          <span class="d">Sep 6, 2024</span><span class="au">Heather Guerrero</span><span class="cat">Instructional Technology</span>
+          <p class="ex">The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models&hellip;</p></li>
+        <li class="row item"><span class="n">03</span>
+          <span class="t"><a href="#">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</a></span>
+          <span class="d">May 8, 2024</span><span class="au">Heather Guerrero</span><span class="cat">Events, Uncategorized</span>
+          <p class="ex">This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom&hellip;</p></li>
+      </ol>
+    </div>
+    <a class="older" href="#">&laquo; Older Entries</a>
+  </section>
+
+  <footer id="contact">
+    <div class="no">06</div><div class="label">Contact</div>
+    <h2><span class="mark"></span>University of Chicago</h2>
+    <div class="addr">
+      <span class="big">5811 S. Ellis Ave.<br>Cobb Hall, Suite 211<br>Chicago, IL. 60637</span>
+      <p style="margin-top:1rem">773.702.9772 &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+    </div>
+    <nav class="links" aria-label="Footer">
+      <ul>
+        <li><a href="#">Office of Language Assessment</a></li>
+        <li><a href="#">Mellon Collaborative Partners</a></li>
+        <li><a href="#">Language Pedagogy Innovation Initiative</a></li>
+        <li><a href="#">English Language Institute</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </nav>
+    <div class="copy"><span>&copy; 2019&ndash;2026 The University of Chicago All rights reserved</span><a href="../index.html">&larr; Gallery</a></div>
+  </footer>
+</main>
+</body>
+</html>

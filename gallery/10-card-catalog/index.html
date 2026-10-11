@@ -1,0 +1,268 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center | The Card Catalog</title>
+<style>
+:root{--walnut:#3b2314;--walnut2:#26150b;--brass:#c9a24b;--brass2:#8f6d22;--cream:#f8f0d9;--cream2:#efe3c1;--maroon:#800000;--ink:#4a0b0b;--type:"Courier New",Courier,"Nimbus Mono PS",monospace;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--serif);color:#2a1a12;line-height:1.55;
+background:
+repeating-linear-gradient(92deg,rgba(0,0,0,.0) 0 7px,rgba(0,0,0,.12) 8px 9px,rgba(255,200,120,.03) 10px 14px),
+repeating-linear-gradient(88deg,rgba(255,220,160,.04) 0 23px,rgba(0,0,0,.1) 24px 26px),
+linear-gradient(180deg,#4a2c19,#2c190d 60%,#1d0f07);background-attachment:fixed;min-height:100vh}
+a{color:inherit}
+:focus-visible{outline:3px solid #ffe08a;outline-offset:3px}
+.skip{position:absolute;left:-999px;top:0;background:var(--cream);color:#000;padding:.5rem 1rem;z-index:99}
+.skip:focus{left:8px;top:8px}
+.top{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;justify-content:space-between;align-items:center;padding:.5rem 1.2rem;background:#140a04;color:#e9d9b0;font:.85rem var(--type)}
+.top ul{display:flex;gap:1.1rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.top a{text-decoration:none;border-bottom:1px dotted #a88}
+.top a:hover{color:#fff}
+.gal{font-size:.75rem;opacity:.75}
+.cab{max-width:1040px;margin:1.5rem auto;padding:0 1rem}
+/* drawer front */
+.drawer{position:relative;border-radius:10px 10px 4px 4px;padding:1.2rem 1.5rem 1.5rem;text-align:center;color:#f3dfb0;
+background:repeating-linear-gradient(90deg,rgba(0,0,0,.07) 0 3px,transparent 3px 11px),linear-gradient(180deg,#6b4126,#52301b 50%,#432512);
+box-shadow:inset 0 0 0 6px #5c3820,inset 0 0 0 8px #2a160a,inset 0 0 40px rgba(0,0,0,.5),0 10px 30px rgba(0,0,0,.6)}
+.drawer h1{margin:0;font:normal clamp(1.6rem,4.5vw,2.8rem)/1.1 var(--serif);letter-spacing:.06em;text-transform:uppercase;text-shadow:0 2px 0 #1b0d05,0 0 1px #000}
+.drawer .sub{font:.85rem var(--type);letter-spacing:.25em;text-transform:uppercase;color:#d9bd7e;margin:.4rem 0 1rem}
+.labels{display:flex;flex-wrap:wrap;justify-content:center;gap:.9rem 1.2rem;list-style:none;margin:0;padding:0}
+.lab{display:block;text-decoration:none;padding:.35rem .9rem;font:700 .8rem var(--type);color:#2a1a12;letter-spacing:.04em;
+background:linear-gradient(180deg,#f8f0d9,#e4d4a6);border:3px solid transparent;border-radius:3px;
+border-image:linear-gradient(135deg,#f0d78a,#a47c26 45%,#e8c966 60%,#7d5c18) 1;box-shadow:0 2px 3px rgba(0,0,0,.6)}
+.lab:hover{background:#fff8e0}
+.pull{display:block;width:96px;height:26px;margin:1.1rem auto 0;border-radius:40px 40px 14px 14px/26px 26px 14px 14px;background:linear-gradient(180deg,#f7e3a0,#b98e30 55%,#7a5714);box-shadow:0 4px 6px rgba(0,0,0,.6),inset 0 -3px 4px rgba(0,0,0,.3)}
+.search{display:flex;justify-content:center;gap:.4rem;margin-top:1rem;flex-wrap:wrap}
+.search label{font:.8rem var(--type);color:#e6cf93;align-self:center}
+.search input{font:1rem var(--type);padding:.4rem .6rem;width:min(300px,70vw);border:2px solid #2a160a;background:#fbf5e3;color:#2a1a12;border-radius:2px;box-shadow:inset 0 2px 4px rgba(0,0,0,.3)}
+.search button{font:700 .85rem var(--type);padding:.4rem .9rem;background:var(--maroon);color:#fff;border:2px solid #2a0505;cursor:pointer;border-radius:2px}
+.search button:hover{background:#a00000}
+/* tray */
+.tray{margin-top:2rem;position:relative}
+.tabs{display:flex;flex-wrap:wrap;gap:4px;padding:0 1rem;margin:0;list-style:none;position:relative;z-index:2;margin-bottom:-2px}
+.tabs a{display:block;text-decoration:none;padding:.55rem 1.1rem .45rem;font:700 .85rem var(--type);letter-spacing:.05em;text-transform:uppercase;color:#4a2c1a;
+background:linear-gradient(180deg,#d8c590,#bfa968);border-radius:10px 10px 0 0;border:1px solid #6d5320;border-bottom:0;box-shadow:inset 0 2px 0 rgba(255,255,255,.35)}
+.tabs a:hover{background:linear-gradient(180deg,#ecdca6,#d3bd7a)}
+.tabs a[aria-current="true"]{background:var(--cream);color:var(--maroon);padding-top:.8rem}
+.cards{position:relative;padding-bottom:26px}
+.cards:before,.cards:after{content:"";position:absolute;left:10px;right:10px;height:100%;background:var(--cream2);border:1px solid #b9a56e;border-radius:4px;z-index:0}
+.cards:before{top:12px;left:18px;right:18px;opacity:.75}
+.cards:after{top:6px;left:12px;right:12px}
+.card{display:none;position:relative;z-index:1;background:
+repeating-linear-gradient(180deg,transparent 0 31px,rgba(70,110,160,.18) 31px 32px),var(--cream);
+border:1px solid #b9a56e;border-radius:4px;padding:2.2rem clamp(1rem,4vw,3rem) 4.5rem;box-shadow:0 8px 24px rgba(0,0,0,.55);min-height:420px;background-position:0 70px}
+#welcome{display:block}
+body:has(.card:target) #welcome:not(:target){display:none}
+.card:target{display:block}
+.js body:has(.card:target) #welcome:not(:target){display:none}
+.js .card{display:none!important}
+.js .card.on{display:block!important}
+.card:before{content:"";position:absolute;left:0;right:0;top:4.2rem;border-top:2px solid var(--maroon);box-shadow:0 0 0 0 transparent}
+.callno{position:absolute;top:1rem;left:clamp(1rem,4vw,3rem);font:700 .95rem/1.3 var(--type);color:var(--ink);white-space:pre}
+.cardno{position:absolute;top:1rem;right:clamp(1rem,4vw,3rem);font:.8rem var(--type);color:#7a5c4a}
+.card h2{margin:2.4rem 0 .8rem;font:normal clamp(1.4rem,3.4vw,2.1rem)/1.2 var(--serif);color:var(--ink)}
+.card h3{font:700 1rem var(--type);color:var(--ink);margin:1.2rem 0 .3rem}
+.card p{margin:.5rem 0;max-width:68ch}
+.fields{display:grid;grid-template-columns:max-content 1fr;gap:.35rem 1.2rem;margin:1rem 0;font:.95rem/1.5 var(--type)}
+.fields dt{font-weight:700;color:var(--maroon);text-transform:uppercase}
+.fields dd{margin:0}
+.fields a{color:var(--ink)}
+.btn{display:inline-block;font:700 .85rem var(--type);color:var(--maroon);padding:.4rem .8rem;border:2px solid var(--maroon);text-decoration:none;margin-top:.4rem;background:rgba(255,255,255,.4)}
+.btn:hover{background:var(--maroon);color:#fff}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem}
+.mini{border:1px dashed #a8905a;padding:.2rem 1rem 1rem;background:rgba(255,252,240,.7)}
+.ph{border:2px dashed #a8905a;background:repeating-linear-gradient(45deg,#efe3c1 0 10px,#e8dab3 10px 20px);padding:1.4rem 1rem;font:.8rem var(--type);color:#6a5236;text-align:center;margin:.8rem 0}
+.entry{border-top:1px dashed #a8905a;padding:.9rem 0}
+.entry:first-of-type{border-top:0}
+.entry h3{font:normal 1.2rem var(--serif);margin:0 0 .4rem}
+.dots{display:flex;gap:6px;margin:1rem 0;padding:0;list-style:none;flex-wrap:wrap}
+.dots li{width:22px;height:22px;border:2px solid var(--maroon);font:.7rem/18px var(--type);text-align:center;color:var(--maroon)}
+.dots li:first-child{background:var(--maroon);color:#fff}
+/* hole + rod */
+.hole{position:absolute;left:50%;bottom:1.1rem;width:22px;height:22px;margin-left:-11px;border-radius:50%;background:#2c190d;box-shadow:inset 0 3px 5px #000,0 1px 0 rgba(255,255,255,.6)}
+.rod{position:absolute;left:8%;right:8%;bottom:calc(1.1rem + 8px);height:6px;border-radius:3px;background:linear-gradient(180deg,#f7e3a0,#a07a20 60%,#6a4c12);box-shadow:0 2px 3px rgba(0,0,0,.5);z-index:3;pointer-events:none}
+.tray .rod{display:none}
+.tray-front{position:relative;z-index:3;height:34px;border-radius:0 0 8px 8px;margin:-4px 0 0;background:linear-gradient(180deg,#6b4126,#3a2012);box-shadow:0 10px 20px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.1)}
+.foot{margin:2.5rem auto 1rem;padding:1.5rem;background:#140a04;color:#e9d9b0;font:.85rem/1.6 var(--type);text-align:center;border-top:3px solid var(--brass);max-width:1040px}
+.foot ul{list-style:none;display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;justify-content:center;padding:0;margin:.8rem 0}
+.foot b{font:700 1.1rem var(--serif);letter-spacing:.12em;text-transform:uppercase;color:#fff}
+@media(max-width:700px){.two{grid-template-columns:1fr}.fields{grid-template-columns:1fr}.fields dd{margin-bottom:.5rem}.tabs a{padding:.5rem .6rem;font-size:.75rem}.card{padding-bottom:5rem}}
+@media(prefers-reduced-motion:no-preference){.card.on{animation:up .25s ease-out}@keyframes up{from{transform:translateY(14px);opacity:.3}}}
+</style>
+</head>
+<body>
+<a class="skip" href="#tray">Skip to the card tray</a>
+<div class="top">
+<a href="https://www.uchicago.edu">The University of Chicago</a>
+<nav aria-label="Utility"><ul><li><a href="#">News</a></li><li><a href="#">Calendar</a></li><li><a href="#">Students &#9662;</a></li><li><a href="#">Instructors &#9662;</a></li></ul></nav>
+<a class="gal" href="../index.html">&larr; Gallery</a>
+</div>
+
+<div class="cab">
+<header class="drawer">
+<h1>Chicago Language Center</h1>
+<p class="sub">The University of Chicago &middot; Card Catalog &middot; Drawer L&ndash;P</p>
+<nav aria-label="Main"><ul class="labels">
+<li><a class="lab" href="#visit" data-go="welcome">About</a></li>
+<li><a class="lab" href="#stories" data-go="stories">Language Study</a></li>
+<li><a class="lab" href="#ola" data-go="ola">Innovative Programming</a></li>
+<li><a class="lab" href="#blog" data-go="blog">Professional Development</a></li>
+<li><a class="lab" href="#search">Search</a></li>
+</ul></nav>
+<form class="search" id="search" role="search" onsubmit="return false">
+<label for="q">SEARCH CATALOG</label>
+<input id="q" type="search" placeholder="author, title, subject&hellip;">
+<button type="submit">Go</button>
+</form>
+<span class="pull" aria-hidden="true"></span>
+</header>
+
+<main class="tray" id="tray">
+<nav aria-label="Catalog dividers"><ul class="tabs">
+<li><a href="#welcome" aria-current="true">Welcome</a></li>
+<li><a href="#ola">OLA</a></li>
+<li><a href="#eli">ELI</a></li>
+<li><a href="#stories">Stories</a></li>
+<li><a href="#visit">Visit</a></li>
+<li><a href="#blog">Blog</a></li>
+</ul></nav>
+
+<div class="cards">
+
+<article class="card on" id="welcome" aria-labelledby="h-w">
+<div class="callno">P53 .C45
+2026</div><div class="cardno">Card 1 of 6</div>
+<h2 id="h-w">University of Chicago Language Center</h2>
+<dl class="fields">
+<dt>Title</dt><dd>Chicago Language Center (CLC)</dd>
+<dt>Author</dt><dd>The University of Chicago</dd>
+<dt>Subject</dt><dd>Language teaching &ndash; Professional development; Languages &ndash; Study and teaching (Higher)</dd>
+<dt>Location</dt><dd>Cobb Hall, Suite 211</dd>
+</dl>
+<p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+<div class="ph">Photo: Cobb Hall front desk and lounge</div>
+<div class="two">
+<section class="mini"><h3>See also: OLA</h3><p>Office of Language Assessment, est. 2016.</p><a class="btn" href="#ola">Pull card &rsaquo;</a></section>
+<section class="mini"><h3>See also: ELI</h3><p>English Language Institute, est. 2015.</p><a class="btn" href="#eli">Pull card &rsaquo;</a></section>
+</div>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+<article class="card" id="ola" aria-labelledby="h-o">
+<div class="callno">P53.6 .O43
+2016</div><div class="cardno">Card 2 of 6</div>
+<h2 id="h-o">Office of Language Assessment</h2>
+<dl class="fields">
+<dt>Title</dt><dd>Office of Language Assessment (OLA)</dd>
+<dt>Established</dt><dd>2016</dd>
+<dt>Subject</dt><dd>Language and languages &ndash; Ability testing; Applied linguistics</dd>
+<dt>Location</dt><dd>University of Chicago campus</dd>
+</dl>
+<p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+<a class="btn" href="#">Learn more &gt;</a>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+<article class="card" id="eli" aria-labelledby="h-e">
+<div class="callno">PE1128 .E45
+2015</div><div class="cardno">Card 3 of 6</div>
+<h2 id="h-e">English Language Institute</h2>
+<dl class="fields">
+<dt>Title</dt><dd>English Language Institute (ELI)</dd>
+<dt>Established</dt><dd>2015</dd>
+<dt>Subject</dt><dd>English language &ndash; Study and teaching &ndash; Foreign speakers</dd>
+<dt>Funding</dt><dd>Partially funded by the Provost's Office</dd>
+</dl>
+<p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+<a class="btn" href="#">Learn more &gt;</a>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+<article class="card" id="stories" aria-labelledby="h-s">
+<div class="callno">P51 .W44
+Featured</div><div class="cardno">Card 4 of 6</div>
+<h2 id="h-s">Where Will Language Study Take You?</h2>
+<dl class="fields">
+<dt>Title</dt><dd>Where Will Language Study Take You?</dd>
+<dt>Subject</dt><dd>Language and languages &ndash; Students' narratives; Language teachers</dd>
+<dt>Series</dt><dd>9 stories</dd>
+</dl>
+<p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+<div class="ph">Photo: A smiling student in front of a colorful hillside village in Korea</div>
+<ol class="dots" aria-label="Story 1 of 9 shown"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ol>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+<article class="card" id="visit" aria-labelledby="h-v">
+<div class="callno">LB2361 .V57
+Reference</div><div class="cardno">Card 5 of 6</div>
+<h2 id="h-v">Visit &amp; Contact</h2>
+<dl class="fields">
+<dt>Title</dt><dd>Chicago Language Center</dd>
+<dt>Location</dt><dd>Cobb Hall, Suite 211, 5811 S Ellis Ave, Chicago, IL 60637</dd>
+<dt>Hours</dt><dd>Mon&ndash;Fri: 8:30 AM&ndash;5:00 PM</dd>
+<dt>Phone</dt><dd><a href="tel:+17737029772">(773) 702-9772</a></dd>
+<dt>Email</dt><dd><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></dd>
+</dl>
+<p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p>
+<p>For questions, reservations, and further info, please contact us by phone or email.</p>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+<article class="card" id="blog" aria-labelledby="h-b">
+<div class="callno">P53 .B56
+Serial</div><div class="cardno">Card 6 of 6</div>
+<h2 id="h-b">The Latest From Our Blog</h2>
+<div class="ph">Photo: Snow-capped gargoyle on a campus building</div>
+<div class="entry"><h3>Setting Ground Rules for AI Use in Language Courses</h3>
+<dl class="fields"><dt>Author</dt><dd>Heather Guerrero</dd><dt>Date</dt><dd>Sep 19, 2024</dd><dt>Subject headings</dt><dd>Instructional Technology</dd></dl>
+<p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students&hellip;</p></div>
+<div class="entry"><h3>Generative AI: The Basics and Guardrails</h3>
+<dl class="fields"><dt>Author</dt><dd>Heather Guerrero</dd><dt>Date</dt><dd>Sep 6, 2024</dd><dt>Subject headings</dt><dd>Instructional Technology</dd></dl>
+<p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the&hellip;</p></div>
+<div class="entry"><h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3>
+<dl class="fields"><dt>Author</dt><dd>Heather Guerrero</dd><dt>Date</dt><dd>May 8, 2024</dd><dt>Subject headings</dt><dd>Events; Uncategorized</dd></dl>
+<p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses&hellip;</p></div>
+<a class="btn" href="#">&laquo; Older Entries</a>
+<span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
+</article>
+
+</div>
+<div class="tray-front" aria-hidden="true"></div>
+</main>
+
+<footer class="foot">
+<b>UChicago</b>
+<p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; languages@uchicago.edu</p>
+<nav aria-label="Footer"><ul>
+<li><a href="#">Office of Language Assessment</a></li><li><a href="#">Mellon Collaborative Partners</a></li><li><a href="#">Language Pedagogy Innovation Initiative</a></li><li><a href="#">English Language Institute</a></li><li><a href="#">Accessibility</a></li></ul></nav>
+<p>&copy; 2019-2026 The University of Chicago All rights reserved</p>
+</footer>
+</div>
+
+<script>
+(function(){
+var d=document,cards=[].slice.call(d.querySelectorAll('.card')),tabs=[].slice.call(d.querySelectorAll('.tabs a'));
+d.documentElement.classList.add('js');
+function show(id,focus){
+  if(!d.getElementById(id)||cards.map(function(c){return c.id}).indexOf(id)<0)return false;
+  cards.forEach(function(c){c.classList.toggle('on',c.id===id)});
+  tabs.forEach(function(t){t.setAttribute('aria-current',t.getAttribute('href')==='#'+id?'true':'false')});
+  return true;
+}
+function fromHash(){var h=location.hash.slice(1);if(!show(h||'welcome'))show('welcome')}
+tabs.concat([].slice.call(d.querySelectorAll('.btn[href^="#"],.lab[data-go]'))).forEach(function(a){
+  a.addEventListener('click',function(e){
+    var id=a.dataset.go||a.getAttribute('href').slice(1);
+    if(id.length&&show(id)){e.preventDefault();history.replaceState(null,'','#'+id);
+      d.getElementById('tray').scrollIntoView({block:'start'})}
+  });
+});
+addEventListener('hashchange',fromHash);fromHash();
+})();
+</script>
+</body>
+</html>
