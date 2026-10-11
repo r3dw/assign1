@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Department Service Desk | Chicago Language Center, University of Chicago</title>
+<style>
+:root{--maroon:#800000;--maroon-d:#5c0000;--ink:#222;--g1:#f3f3f2;--g2:#e4e4e2;--g3:#c9c9c6;--g4:#6a6a67;--ok:#1d6b3a;--w:#fff}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:15px/1.5 system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;color:var(--ink);background:var(--g1)}
+a{color:var(--maroon-d)}
+a:focus-visible,button:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible,summary:focus-visible{outline:3px solid #1a5fb4;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:8px 12px;z-index:99}
+.skip:focus{left:8px;top:8px}
+.wrap{max-width:1240px;margin:0 auto;padding:0 20px}
+/* top bars */
+.univ{background:var(--maroon-d);color:#fff;font-size:13px}
+.univ .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.univ a{color:#fff;text-decoration:none;margin-right:14px}
+.univ a:hover{text-decoration:underline}
+.univ nav a:last-child{margin-right:0}
+.gal{font-size:12px}
+header.site{background:#fff;border-bottom:4px solid var(--maroon)}
+header.site .wrap{display:flex;align-items:center;justify-content:space-between;gap:20px;flex-wrap:wrap;padding-top:12px;padding-bottom:12px}
+header.site img{height:44px;width:auto;display:block}
+.brand{display:flex;align-items:center;gap:16px}
+.brand span{font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--g4);border-left:2px solid var(--g3);padding-left:16px}
+.mainnav{display:flex;flex-wrap:wrap;gap:2px}
+.mainnav a{padding:8px 12px;text-decoration:none;color:var(--ink);font-weight:600;font-size:14px;border-bottom:3px solid transparent}
+.mainnav a:hover{border-color:var(--maroon)}
+/* title band */
+.band{background:linear-gradient(90deg,rgba(60,0,0,.93),rgba(60,0,0,.78)),url(../assets/hero-skyline.jpg) center/cover;color:#fff;padding:26px 0 22px}
+.band h1{margin:0 0 6px;font:700 28px/1.2 Georgia,"Times New Roman",serif}
+.band p{margin:0;max-width:70ch;color:#f1e4e4}
+.status{display:flex;flex-wrap:wrap;gap:6px 22px;margin-top:14px;font-size:13px;color:#fff}
+.status b{font-weight:600}
+.dot{display:inline-block;width:9px;height:9px;border-radius:50%;background:#7fe0a0;margin-right:6px;box-shadow:0 0 0 2px rgba(255,255,255,.3)}
+/* quick requests */
+.quick{background:var(--g2);border-bottom:1px solid var(--g3);padding:12px 0}
+.quick .wrap{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.quick h2{margin:0 6px 0 0;font-size:12px;text-transform:uppercase;letter-spacing:.1em;color:var(--g4)}
+.tk{font:inherit;font-size:13.5px;font-weight:600;border:1px solid var(--maroon);background:#fff;color:var(--maroon-d);padding:7px 12px 7px 10px;cursor:pointer;position:relative;border-radius:2px;display:flex;gap:8px;align-items:center}
+.tk::before{content:"";width:8px;height:16px;border-radius:0 8px 8px 0;background:var(--maroon);margin-left:-11px}
+.tk:hover{background:var(--maroon);color:#fff}
+.tk:hover::before{background:#fff}
+/* layout */
+main{padding:22px 0 10px}
+.grid{display:grid;grid-template-columns:minmax(0,3fr) minmax(0,2fr);gap:20px}
+.panel{background:#fff;border:1px solid var(--g3);border-top:3px solid var(--maroon);margin-bottom:20px}
+.panel>h2{margin:0;padding:10px 16px;font-size:14px;text-transform:uppercase;letter-spacing:.08em;background:var(--g2);border-bottom:1px solid var(--g3);display:flex;justify-content:space-between;gap:10px;align-items:baseline}
+.panel>h2 small{font-size:12px;text-transform:none;letter-spacing:0;color:var(--g4);font-weight:400}
+.pb{padding:16px}
+.note{font-size:13px;color:var(--g4)}
+/* form */
+form .row{display:grid;grid-template-columns:1fr 1fr;gap:12px 16px}
+.f{display:flex;flex-direction:column;gap:4px;margin-bottom:12px}
+.f.full{grid-column:1/-1}
+label,legend{font-size:13px;font-weight:600}
+input,select,textarea{font:inherit;padding:8px;border:1px solid #777;border-radius:2px;background:#fff;color:var(--ink);width:100%}
+textarea{min-height:90px;resize:vertical}
+.cond[hidden]{display:none}
+.cond{border-left:3px solid var(--maroon);padding-left:12px;background:var(--g1);padding-top:10px;padding-bottom:2px}
+.btn{font:inherit;font-weight:700;background:var(--maroon);color:#fff;border:0;padding:10px 20px;cursor:pointer;border-radius:2px}
+.btn:hover{background:var(--maroon-d)}
+.msg{margin-left:12px;font-size:13px}
+/* tables */
+.tw{overflow-x:auto}
+table{border-collapse:collapse;width:100%;font-size:14px}
+th,td{text-align:left;padding:9px 12px;border-bottom:1px solid var(--g2);vertical-align:top}
+thead th{background:var(--g1);border-bottom:2px solid var(--g3);white-space:nowrap}
+th button{font:inherit;font-weight:700;background:none;border:0;cursor:pointer;color:var(--ink);padding:0;display:inline-flex;gap:6px;align-items:center}
+th button::after{content:"\2195";color:var(--g4);font-size:12px}
+th[aria-sort=ascending] button::after{content:"\25B2";color:var(--maroon)}
+th[aria-sort=descending] button::after{content:"\25BC";color:var(--maroon)}
+tbody tr:nth-child(even){background:#fafaf9}
+/* docs */
+.filter{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:12px;align-items:center}
+.filter input{max-width:240px}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{font:inherit;font-size:12.5px;padding:4px 10px;border:1px solid #777;background:#fff;border-radius:99px;cursor:pointer}
+.chip[aria-pressed=true]{background:var(--maroon);color:#fff;border-color:var(--maroon)}
+.docs{list-style:none;margin:0;padding:0}
+.docs li{display:flex;gap:12px;align-items:center;padding:9px 0;border-bottom:1px solid var(--g2)}
+.docs li[hidden]{display:none}
+.badge{flex:none;width:46px;text-align:center;font-size:11px;font-weight:700;padding:4px 0;border-radius:2px;color:#fff;letter-spacing:.04em}
+.pdf{background:#9b1c1c}.docx{background:#1f4e8c}.xlsx{background:#1d6b3a}
+.docs small{display:block;color:var(--g4)}
+/* partners, units */
+.cards{display:grid;grid-template-columns:1fr 1fr;gap:14px}
+.card{border:1px solid var(--g3);padding:14px;background:var(--g1)}
+.card h3{margin:0 0 6px;font-size:16px;font-family:Georgia,serif}
+.card p{margin:0 0 8px}
+.unit{display:flex;gap:14px;margin-bottom:16px}
+.unit:last-child{margin-bottom:0}
+.unit img{width:56px;height:56px;object-fit:cover;flex:none;border:1px solid var(--g3)}
+.unit h3{margin:0 0 4px;font-size:16px;font-family:Georgia,serif}
+.unit p{margin:0 0 4px}
+.bul{list-style:none;margin:0;padding:0}
+.bul li{padding:12px 0;border-bottom:1px solid var(--g2)}
+.bul li:first-child{padding-top:0}
+.bul h3{margin:0 0 2px;font-size:15px}
+.bul .meta{font-size:12.5px;color:var(--g4);margin-bottom:4px}
+.bul p{margin:0;font-size:14px}
+.bimg{height:110px;width:100%;object-fit:cover;filter:grayscale(1) contrast(1.05);margin-bottom:12px;display:block}
+.story{display:flex;gap:12px}
+.story img{width:96px;height:96px;object-fit:cover;flex:none;filter:grayscale(.6)}
+dl.visit{margin:0;display:grid;grid-template-columns:90px 1fr;gap:8px 12px}
+dl.visit dt{font-weight:700;font-size:13px;color:var(--g4);text-transform:uppercase;letter-spacing:.05em}
+dl.visit dd{margin:0}
+/* footer */
+footer{background:#2b2b2b;color:#ddd;margin-top:20px;border-top:6px solid var(--maroon)}
+footer a{color:#fff}
+footer .cols{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:28px;padding:32px 0 20px}
+footer h2{font-size:13px;text-transform:uppercase;letter-spacing:.1em;color:#fff;margin:0 0 10px}
+footer ul{list-style:none;margin:0;padding:0}
+footer li{margin-bottom:6px;font-size:14px}
+footer img{height:38px;width:auto;margin-bottom:12px;display:block}
+.legal{border-top:1px solid #555;padding:14px 0 22px;font-size:12.5px;color:#bbb;display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+@media(max-width:900px){.grid{grid-template-columns:1fr}footer .cols{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){form .row,.cards{grid-template-columns:1fr}footer .cols{grid-template-columns:1fr}.band h1{font-size:23px}.brand span{display:none}.story{flex-direction:column}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#request">Skip to request form</a>
+
+<div class="univ"><div class="wrap">
+  <a href="https://www.uchicago.edu/">The University of Chicago</a>
+  <nav aria-label="Utility"><a href="#bulletins">News</a><a href="#visit">Calendar</a><a href="#contact">Students</a><a href="#contact">Instructors</a><a class="gal" href="../index.html">&larr; Gallery</a></nav>
+</div></div>
+
+<header class="site"><div class="wrap">
+  <div class="brand"><img src="../assets/logo.jpg" alt="Chicago Language Center, The University of Chicago"><span>Department Service Desk</span></div>
+  <nav class="mainnav" aria-label="Main">
+    <a href="#request">Request a service</a><a href="#contact">Who to contact</a><a href="#documents">Documents</a><a href="#partnerships">Partnerships</a><a href="#units">Units</a><a href="#visit">Visit</a>
+  </nav>
+</div></header>
+
+<section class="band" aria-labelledby="t">
+  <div class="wrap">
+    <h1 id="t">Department Service Desk</h1>
+    <p>The Chicago Language Center is a hub of professional development and services for the hundreds of instructors and graduate students who teach the 50+ languages spread across departments at the University. Tell us what your department or program needs, and we will route it.</p>
+    <div class="status" role="status" aria-label="Service status">
+      <span><span class="dot" aria-hidden="true"></span><b>Desk status:</b> open for requests</span>
+      <span><b>Typical response:</b> sample</span>
+      <span><b>Hours:</b> Mon&ndash;Fri, 8:30 AM&ndash;5:00 PM</span>
+    </div>
+  </div>
+</section>
+
+<div class="quick"><div class="wrap">
+  <h2>Quick requests</h2>
+  <button class="tk" data-svc="testing">Request testing for a cohort</button>
+  <button class="tk" data-svc="curriculum">Collaborate on curriculum</button>
+  <button class="tk" data-svc="room">Space and room request</button>
+  <button class="tk" data-svc="onboarding">Instructor onboarding</button>
+  <button class="tk" data-svc="partner">Explore a partnership</button>
+</div></div>
+
+<main id="main"><div class="wrap">
+<div class="grid">
+<div>
+
+<section class="panel" id="request" aria-labelledby="h-req">
+  <h2 id="h-req">Request a service <small>Sample form &middot; opens your email app</small></h2>
+  <div class="pb">
+  <form id="svcform" action="mailto:languages@uchicago.edu" method="post" enctype="text/plain">
+    <div class="row">
+      <div class="f"><label for="svc">Service needed</label>
+        <select id="svc" name="Service" required>
+          <option value="">Select a service&hellip;</option>
+          <option value="testing">Request testing for a cohort</option>
+          <option value="curriculum">Collaborate on curriculum</option>
+          <option value="room">Space and room request</option>
+          <option value="onboarding">Instructor onboarding</option>
+          <option value="partner">Explore a partnership</option>
+          <option value="other">Something else</option>
+        </select></div>
+      <div class="f"><label for="dept">Department or program</label><input id="dept" name="Department" required autocomplete="organization"></div>
+      <div class="f"><label for="nm">Contact name</label><input id="nm" name="Contact name" required autocomplete="name"></div>
+      <div class="f"><label for="em">Email</label><input id="em" type="email" name="Email" required autocomplete="email"></div>
+    </div>
+
+    <div class="cond" id="c-testing" data-for="testing"><div class="row">
+      <div class="f"><label for="t1">Language to be tested</label><input id="t1" name="Language"></div>
+      <div class="f"><label for="t2">Approximate cohort size</label><input id="t2" type="number" min="1" name="Cohort size"></div>
+      <div class="f full"><label for="t3">Preferred dates</label><input id="t3" name="Preferred dates"></div>
+    </div></div>
+    <div class="cond" id="c-curriculum" data-for="curriculum"><div class="row">
+      <div class="f"><label for="u1">Course or program</label><input id="u1" name="Course"></div>
+      <div class="f"><label for="u2">Focus area</label>
+        <select id="u2" name="Focus"><option>Assessment</option><option>Pedagogy</option><option>Instructional technology</option><option>Other</option></select></div>
+    </div></div>
+    <div class="cond" id="c-room" data-for="room"><div class="row">
+      <div class="f"><label for="r1">Date</label><input id="r1" type="date" name="Date"></div>
+      <div class="f"><label for="r2">Time and duration</label><input id="r2" name="Time"></div>
+      <div class="f"><label for="r3">Expected attendees</label><input id="r3" type="number" min="1" name="Attendees"></div>
+    </div></div>
+    <div class="cond" id="c-onboarding" data-for="onboarding"><div class="row">
+      <div class="f"><label for="o1">Number of new instructors</label><input id="o1" type="number" min="1" name="New instructors"></div>
+      <div class="f"><label for="o2">Start term</label><input id="o2" name="Start term"></div>
+    </div></div>
+    <div class="cond" id="c-partner" data-for="partner">
+      <div class="f"><label for="p1">Initiative of interest</label>
+        <select id="p1" name="Initiative"><option>Mellon Collaborative Partners</option><option>Language Pedagogy Innovation Initiative</option><option>Not sure</option></select></div>
+    </div>
+
+    <div class="f full" style="margin-top:12px"><label for="det">Details</label><textarea id="det" name="Details"></textarea></div>
+    <button class="btn" type="submit">Submit request</button><span class="msg" id="msg" role="status"></span>
+    <p class="note">Without JavaScript, all fields stay visible and the form opens a pre-addressed email to languages@uchicago.edu. You can also call (773) 702-9772.</p>
+  </form>
+  </div>
+</section>
+
+<section class="panel" id="contact" aria-labelledby="h-con">
+  <h2 id="h-con">Who to contact <small>Sample routing &middot; click headers to sort</small></h2>
+  <div class="tw">
+  <table id="route">
+    <caption class="note" style="text-align:left;padding:8px 12px;caption-side:top">If you need&hellip; contact&hellip;</caption>
+    <thead><tr>
+      <th scope="col" aria-sort="none"><button type="button">If you need&hellip;</button></th>
+      <th scope="col" aria-sort="none"><button type="button">Contact</button></th>
+      <th scope="col" aria-sort="none"><button type="button">How</button></th>
+    </tr></thead>
+    <tbody>
+      <tr><td>Placement or proficiency testing</td><td>Office of Language Assessment (OLA)</td><td>languages@uchicago.edu</td></tr>
+      <tr><td>Testing for a whole cohort</td><td>Office of Language Assessment (OLA)</td><td>Service request form</td></tr>
+      <tr><td>Support for English as an additional language</td><td>English Language Institute (ELI)</td><td>languages@uchicago.edu</td></tr>
+      <tr><td>Curriculum collaboration</td><td>Chicago Language Center</td><td>(773) 702-9772</td></tr>
+      <tr><td>Instructor onboarding</td><td>Chicago Language Center</td><td>Service request form</td></tr>
+      <tr><td>Room or space reservation</td><td>Chicago Language Center</td><td>languages@uchicago.edu</td></tr>
+      <tr><td>Partnership inquiries</td><td>Chicago Language Center</td><td>languages@uchicago.edu</td></tr>
+      <tr><td>Anything not listed</td><td>Chicago Language Center front desk</td><td>(773) 702-9772</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section class="panel" id="documents" aria-labelledby="h-doc">
+  <h2 id="h-doc">Documents &amp; policies <small>Sample titles &middot; no files linked</small></h2>
+  <div class="pb">
+    <div class="filter">
+      <label for="dq" class="note">Filter</label><input id="dq" type="search" placeholder="Search titles">
+      <div class="chips" role="group" aria-label="File type"><button class="chip" type="button" data-t="" aria-pressed="true">All</button><button class="chip" type="button" data-t="pdf" aria-pressed="false">PDF</button><button class="chip" type="button" data-t="docx" aria-pressed="false">DOCX</button><button class="chip" type="button" data-t="xlsx" aria-pressed="false">XLSX</button></div>
+    </div>
+    <ul class="docs" id="docs">
+      <li data-t="pdf"><span class="badge pdf">PDF</span><span>Cohort testing request guidelines<small>Testing &middot; sample</small></span></li>
+      <li data-t="pdf"><span class="badge pdf">PDF</span><span>Language testing policy overview<small>Policy &middot; sample</small></span></li>
+      <li data-t="docx"><span class="badge docx">DOCX</span><span>Curriculum collaboration proposal template<small>Curriculum &middot; sample</small></span></li>
+      <li data-t="xlsx"><span class="badge xlsx">XLSX</span><span>Cohort roster template<small>Testing &middot; sample</small></span></li>
+      <li data-t="pdf"><span class="badge pdf">PDF</span><span>Room and space use policy<small>Space &middot; sample</small></span></li>
+      <li data-t="docx"><span class="badge docx">DOCX</span><span>Instructor onboarding checklist<small>Onboarding &middot; sample</small></span></li>
+      <li data-t="pdf"><span class="badge pdf">PDF</span><span>Accessibility and accommodations statement<small>Policy &middot; sample</small></span></li>
+    </ul>
+    <p class="note" id="dnone" hidden>No documents match.</p>
+  </div>
+</section>
+
+<section class="panel" id="partnerships" aria-labelledby="h-par">
+  <h2 id="h-par">Partnerships</h2>
+  <div class="pb cards">
+    <article class="card"><h3>Mellon Collaborative Partners</h3><p>A collaborative initiative connecting language programs across partner institutions. Ask the desk how your department can take part.</p><a href="#request" data-svc="partner">Start an inquiry</a></article>
+    <article class="card"><h3>Language Pedagogy Innovation Initiative</h3><p>Supports innovation in language teaching, from workshops to summer pedagogy courses for instructors and educational staff.</p><a href="#request" data-svc="partner">Start an inquiry</a></article>
+  </div>
+</section>
+
+</div>
+<aside aria-label="About and updates">
+
+<section class="panel" id="units" aria-labelledby="h-units">
+  <h2 id="h-units">Our units</h2>
+  <div class="pb">
+    <article class="unit"><img src="../assets/icon-ola.jpg" alt="Office of Language Assessment icon"><div><h3>Office of Language Assessment</h3><p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p><a href="#contact">Learn more &gt;</a></div></article>
+    <article class="unit"><img src="../assets/icon-eli.jpg" alt="English Language Institute icon"><div><h3>English Language Institute</h3><p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p><a href="#contact">Learn more &gt;</a></div></article>
+  </div>
+</section>
+
+<section class="panel" id="bulletins" aria-labelledby="h-bul">
+  <h2 id="h-bul">Bulletins <small>From our blog</small></h2>
+  <div class="pb">
+    <img class="bimg" src="../assets/gargoyle.jpg" alt="Snow-capped stone gargoyle on a campus building">
+    <ul class="bul">
+      <li><h3>Setting Ground Rules for AI Use in Language Courses</h3><div class="meta">Heather Guerrero &middot; Sep 19, 2024 &middot; Instructional Technology</div><p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses&hellip;</p></li>
+      <li><h3>Generative AI: The Basics and Guardrails</h3><div class="meta">Heather Guerrero &middot; Sep 6, 2024 &middot; Instructional Technology</div><p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models&hellip;</p></li>
+      <li><h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3><div class="meta">Heather Guerrero &middot; May 8, 2024 &middot; Events, Uncategorized</div><p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom&hellip;</p></li>
+    </ul>
+    <p style="margin:12px 0 0"><a href="#bulletins">&laquo; Older Entries</a></p>
+  </div>
+</section>
+
+<section class="panel" aria-labelledby="h-st">
+  <h2 id="h-st">Where will language study take you?</h2>
+  <div class="pb story">
+    <img src="../assets/student.jpg" alt="Smiling student in front of a colorful hillside village in Korea">
+    <p style="margin:0;font-size:14px">Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching. <a href="#bulletins">Read stories</a></p>
+  </div>
+</section>
+
+<section class="panel" id="visit" aria-labelledby="h-vis">
+  <h2 id="h-vis">Visit the desk</h2>
+  <div class="pb">
+    <img class="bimg" src="../assets/lobby.jpg" alt="The CLC front desk and lounge in Cobb Hall">
+    <dl class="visit">
+      <dt>Location</dt><dd>Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637<br><span class="note">2nd floor of Cobb Hall, on the main quadrangle in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</span></dd>
+      <dt>Hours</dt><dd>Mon&ndash;Fri: 8:30 AM&ndash;5:00 PM</dd>
+      <dt>Phone</dt><dd><a href="tel:+17737029772">(773) 702-9772</a></dd>
+      <dt>Email</dt><dd><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></dd>
+    </dl>
+    <p class="note" style="margin-bottom:0">For questions, reservations, and further info, please contact us by phone or email.</p>
+  </div>
+</section>
+
+</aside>
+</div>
+</div></main>
+
+<footer>
+  <div class="wrap">
+    <div class="cols">
+      <div><img src="../assets/footer-logo.jpg" alt="The University of Chicago"><p style="margin:0;font-size:14px">Chicago Language Center<br>5811 S. Ellis Ave. Cobb Hall, Suite 211<br>Chicago, IL. 60637<br>773.702.9772<br><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p></div>
+      <nav aria-label="Units and initiatives"><h2>Units</h2><ul><li><a href="#units">Office of Language Assessment</a></li><li><a href="#units">English Language Institute</a></li><li><a href="#partnerships">Mellon Collaborative Partners</a></li><li><a href="#partnerships">Language Pedagogy Innovation Initiative</a></li></ul></nav>
+      <nav aria-label="Service desk"><h2>Service desk</h2><ul><li><a href="#request">Request a service</a></li><li><a href="#contact">Who to contact</a></li><li><a href="#documents">Documents &amp; policies</a></li><li><a href="#bulletins">Bulletins</a></li></ul></nav>
+      <nav aria-label="About"><h2>About</h2><ul><li><a href="#visit">Visit &amp; hours</a></li><li><a href="#visit">Accessibility</a></li><li><a href="https://www.uchicago.edu/">uchicago.edu</a></li><li><a href="../index.html">&larr; Gallery</a></li></ul></nav>
+    </div>
+    <div class="legal"><span>&copy; 2019-2026 The University of Chicago All rights reserved</span><span>Design exploration &middot; sample content</span></div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var svc=document.getElementById('svc'),conds=document.querySelectorAll('.cond');
+  function sync(){conds.forEach(function(c){c.hidden=c.getAttribute('data-for')!==svc.value;});}
+  conds.forEach(function(c){c.hidden=true;});
+  svc.addEventListener('change',sync);
+  function pick(v){svc.value=v;sync();document.getElementById('request').scrollIntoView();svc.focus({preventScroll:true});}
+  document.querySelectorAll('[data-svc]').forEach(function(b){b.addEventListener('click',function(e){if(b.tagName==='A')e.preventDefault();pick(b.getAttribute('data-svc'));});});
+  document.getElementById('svcform').addEventListener('submit',function(){document.getElementById('msg').textContent='Opening your email app…';});
+
+  var t=document.getElementById('route'),tb=t.tBodies[0],ths=t.querySelectorAll('th');
+  ths.forEach(function(th,i){th.querySelector('button').addEventListener('click',function(){
+    var asc=th.getAttribute('aria-sort')!=='ascending';
+    ths.forEach(function(x){x.setAttribute('aria-sort','none');});
+    th.setAttribute('aria-sort',asc?'ascending':'descending');
+    Array.prototype.slice.call(tb.rows).sort(function(a,b){
+      return a.cells[i].textContent.localeCompare(b.cells[i].textContent)*(asc?1:-1);
+    }).forEach(function(r){tb.appendChild(r);});
+  });});
+
+  var q=document.getElementById('dq'),type='',items=document.querySelectorAll('#docs li'),chips=document.querySelectorAll('.chip');
+  function filt(){var n=0,s=q.value.toLowerCase();items.forEach(function(li){
+    var ok=(!type||li.getAttribute('data-t')===type)&&li.textContent.toLowerCase().indexOf(s)>-1;li.hidden=!ok;if(ok)n++;});
+    document.getElementById('dnone').hidden=n>0;}
+  q.addEventListener('input',filt);
+  chips.forEach(function(c){c.addEventListener('click',function(){type=c.getAttribute('data-t');chips.forEach(function(x){x.setAttribute('aria-pressed',x===c);});filt();});});
+})();
+</script>
+</body>
+</html>

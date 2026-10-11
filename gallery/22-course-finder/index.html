@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Find a Class · Chicago Language Center</title>
+<style>
+:root{--mar:#800000;--mar-d:#5e0000;--teal:#0b6e6e;--teal-l:#e2f1f0;--ink:#241f1f;--mut:#5b5252;--bg:#f6f2ee;--line:#e4dcd5}
+*{box-sizing:border-box}
+body{margin:0;font:16px/1.55 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;color:var(--ink);background:var(--bg);padding-bottom:84px}
+a{color:var(--teal)}
+:focus-visible{outline:3px solid #e8a100;outline-offset:2px}
+.skip{position:absolute;left:-999px;background:#fff;padding:8px;z-index:99}.skip:focus{left:8px;top:8px}
+.top{background:var(--mar-d);color:#fff;font-size:.85rem}
+.top div{max-width:1180px;margin:auto;padding:6px 20px;display:flex;gap:16px;flex-wrap:wrap;align-items:center}
+.top a{color:#fff} .top .g{margin-left:auto;opacity:.85}
+header.site{background:#fff;border-bottom:1px solid var(--line)}
+header.site div{max-width:1180px;margin:auto;padding:10px 20px;display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+header.site img{height:44px;width:auto}
+nav ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap}nav a{color:var(--ink);text-decoration:none;font-weight:600}nav a:hover{color:var(--mar)}
+.nsure{background:var(--teal);color:#fff}
+.nsure div{max-width:1180px;margin:auto;padding:10px 20px;display:flex;gap:12px;flex-wrap:wrap;align-items:center}
+.nsure a{color:#fff;font-weight:700}
+.hero{position:relative;color:#fff;background:var(--mar-d);overflow:hidden}
+.hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:right 30%;filter:saturate(.9)}
+.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(90deg,var(--mar-d) 35%,rgba(94,0,0,.75) 60%,rgba(94,0,0,.2));z-index:1}
+.hero div{position:relative;z-index:2;max-width:1180px;margin:auto;padding:56px 20px}
+.hero h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.1;margin:0 0 12px;max-width:14em}
+.hero p{max-width:34em;margin:0 0 18px;font-size:1.1rem}
+.hero .btn{background:#fff;color:var(--mar);border-color:#fff}
+.wrap{max-width:1180px;margin:auto;padding:28px 20px;display:grid;grid-template-columns:260px 1fr;gap:28px;align-items:start}
+aside form{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(60,20,20,.1);padding:16px;position:sticky;top:12px;max-height:calc(100vh - 100px);overflow:auto}
+aside h2{margin:0 0 8px;font-size:1.1rem}
+fieldset{border:0;border-top:1px solid var(--line);margin:0;padding:10px 0}
+legend{font-weight:700;color:var(--mar);padding:0 6px 0 0;font-size:.9rem;text-transform:uppercase;letter-spacing:.04em}
+label{display:block;padding:3px 0;cursor:pointer}
+input[type=checkbox]{accent-color:var(--teal);width:1.05em;height:1.05em}
+.reset{background:none;border:0;color:var(--teal);text-decoration:underline;cursor:pointer;font:inherit;padding:4px 0}
+.bar{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:8px}
+.bar h2{margin:0;font-size:1.4rem} .bar p{margin:0;color:var(--mut)}
+.note{background:var(--teal-l);border-left:4px solid var(--teal);padding:10px 14px;border-radius:6px;margin:12px 0 18px;font-size:.95rem}
+ul.results{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(290px,1fr));gap:18px}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 10px rgba(60,20,20,.1);padding:18px 18px 16px;position:relative;display:flex;flex-direction:column;transition:box-shadow .2s}
+.card:hover{box-shadow:0 6px 18px rgba(60,20,20,.18)}
+.card[hidden]{display:none}
+.card h3{margin:26px 0 2px;font-size:1.15rem;line-height:1.25}
+.dept{margin:0 0 10px;color:var(--mut);font-size:.9rem}
+.tag{position:absolute;top:0;right:16px;padding:5px 12px 5px 22px;font-size:.78rem;font-weight:700;color:#fff;background:var(--teal);clip-path:polygon(10px 0,100% 0,100% 100%,10px 100%,0 50%);text-transform:uppercase;letter-spacing:.05em;border-radius:0 0 4px 0}
+.tag i{position:absolute;left:10px;top:50%;width:6px;height:6px;margin-top:-3px;border-radius:50%;background:#fff}
+.tag-intermediate{background:#1d4f8a}.tag-advanced{background:var(--mar)}.tag-heritage{background:#8a5200}
+dl{margin:0 0 8px;display:grid;grid-template-columns:1fr 1fr;gap:6px 10px;font-size:.88rem}
+dt{color:var(--mut);font-size:.72rem;text-transform:uppercase;letter-spacing:.05em}dd{margin:0}
+.goals{margin:0 0 12px;font-size:.85rem;color:var(--teal);font-weight:600}
+.btns{margin-top:auto;display:flex;gap:8px;flex-wrap:wrap}
+.btn{display:inline-block;padding:8px 12px;border-radius:999px;border:2px solid var(--mar);background:var(--mar);color:#fff;font:600 .85rem/1.2 inherit;font-family:inherit;cursor:pointer;text-decoration:none;text-align:center}
+.btn:hover{background:var(--mar-d)}
+.btn.ghost{background:#fff;color:var(--mar)}.btn.ghost:hover{background:#faeeee}
+.btn.add[aria-pressed=true]{background:var(--teal);border-color:var(--teal)}
+.empty{padding:24px;background:#fff;border-radius:12px}
+.tray{position:fixed;left:0;right:0;bottom:0;z-index:20;background:#fff;border-top:3px solid var(--mar);box-shadow:0 -4px 16px rgba(0,0,0,.15)}
+.tray>div{max-width:1180px;margin:auto;padding:10px 20px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+.tray strong{color:var(--mar)}
+.tray details{flex:1;min-width:200px}
+.tray summary{cursor:pointer;font-weight:600}
+.tray ol{margin:8px 0 0;padding-left:20px;max-height:30vh;overflow:auto;font-size:.9rem}
+.tray .btn[aria-disabled=true]{opacity:.5;pointer-events:none}
+.tray details[open]{position:relative}
+section.band{padding:36px 0}
+.in{max-width:1180px;margin:auto;padding:0 20px}
+.in h2{font-size:1.6rem;margin:0 0 6px;color:var(--mar)}
+.tiles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px;margin-top:14px}
+.tile{background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 8px rgba(60,20,20,.1);border-top:4px solid var(--teal)}
+.tile h3{margin:0 0 4px;font-size:1.05rem}.tile p{margin:0;font-size:.92rem;color:var(--mut)}
+.white{background:#fff}
+.two{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center}
+.two img{width:100%;border-radius:12px;max-height:340px;object-fit:cover}
+.units{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
+.unit{display:flex;gap:12px;background:var(--bg);padding:16px;border-radius:12px}
+.unit img{width:48px;height:48px;object-fit:cover;border-radius:8px;flex:none}
+.unit h3{margin:0 0 4px}.unit p{margin:0;font-size:.93rem}
+.posts{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin-top:14px}
+.post{background:#fff;padding:16px;border-radius:12px;box-shadow:0 2px 8px rgba(60,20,20,.1)}
+.post h3{font-size:1rem;margin:0 0 4px}.post small{color:var(--mut)}.post p{font-size:.9rem;margin:6px 0 0}
+.visit{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+footer{background:#2a0b0b;color:#e8dede;padding:28px 0 20px;font-size:.9rem}
+footer a{color:#fff}footer img{height:34px;width:auto;margin-bottom:10px}
+footer ul{list-style:none;padding:0;display:flex;gap:16px;flex-wrap:wrap}
+@media(max-width:820px){.wrap{grid-template-columns:1fr}aside form{position:static;max-height:none}.two{grid-template-columns:1fr}.hero:before{background:rgba(94,0,0,.82)}
+aside details>summary{cursor:pointer}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important}}
+</style></head><body>
+<a class="skip" href="#results">Skip to results</a>
+<div class="top"><div><a href="https://www.uchicago.edu">The University of Chicago</a><a href="#blog">News</a><a href="#visit">Calendar</a><a href="#ways">Students</a><a href="#blog">Instructors</a><a class="g" href="../index.html">&larr; Gallery</a></div></div>
+<header class="site"><div><a href="#"><img src="../assets/logo.jpg" alt="Chicago Language Center, The University of Chicago" width="150" height="43"></a>
+<nav aria-label="Main"><ul><li><a href="#about">About</a></li><li><a href="#finder">Language Study</a></li><li><a href="#ways">Innovative Programming</a></li><li><a href="#blog">Professional Development</a></li><li><a href="#finder">Search</a></li></ul></nav></div></header>
+<div class="nsure"><div><strong>Not sure where to start?</strong> <a href="#placement">Learn about the placement exam &rarr;</a></div></div>
+<section class="hero" aria-labelledby="h1"><img src="../assets/student.jpg" alt="A smiling student in front of a colorful hillside village in Korea" ><div>
+<h1 id="h1">Which language will you learn?</h1>
+<p>Browse sample classes from departments across campus, narrow by level, goal and format, and save a shortlist to email us.</p>
+<a class="btn" href="#finder">Start browsing</a></div></section>
+<main id="finder"><div class="wrap">
+<aside aria-label="Filters"><form id="filters" onsubmit="return false"><h2>Filter classes</h2><fieldset><legend>Language</legend><label><input type="checkbox" name="lang" value="Arabic"> Arabic</label><label><input type="checkbox" name="lang" value="Chinese (Mandarin)"> Chinese (Mandarin)</label><label><input type="checkbox" name="lang" value="French"> French</label><label><input type="checkbox" name="lang" value="German"> German</label><label><input type="checkbox" name="lang" value="Hindi"> Hindi</label><label><input type="checkbox" name="lang" value="Japanese"> Japanese</label><label><input type="checkbox" name="lang" value="Korean"> Korean</label><label><input type="checkbox" name="lang" value="Latin"> Latin</label><label><input type="checkbox" name="lang" value="Portuguese"> Portuguese</label><label><input type="checkbox" name="lang" value="Russian"> Russian</label><label><input type="checkbox" name="lang" value="Spanish"> Spanish</label></fieldset><fieldset><legend>Level</legend><label><input type="checkbox" name="level" value="beginner"> Beginner</label><label><input type="checkbox" name="level" value="intermediate"> Intermediate</label><label><input type="checkbox" name="level" value="advanced"> Advanced</label><label><input type="checkbox" name="level" value="heritage"> Heritage</label></fieldset><fieldset><legend>Goal</legend><label><input type="checkbox" name="goal" value="requirement"> Requirement</label><label><input type="checkbox" name="goal" value="travel"> Travel</label><label><input type="checkbox" name="goal" value="research"> Research</label><label><input type="checkbox" name="goal" value="career"> Career</label></fieldset><fieldset><legend>Format</legend><label><input type="checkbox" name="format" value="in-person"> In-person</label><label><input type="checkbox" name="format" value="online"> Online</label><label><input type="checkbox" name="format" value="independent study"> Independent study</label></fieldset><fieldset><legend>Quarter</legend><label><input type="checkbox" name="quarter" value="Autumn"> Autumn</label><label><input type="checkbox" name="quarter" value="Winter"> Winter</label><label><input type="checkbox" name="quarter" value="Spring"> Spring</label></fieldset><button type="reset" class="reset">Clear all filters</button></form></aside>
+<div><div class="bar"><h2 id="rh">Classes</h2><p id="count" role="status" aria-live="polite">Showing 12 sample classes</p></div>
+<p class="note">The CLC does not itself teach courses. Classes are offered by the departments we support, so the listings below are <strong>sample</strong> offerings grouped by department. Check with the department for current schedules.</p>
+<ul class="results" id="results" aria-labelledby="rh">
+<li class="card" data-id="c0" data-lang="Spanish" data-level="beginner" data-goal="requirement travel" data-format="in-person" data-quarter="Autumn">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Elementary Spanish I</h3>
+<p class="dept">Romance Languages &amp; Literatures</p>
+<dl><div><dt>Language</dt><dd>Spanish</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Autumn</dd></div><div><dt>Meets</dt><dd>Mon/Wed/Fri · 10:30 AM</dd></div></dl>
+<p class="goals">Requirement · Travel</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Elementary Spanish I (Romance Languages &amp; Literatures, Autumn)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c1" data-lang="Spanish" data-level="heritage" data-goal="requirement career" data-format="in-person" data-quarter="Winter">
+<span class="tag tag-heritage"><i aria-hidden="true"></i>Heritage</span>
+<h3>Heritage Spanish for Home Speakers</h3>
+<p class="dept">Romance Languages &amp; Literatures</p>
+<dl><div><dt>Language</dt><dd>Spanish</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Winter</dd></div><div><dt>Meets</dt><dd>Tue/Thu · 1:30 PM</dd></div></dl>
+<p class="goals">Requirement · Career</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Heritage Spanish for Home Speakers (Romance Languages &amp; Literatures, Winter)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c2" data-lang="French" data-level="beginner" data-goal="requirement travel" data-format="online" data-quarter="Autumn">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Elementary French</h3>
+<p class="dept">Romance Languages &amp; Literatures</p>
+<dl><div><dt>Language</dt><dd>French</dd></div><div><dt>Format</dt><dd>Online</dd></div><div><dt>Quarter</dt><dd>Autumn</dd></div><div><dt>Meets</dt><dd>Self-paced + Thu live session</dd></div></dl>
+<p class="goals">Requirement · Travel</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Elementary French (Romance Languages &amp; Literatures, Autumn)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c3" data-lang="Chinese (Mandarin)" data-level="intermediate" data-goal="career travel" data-format="in-person" data-quarter="Winter">
+<span class="tag tag-intermediate"><i aria-hidden="true"></i>Intermediate</span>
+<h3>Intermediate Mandarin</h3>
+<p class="dept">East Asian Languages &amp; Civilizations</p>
+<dl><div><dt>Language</dt><dd>Chinese (Mandarin)</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Winter</dd></div><div><dt>Meets</dt><dd>Mon–Fri · 9:30 AM</dd></div></dl>
+<p class="goals">Career · Travel</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Intermediate Mandarin (East Asian Languages &amp; Civilizations, Winter)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c4" data-lang="Korean" data-level="beginner" data-goal="travel requirement" data-format="in-person" data-quarter="Autumn">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Elementary Korean</h3>
+<p class="dept">East Asian Languages &amp; Civilizations</p>
+<dl><div><dt>Language</dt><dd>Korean</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Autumn</dd></div><div><dt>Meets</dt><dd>Mon–Fri · 11:30 AM</dd></div></dl>
+<p class="goals">Travel · Requirement</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Elementary Korean (East Asian Languages &amp; Civilizations, Autumn)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c5" data-lang="Japanese" data-level="intermediate" data-goal="travel career" data-format="online" data-quarter="Spring">
+<span class="tag tag-intermediate"><i aria-hidden="true"></i>Intermediate</span>
+<h3>Japanese Conversation and Culture</h3>
+<p class="dept">East Asian Languages &amp; Civilizations</p>
+<dl><div><dt>Language</dt><dd>Japanese</dd></div><div><dt>Format</dt><dd>Online</dd></div><div><dt>Quarter</dt><dd>Spring</dd></div><div><dt>Meets</dt><dd>Tue/Thu · 4:30 PM</dd></div></dl>
+<p class="goals">Travel · Career</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Japanese Conversation and Culture (East Asian Languages &amp; Civilizations, Spring)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c6" data-lang="Arabic" data-level="beginner" data-goal="requirement research" data-format="in-person" data-quarter="Autumn">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Beginning Arabic</h3>
+<p class="dept">Near Eastern Languages &amp; Civilizations</p>
+<dl><div><dt>Language</dt><dd>Arabic</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Autumn</dd></div><div><dt>Meets</dt><dd>Mon–Fri · 10:30 AM</dd></div></dl>
+<p class="goals">Requirement · Research</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Beginning Arabic (Near Eastern Languages &amp; Civilizations, Autumn)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c7" data-lang="German" data-level="advanced" data-goal="research" data-format="online" data-quarter="Spring">
+<span class="tag tag-advanced"><i aria-hidden="true"></i>Advanced</span>
+<h3>Advanced German Reading for Research</h3>
+<p class="dept">Germanic Studies</p>
+<dl><div><dt>Language</dt><dd>German</dd></div><div><dt>Format</dt><dd>Online</dd></div><div><dt>Quarter</dt><dd>Spring</dd></div><div><dt>Meets</dt><dd>Wed · 3:00 PM</dd></div></dl>
+<p class="goals">Research</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Advanced German Reading for Research (Germanic Studies, Spring)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c8" data-lang="Russian" data-level="beginner" data-goal="requirement career" data-format="in-person" data-quarter="Winter">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Elementary Russian</h3>
+<p class="dept">Slavic Languages &amp; Literatures</p>
+<dl><div><dt>Language</dt><dd>Russian</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Winter</dd></div><div><dt>Meets</dt><dd>Mon/Wed/Fri · 12:30 PM</dd></div></dl>
+<p class="goals">Requirement · Career</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Elementary Russian (Slavic Languages &amp; Literatures, Winter)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c9" data-lang="Latin" data-level="intermediate" data-goal="research requirement" data-format="in-person" data-quarter="Autumn">
+<span class="tag tag-intermediate"><i aria-hidden="true"></i>Intermediate</span>
+<h3>Latin Prose Reading</h3>
+<p class="dept">Classics</p>
+<dl><div><dt>Language</dt><dd>Latin</dd></div><div><dt>Format</dt><dd>In-person</dd></div><div><dt>Quarter</dt><dd>Autumn</dd></div><div><dt>Meets</dt><dd>Tue/Thu · 9:00 AM</dd></div></dl>
+<p class="goals">Research · Requirement</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Latin Prose Reading (Classics, Autumn)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c10" data-lang="Hindi" data-level="beginner" data-goal="research travel" data-format="independent study" data-quarter="Spring">
+<span class="tag tag-beginner"><i aria-hidden="true"></i>Beginner</span>
+<h3>Hindi–Urdu Independent Study</h3>
+<p class="dept">South Asian Languages &amp; Civilizations</p>
+<dl><div><dt>Language</dt><dd>Hindi</dd></div><div><dt>Format</dt><dd>Independent study</dd></div><div><dt>Quarter</dt><dd>Spring</dd></div><div><dt>Meets</dt><dd>Arranged with instructor</dd></div></dl>
+<p class="goals">Research · Travel</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Hindi–Urdu Independent Study (South Asian Languages &amp; Civilizations, Spring)">Add to shortlist</button></div>
+</li>
+<li class="card" data-id="c11" data-lang="Portuguese" data-level="advanced" data-goal="research career" data-format="independent study" data-quarter="Winter">
+<span class="tag tag-advanced"><i aria-hidden="true"></i>Advanced</span>
+<h3>Portuguese for Research Reading</h3>
+<p class="dept">Romance Languages &amp; Literatures</p>
+<dl><div><dt>Language</dt><dd>Portuguese</dd></div><div><dt>Format</dt><dd>Independent study</dd></div><div><dt>Quarter</dt><dd>Winter</dd></div><div><dt>Meets</dt><dd>Arranged with instructor</dd></div></dl>
+<p class="goals">Research · Career</p>
+<div class="btns"><a class="btn ghost" href="#placement">Take placement exam first</a><button type="button" class="btn add" aria-pressed="false" data-title="Portuguese for Research Reading (Romance Languages &amp; Literatures, Winter)">Add to shortlist</button></div>
+</li>
+</ul><p class="empty" id="empty" hidden>No sample classes match those filters. Try clearing one, or <a href="mailto:languages@uchicago.edu">email us</a>.</p></div></div>
+<section class="band white" id="placement"><div class="in"><h2>Take a placement exam first</h2>
+<p>Placement exams (sample description) help you find the right level so you enter a class that fits. The Office of Language Assessment administers language testing across campus. To arrange an exam, contact the OLA through <a href="mailto:languages@uchicago.edu?subject=Placement%20exam">languages@uchicago.edu</a>. Already advanced? A proficiency exam can earn the sample <em>CLC Language Proficiency Certificate</em>.</p></div></section>
+<section class="band" id="ways"><div class="in"><h2>Other ways to learn</h2>
+<div class="tiles"><div class="tile"><h3>Language tutoring</h3><p>One-to-one help alongside your class (sample).</p></div><div class="tile"><h3>Language tables</h3><p>Casual weekly conversation over lunch in Cobb 211 (sample).</p></div><div class="tile"><h3>Language exchange</h3><p>Pair up with a conversation partner (sample).</p></div><div class="tile"><h3>Independent study</h3><p>Arrange self-directed study with a department (sample).</p></div><div class="tile"><h3>Funding &amp; grants</h3><p>Support for study, travel and immersion (sample).</p></div></div></div></section>
+<section class="band white" id="about"><div class="in two"><div><h2>Our mission</h2><p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+<div class="units"><div class="unit"><img src="../assets/icon-ola.jpg" alt=""><div><h3>Office of Language Assessment</h3><p>Established in 2016, the OLA has centralized all language testing across campus, drawing on Applied Linguistics and Language Testing research.</p></div></div>
+<div class="unit"><img src="../assets/icon-eli.jpg" alt=""><div><h3>English Language Institute</h3><p>Since 2015, the ELI supports UChicago individuals for whom English is an additional language, with academic, professional and intercultural programming.</p></div></div></div></div>
+<img src="../assets/lobby.jpg" alt="The CLC front desk and lounge in Cobb Hall"></div></section>
+<section class="band" id="blog"><div class="in"><h2>The latest from our blog</h2>
+<div class="posts"><article class="post"><h3>Setting Ground Rules for AI Use in Language Courses</h3><small>Heather Guerrero · Sep 19, 2024 · Instructional Technology</small><p>Recommendations for setting ground rules and expectations for student use of generative AI in language courses.</p></article>
+<article class="post"><h3>Generative AI: The Basics and Guardrails</h3><small>Heather Guerrero · Sep 6, 2024 · Instructional Technology</small><p>The university is rolling out a new generative AI tool for the whole community. What does that mean for language study?</p></article>
+<article class="post"><h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3><small>Heather Guerrero · May 8, 2024 · Events</small><p>A pair of miniature online courses aimed at shaking up the language classroom.</p></article></div>
+<p><a href="#blog">&laquo; Older Entries</a> &nbsp; Stories: <a href="#blog">Where will language study take you?</a></p></div></section>
+<section class="band white" id="visit"><div class="in visit"><div><h2>Visit us</h2><p>Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637</p><p>2nd floor of Cobb Hall on the main quadrangle. The Ellis Avenue entrance is accessible by wheelchair.</p></div>
+<div><h2>Hours</h2><p>Mon–Fri: 8:30 AM–5:00 PM</p><p>Phone: (773) 702-9772<br>Email: <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p></div>
+<img src="../assets/hero-skyline.jpg" alt="Gothic buildings on the Hyde Park campus" style="width:100%;border-radius:12px;max-height:200px;object-fit:cover"></div></section>
+</main>
+<footer><div class="in"><img src="../assets/footer-logo.jpg" alt="The University of Chicago"><p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · 773.702.9772 · languages@uchicago.edu</p>
+<ul><li><a href="#about">Office of Language Assessment</a></li><li><a href="#about">Mellon Collaborative Partners</a></li><li><a href="#blog">Language Pedagogy Innovation Initiative</a></li><li><a href="#about">English Language Institute</a></li><li><a href="#visit">Accessibility</a></li></ul>
+<p>© 2019-2026 The University of Chicago All rights reserved · <small>Course listings and some descriptions are sample content.</small></p></div></footer>
+<aside class="tray" aria-label="Shortlist"><div><span><strong id="n">0</strong> saved</span>
+<details><summary>Shortlist</summary><ol id="list"><li>Nothing saved yet.</li></ol></details>
+<a class="btn" id="mail" href="mailto:languages@uchicago.edu" aria-disabled="true">Email my shortlist</a></div></aside>
+<script>
+(function(){
+var f=document.getElementById('filters'),cards=[].slice.call(document.querySelectorAll('.card')),saved={};
+var map={lang:'lang',level:'level',goal:'goal',format:'format',quarter:'quarter'};
+function apply(){
+ var sel={};[].forEach.call(f.querySelectorAll('input:checked'),function(i){(sel[i.name]=sel[i.name]||[]).push(i.value)});
+ var shown=0;
+ cards.forEach(function(c){var ok=Object.keys(sel).every(function(k){var v=(c.dataset[map[k]]||'').split(' ');
+  if(k==='goal')return sel[k].some(function(x){return v.indexOf(x)>-1});
+  return sel[k].indexOf(c.dataset[map[k]])>-1});
+  c.hidden=!ok;if(ok)shown++});
+ document.getElementById('count').textContent='Showing '+shown+' sample class'+(shown==1?'':'es');
+ document.getElementById('empty').hidden=shown>0;
+}
+f.addEventListener('change',apply);f.addEventListener('reset',function(){setTimeout(apply,0)});
+function tray(){
+ var k=Object.keys(saved),l=document.getElementById('list'),m=document.getElementById('mail');
+ document.getElementById('n').textContent=k.length;
+ l.innerHTML='';
+ if(!k.length){l.innerHTML='<li>Nothing saved yet.</li>';m.setAttribute('aria-disabled','true');m.href='mailto:languages@uchicago.edu';return}
+ k.forEach(function(x){var li=document.createElement('li');li.textContent=saved[x];l.appendChild(li)});
+ m.removeAttribute('aria-disabled');
+ m.href='mailto:languages@uchicago.edu?subject='+encodeURIComponent('Language class shortlist')+'&body='+encodeURIComponent('Hello,\n\nI am interested in these classes:\n\n'+k.map(function(x){return '- '+saved[x]}).join('\n')+'\n\nCould you help me with next steps?');
+}
+document.querySelectorAll('.add').forEach(function(b){b.addEventListener('click',function(){
+ var id=b.closest('.card').dataset.id,on=b.getAttribute('aria-pressed')!=='true';
+ b.setAttribute('aria-pressed',on);b.textContent=on?'Saved \u2713':'Add to shortlist';
+ if(on)saved[id]=b.dataset.title;else delete saved[id];tray()})});
+})();
+</script></body></html>

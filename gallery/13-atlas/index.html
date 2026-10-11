@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Language Atlas · Chicago Language Center, University of Chicago</title>
+<meta name="description" content="Explore the 50+ languages taught at the University of Chicago. Search, filter and open any language in the Chicago Language Center atlas.">
+<style>
+:root{
+  --ink:#2b1620; --ink2:#5a4550; --bg:#fffaf4; --card:#fff; --maroon:#800000; --line:#e8d9d2;
+  --af:#ffd7a6; --am:#ffc6d3; --as:#c6e9b6; --eu:#bad8ff; --me:#e3c8ff; --an:#f5e39a;
+  --afd:#9a5600; --amd:#b0173f; --asd:#2f7a1b; --eud:#1f5fb8; --med:#7a2fc0; --and:#8a6d00;
+  --r:22px;
+  --font:ui-rounded,"SF Pro Rounded","Hiragino Maru Gothic ProN","Avenir Next","Nunito","Segoe UI",system-ui,-apple-system,Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth;scroll-padding-top:150px}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.55;font-size:17px}
+a{color:var(--maroon);text-underline-offset:3px}
+a:hover{color:#4d0000}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:3px;border-radius:6px}
+.skip{position:absolute;left:-999px;top:8px;background:#fff;padding:.5rem 1rem;border-radius:99px;z-index:100}
+.skip:focus{left:8px}
+h1,h2,h3{line-height:1.12;margin:0 0 .5em;letter-spacing:-.01em}
+.wrap{max-width:1180px;margin:0 auto;padding:0 20px}
+
+/* top bar */
+.top{background:var(--maroon);color:#fff;font-size:.88rem}
+.top .wrap{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;padding-top:6px;padding-bottom:6px}
+.top a{color:#fff}
+.top ul{display:flex;gap:18px;list-style:none;margin:0;padding:0;flex-wrap:wrap;align-items:center}
+.top :focus-visible{outline-color:#fff}
+.dd{position:relative}
+.dd summary{cursor:pointer;list-style:none}
+.dd summary::-webkit-details-marker{display:none}
+.dd summary::after{content:" ▾"}
+.dd ul{position:absolute;right:0;top:100%;background:#fff;color:var(--ink);flex-direction:column;gap:0;padding:6px;border-radius:14px;min-width:190px;z-index:60;box-shadow:0 10px 30px rgba(0,0,0,.2)}
+.dd li a{display:block;color:var(--maroon);padding:7px 12px;border-radius:8px;text-decoration:none}
+.dd li a:hover{background:#f6e7e3}
+.dd ul :focus-visible{outline-color:var(--maroon)}
+
+header.site{padding:14px 0 0}
+header.site .wrap{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:1.25rem;line-height:1.1;text-decoration:none;color:var(--ink)}
+.brand small{display:block;font-weight:600;font-size:.78rem;color:var(--maroon);letter-spacing:.08em;text-transform:uppercase}
+nav.main ul{display:flex;gap:6px;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav.main a{display:block;padding:8px 14px;border-radius:99px;text-decoration:none;color:var(--ink);font-weight:600}
+nav.main a:hover{background:#f6e7e3}
+.gal{position:fixed;left:10px;bottom:10px;z-index:90;font-size:.8rem;background:rgba(255,255,255,.92);border:1px solid var(--line);padding:4px 10px;border-radius:99px;text-decoration:none}
+
+/* hero */
+.hero{padding:34px 0 22px;position:relative;overflow:hidden}
+.hero h1{font-size:clamp(2.3rem,6.4vw,4.6rem);font-weight:900;max-width:15ch}
+.hero h1 em{font-style:normal;color:var(--maroon)}
+.hero p.lead{max-width:60ch;font-size:1.1rem;color:var(--ink2)}
+.floaters{position:absolute;right:0;top:10px;width:46%;height:100%;pointer-events:none;z-index:0}
+.floaters span{position:absolute;padding:.25em .8em;border-radius:99px;font-weight:800;font-size:clamp(1rem,2.4vw,1.7rem);color:var(--ink)}
+.hero .wrap{position:relative;z-index:1}
+@media(max-width:820px){.floaters{display:none}}
+
+/* sticky controls */
+.bar{position:sticky;top:0;z-index:50;background:rgba(255,250,244,.96);backdrop-filter:blur(6px);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:12px 0}
+.controls{display:none}
+.js .controls{display:block}
+.nojs-note{color:var(--ink2);font-size:.95rem;margin:0}
+.js .nojs-note{display:none}
+.searchrow{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.search{flex:1 1 260px;position:relative}
+.search input{width:100%;font:inherit;font-size:1.05rem;padding:12px 18px 12px 46px;border-radius:99px;border:2.5px solid var(--ink);background:#fff;color:var(--ink)}
+.search svg{position:absolute;left:16px;top:50%;transform:translateY(-50%);pointer-events:none}
+.search input:focus-visible{outline:3px solid var(--maroon);outline-offset:2px}
+.btn{font:inherit;font-weight:700;border:2.5px solid var(--ink);background:#fff;color:var(--ink);padding:9px 16px;border-radius:99px;cursor:pointer}
+.btn:hover{background:var(--ink);color:#fff}
+.count{font-weight:700;font-size:.95rem;color:var(--ink2);white-space:nowrap}
+.chiprow{display:flex;gap:8px;align-items:center;margin-top:10px}
+.chiprow .lbl{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.08em;color:var(--ink2);min-width:56px}
+.chips{display:flex;gap:7px;flex-wrap:wrap}
+.chip{font:inherit;font-size:.92rem;font-weight:700;padding:6px 14px;border-radius:99px;border:2px solid var(--ink);background:#fff;color:var(--ink);cursor:pointer;white-space:nowrap}
+.chip[data-c="af"]{background:var(--af)}.chip[data-c="am"]{background:var(--am)}.chip[data-c="as"]{background:var(--as)}
+.chip[data-c="eu"]{background:var(--eu)}.chip[data-c="me"]{background:var(--me)}.chip[data-c="an"]{background:var(--an)}
+.chip:hover{transform:translateY(-1px);box-shadow:0 3px 0 var(--ink)}
+.chip[aria-pressed="true"]{background:var(--ink);color:#fff;box-shadow:none;transform:none}
+.chip[aria-pressed="true"]::before{content:"✓ "}
+@media(max-width:700px){
+  .chips{flex-wrap:nowrap;overflow-x:auto;padding:3px 3px 6px;scrollbar-width:thin}
+  .chiprow{align-items:flex-start;flex-direction:column;gap:2px;margin-top:6px}
+  .chiprow .chips{max-width:100%;width:100%}
+  .bar{padding:8px 0}
+  html{scroll-padding-top:190px}
+}
+
+/* atlas grid */
+.atlas{padding:28px 0 40px}
+.legend{display:flex;gap:14px;flex-wrap:wrap;font-size:.85rem;color:var(--ink2);margin:0 0 16px;padding:0;list-style:none}
+.legend i{display:inline-block;width:.9em;height:.9em;border-radius:50%;margin-right:6px;vertical-align:-.1em;border:1.5px solid var(--ink)}
+.grid{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+.grid>li{display:block;min-width:0}
+.tile{width:100%;height:100%;min-height:104px;font:inherit;text-align:left;border:2px solid transparent;border-radius:var(--r);padding:14px 14px 12px;cursor:pointer;color:var(--ink);display:flex;flex-direction:column;justify-content:space-between;gap:8px;transition:transform .15s,box-shadow .15s}
+.tile:hover{transform:translateY(-3px) rotate(-.6deg);box-shadow:0 6px 0 rgba(43,22,32,.85)}
+.tile[aria-expanded="true"]{border-color:var(--ink);box-shadow:0 5px 0 var(--ink)}
+.tile .native{font-size:1.5rem;font-weight:800;line-height:1.15;overflow-wrap:anywhere}
+.tile .en{font-size:.84rem;font-weight:700;opacity:.82}
+.r-af{background:var(--af)}.r-am{background:var(--am)}.r-as{background:var(--as)}.r-eu{background:var(--eu)}.r-me{background:var(--me)}.r-an{background:var(--an)}
+.grid>li.drawer-li{grid-column:1/-1}
+.drawer{border:2.5px solid var(--ink);border-radius:28px;padding:22px 24px;background:var(--card);position:relative;display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);gap:20px 32px;animation:pop .22s ease-out}
+@keyframes pop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+.drawer::before{content:"";position:absolute;left:0;top:0;right:0;height:10px;border-radius:26px 26px 0 0;background:var(--dc,var(--eu))}
+.drawer h3{font-size:clamp(2rem,5vw,3.4rem);font-weight:900;margin:8px 0 0;overflow-wrap:anywhere}
+.drawer .sub{font-weight:700;color:var(--ink2);margin:0 0 .6em}
+.tag{display:inline-block;font-size:.8rem;font-weight:800;padding:2px 12px;border-radius:99px;background:var(--dc,var(--eu));border:1.5px solid var(--ink);margin-right:6px}
+.greet{background:var(--dc,var(--eu));border-radius:20px;padding:14px 18px}
+.greet b{display:block;font-size:.76rem;text-transform:uppercase;letter-spacing:.08em}
+.greet .g{font-size:1.9rem;font-weight:800;line-height:1.2;overflow-wrap:anywhere}
+.greet .p{font-size:.95rem}
+.drawer ul{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.drawer li a{display:flex;justify-content:space-between;gap:12px;padding:10px 16px;border:2px solid var(--ink);border-radius:99px;text-decoration:none;color:var(--ink);font-weight:700;background:#fff}
+.drawer li a::after{content:"→"}
+.drawer li a:hover{background:var(--ink);color:#fff}
+.drawer .x{position:absolute;right:14px;top:20px;width:40px;height:40px;border-radius:50%;border:2px solid var(--ink);background:#fff;font:inherit;font-size:1.2rem;cursor:pointer;line-height:1}
+.drawer .x:hover{background:var(--ink);color:#fff}
+.drawer .note{font-size:.88rem;color:var(--ink2);margin:.6em 0 0}
+.drawer .l{padding-right:50px}
+.empty{padding:40px;text-align:center;border:3px dashed var(--line);border-radius:var(--r);font-weight:700;color:var(--ink2)}
+@media(max-width:760px){.drawer{grid-template-columns:1fr;padding:20px 16px}}
+
+/* bands */
+.band{padding:46px 0;border-top:1px solid var(--line)}
+.band h2{font-size:clamp(1.7rem,4vw,2.5rem);font-weight:900}
+.eyebrow{font-size:.78rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:var(--maroon);margin:0 0 6px}
+.mission p{max-width:70ch;font-size:1.12rem}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.card{border:2.5px solid var(--ink);border-radius:var(--r);padding:24px;background:#fff}
+.card.a{background:var(--eu)}.card.b{background:var(--an)}
+.card h3{font-size:1.5rem;font-weight:900}
+.card .since{display:inline-block;font-weight:800;font-size:.85rem;border:2px solid var(--ink);border-radius:99px;padding:1px 12px;margin-bottom:10px;background:#fff}
+.more{display:inline-block;margin-top:6px;font-weight:800;color:var(--ink);background:#fff;border:2px solid var(--ink);padding:7px 18px;border-radius:99px;text-decoration:none}
+.more:hover{background:var(--ink);color:#fff}
+@media(max-width:760px){.two{grid-template-columns:1fr}}
+
+.story{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
+.art{border:2.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:#bad8ff;aspect-ratio:4/3}
+.art svg{display:block;width:100%;height:100%}
+.dots{display:flex;gap:6px;margin:14px 0 0;padding:0;list-style:none}
+.dots li{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink)}
+.dots li:first-child{background:var(--ink)}
+.dotnote{font-size:.85rem;color:var(--ink2);margin:6px 0 0}
+@media(max-width:760px){.story{grid-template-columns:1fr}}
+
+.events{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px}
+.events li{display:flex;gap:14px;align-items:center;border:2px solid var(--ink);border-radius:var(--r);padding:12px 16px;background:#fff}
+.date{flex:none;width:58px;text-align:center;border-radius:14px;padding:4px 0;font-weight:900;line-height:1.1;background:var(--eu);border:2px solid var(--ink)}
+.date small{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.06em}
+.date span{font-size:1.4rem}
+.events b{display:block}
+.events .m{font-size:.88rem;color:var(--ink2)}
+.sample{font-size:.8rem;font-weight:700;color:var(--ink2);background:#efe3dc;border-radius:99px;padding:2px 10px;margin-left:8px;vertical-align:middle}
+
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;list-style:none;margin:0;padding:0}
+.posts article{height:100%;border:2px solid var(--ink);border-radius:var(--r);padding:20px;background:#fff;display:flex;flex-direction:column;gap:6px}
+.posts h3{font-size:1.15rem;margin:0}
+.posts h3 a{color:var(--ink);text-decoration:none}
+.posts h3 a:hover{text-decoration:underline}
+.posts .meta{font-size:.82rem;color:var(--ink2);font-weight:700}
+.posts p{margin:0;font-size:.95rem}
+@media(max-width:900px){.posts{grid-template-columns:1fr}}
+
+.visit{background:var(--maroon);color:#fff;border-top:none}
+.visit a{color:#fff}
+.visit :focus-visible{outline-color:#fff}
+.visit .eyebrow{color:#ffd7a6}
+.vgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.vgrid>div{border:2px solid rgba(255,255,255,.55);border-radius:var(--r);padding:20px}
+.vgrid h3{font-size:1.1rem;color:#ffd7a6}
+.vgrid p{margin:0 0 .5em}
+@media(max-width:820px){.vgrid{grid-template-columns:1fr}}
+
+footer{background:#2b0a10;color:#f1e3e0;padding:34px 0 40px;font-size:.92rem}
+footer a{color:#fff}
+footer :focus-visible{outline-color:#fff}
+footer .wm{font-weight:900;letter-spacing:.14em;text-transform:uppercase;font-size:1.05rem;margin-bottom:8px}
+footer ul{list-style:none;margin:14px 0;padding:0;display:flex;gap:6px 22px;flex-wrap:wrap}
+footer .fine{opacity:.85;font-size:.85rem}
+
+@media(prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .tile:hover,.chip:hover{transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#atlas">Skip to the language atlas</a>
+<a class="gal" href="../index.html">← Gallery</a>
+
+<div class="top">
+  <div class="wrap">
+    <a href="https://www.uchicago.edu">The University of Chicago</a>
+    <nav aria-label="Utility">
+      <ul>
+        <li><a href="#">News</a></li>
+        <li><a href="#events">Calendar</a></li>
+        <li class="dd"><details><summary>Students</summary><ul><li><a href="#atlas">Languages offered</a></li><li><a href="#ola">Placement testing</a></li><li><a href="#stories">Stories</a></li></ul></details></li>
+        <li class="dd"><details><summary>Instructors</summary><ul><li><a href="#blog">Pedagogy blog</a></li><li><a href="#ola">Testing support</a></li><li><a href="#events">Workshops</a></li></ul></details></li>
+      </ul>
+    </nav>
+  </div>
+</div>
+
+<header class="site">
+  <div class="wrap">
+    <a class="brand" href="#top"><small>The University of Chicago</small>Chicago Language Center</a>
+    <nav class="main" aria-label="Main">
+      <ul>
+        <li><a href="#about">About</a></li>
+        <li><a href="#atlas">Language Study</a></li>
+        <li><a href="#events">Innovative Programming</a></li>
+        <li><a href="#blog">Professional Development</a></li>
+        <li><a href="#atlas" id="navsearch">Search</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="top">
+<section class="hero" aria-labelledby="h1">
+  <div class="floaters" aria-hidden="true">
+    <span style="background:var(--as);right:30%;top:4%">你好</span>
+    <span style="background:var(--me);right:2%;top:16%">مرحبا</span>
+    <span style="background:var(--am);right:36%;top:34%">Hola</span>
+    <span style="background:var(--eu);right:6%;top:46%">Привет</span>
+    <span style="background:var(--an);right:30%;top:62%">Χαῖρε</span>
+    <span style="background:var(--af);right:4%;top:76%">Sawubona</span>
+    <span style="background:var(--as);right:44%;top:84%">안녕</span>
+  </div>
+  <div class="wrap">
+    <p class="eyebrow">Chicago Language Center · The Language Atlas</p>
+    <h1 id="h1">Pick a language. <em>50+</em> to explore.</h1>
+    <p class="lead">Every language taught at UChicago, on one map. Search by name, filter by region or script, and open any tile for a greeting and the quickest way to start.</p>
+  </div>
+</section>
+
+<div class="bar" role="search" aria-label="Find a language">
+  <div class="wrap">
+    <p class="nojs-note">Filters need JavaScript. The full list of languages is below.</p>
+    <div class="controls">
+      <div class="searchrow">
+        <div class="search">
+          <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true"><circle cx="8" cy="8" r="6" fill="none" stroke="#2b1620" stroke-width="2.5"/><path d="M13 13l5 5" stroke="#2b1620" stroke-width="2.5" stroke-linecap="round"/></svg>
+          <label class="sr" for="q" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">Search languages</label>
+          <input id="q" type="search" placeholder="Try “Korean”, “hola”, “Cyrillic”, “ancient”…" autocomplete="off">
+        </div>
+        <button type="button" class="btn" id="surprise">Surprise me</button>
+        <button type="button" class="btn" id="reset">Reset</button>
+        <span class="count" id="count" role="status" aria-live="polite"></span>
+      </div>
+      <div class="chiprow">
+        <span class="lbl" id="rl">Region</span>
+        <div class="chips" role="group" aria-labelledby="rl" id="regions">
+          <button type="button" class="chip" data-v="all" aria-pressed="true">All</button>
+          <button type="button" class="chip" data-v="af" data-c="af" aria-pressed="false">Africa</button>
+          <button type="button" class="chip" data-v="am" data-c="am" aria-pressed="false">Americas</button>
+          <button type="button" class="chip" data-v="as" data-c="as" aria-pressed="false">Asia</button>
+          <button type="button" class="chip" data-v="eu" data-c="eu" aria-pressed="false">Europe</button>
+          <button type="button" class="chip" data-v="me" data-c="me" aria-pressed="false">Middle East &amp; N. Africa</button>
+          <button type="button" class="chip" data-v="an" data-c="an" aria-pressed="false">Ancient &amp; Classical</button>
+        </div>
+      </div>
+      <div class="chiprow">
+        <span class="lbl" id="sl">Script</span>
+        <div class="chips" role="group" aria-labelledby="sl" id="scripts">
+          <button type="button" class="chip" data-v="all" aria-pressed="true">All</button>
+          <button type="button" class="chip" data-v="Latin" aria-pressed="false">Latin</button>
+          <button type="button" class="chip" data-v="Cyrillic" aria-pressed="false">Cyrillic</button>
+          <button type="button" class="chip" data-v="Arabic" aria-pressed="false">Arabic</button>
+          <button type="button" class="chip" data-v="Greek" aria-pressed="false">Greek</button>
+          <button type="button" class="chip" data-v="Hebrew" aria-pressed="false">Hebrew</button>
+          <button type="button" class="chip" data-v="Indic" aria-pressed="false">Indic</button>
+          <button type="button" class="chip" data-v="East Asian" aria-pressed="false">East Asian</button>
+          <button type="button" class="chip" data-v="Other" aria-pressed="false">Other</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<section class="atlas" id="atlas" aria-labelledby="ah" tabindex="-1">
+  <div class="wrap">
+    <h2 id="ah" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">The languages</h2>
+    <ul class="legend" aria-label="Colour key">
+      <li><i style="background:var(--af)"></i>Africa</li>
+      <li><i style="background:var(--am)"></i>Americas</li>
+      <li><i style="background:var(--as)"></i>Asia</li>
+      <li><i style="background:var(--eu)"></i>Europe</li>
+      <li><i style="background:var(--me)"></i>Middle East &amp; N. Africa</li>
+      <li><i style="background:var(--an)"></i>Ancient &amp; Classical</li>
+      <li>· Sample selection of the 50+ offered; availability varies by department and year.</li>
+    </ul>
+    <ul class="grid" id="grid">
+<li><button type="button" class="tile r-af" data-name="Akan" data-native="Akan" data-lang="ak" data-region="af" data-script="Latin" data-greet="Akwaaba" data-pron="a-KWAA-ba (welcome)" aria-expanded="false"><span class="native" lang="ak">Akan</span><span class="en">Akan</span></button></li>
+<li><button type="button" class="tile r-af" data-name="Igbo" data-native="Igbo" data-lang="ig" data-region="af" data-script="Latin" data-greet="Nnọọ" data-pron="nno (welcome)" aria-expanded="false"><span class="native" lang="ig">Igbo</span><span class="en">Igbo</span></button></li>
+<li><button type="button" class="tile r-af" data-name="Swahili" data-native="Kiswahili" data-lang="sw" data-region="af" data-script="Latin" data-greet="Karibu" data-pron="ka-REE-boo (welcome)" aria-expanded="false"><span class="native" lang="sw">Kiswahili</span><span class="en">Swahili</span></button></li>
+<li><button type="button" class="tile r-af" data-name="Wolof" data-native="Wolof" data-lang="wo" data-region="af" data-script="Latin" data-greet="Nanga def?" data-pron="nan-ga def (how are you?)" aria-expanded="false"><span class="native" lang="wo">Wolof</span><span class="en">Wolof</span></button></li>
+<li><button type="button" class="tile r-af" data-name="Yoruba" data-native="Yorùbá" data-lang="yo" data-region="af" data-script="Latin" data-greet="Báwo ni?" data-pron="BAH-wo nee (how are you?)" aria-expanded="false"><span class="native" lang="yo">Yorùbá</span><span class="en">Yoruba</span></button></li>
+<li><button type="button" class="tile r-af" data-name="Zulu" data-native="isiZulu" data-lang="zu" data-region="af" data-script="Latin" data-greet="Sawubona" data-pron="sa-woo-BO-na (I see you)" aria-expanded="false"><span class="native" lang="zu">isiZulu</span><span class="en">Zulu</span></button></li>
+<li><button type="button" class="tile r-am" data-name="Nahuatl" data-native="Nāhuatl" data-lang="nah" data-region="am" data-script="Latin" data-greet="Niltze" data-pron="NIL-tseh (hello)" aria-expanded="false"><span class="native" lang="nah">Nāhuatl</span><span class="en">Nahuatl</span></button></li>
+<li><button type="button" class="tile r-am" data-name="Quechua" data-native="Runasimi" data-lang="qu" data-region="am" data-script="Latin" data-greet="Allillanchu?" data-pron="a-yee-YAN-choo (how are you?)" aria-expanded="false"><span class="native" lang="qu">Runasimi</span><span class="en">Quechua</span></button></li>
+<li><button type="button" class="tile r-am" data-name="Spanish" data-native="Español" data-lang="es" data-region="am" data-script="Latin" data-greet="Hola" data-pron="OH-la (hello)" aria-expanded="false"><span class="native" lang="es">Español</span><span class="en">Spanish</span></button></li>
+<li><button type="button" class="tile r-am" data-name="Portuguese" data-native="Português" data-lang="pt" data-region="am" data-script="Latin" data-greet="Olá" data-pron="oh-LAH (hello)" aria-expanded="false"><span class="native" lang="pt">Português</span><span class="en">Portuguese</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Bangla" data-native="বাংলা" data-lang="bn" data-region="as" data-script="Indic" data-greet="নমস্কার" data-pron="nomoshkar (greetings)" aria-expanded="false"><span class="native" lang="bn">বাংলা</span><span class="en">Bangla</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Chinese (Mandarin)" data-native="中文" data-lang="zh" data-region="as" data-script="East Asian" data-greet="你好" data-pron="nǐ hǎo (hello)" aria-expanded="false"><span class="native" lang="zh">中文</span><span class="en">Chinese (Mandarin)</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Hindi" data-native="हिन्दी" data-lang="hi" data-region="as" data-script="Indic" data-greet="नमस्ते" data-pron="namaste (greetings)" aria-expanded="false"><span class="native" lang="hi">हिन्दी</span><span class="en">Hindi</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Japanese" data-native="日本語" data-lang="ja" data-region="as" data-script="East Asian" data-greet="こんにちは" data-pron="konnichiwa (hello)" aria-expanded="false"><span class="native" lang="ja">日本語</span><span class="en">Japanese</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Kazakh" data-native="Қазақша" data-lang="kk" data-region="as" data-script="Cyrillic" data-greet="Сәлем" data-pron="sälem (hello)" aria-expanded="false"><span class="native" lang="kk">Қазақша</span><span class="en">Kazakh</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Korean" data-native="한국어" data-lang="ko" data-region="as" data-script="East Asian" data-greet="안녕하세요" data-pron="annyeonghaseyo (hello)" aria-expanded="false"><span class="native" lang="ko">한국어</span><span class="en">Korean</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Tamil" data-native="தமிழ்" data-lang="ta" data-region="as" data-script="Indic" data-greet="வணக்கம்" data-pron="vanakkam (greetings)" aria-expanded="false"><span class="native" lang="ta">தமிழ்</span><span class="en">Tamil</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Thai" data-native="ไทย" data-lang="th" data-region="as" data-script="Other" data-greet="สวัสดี" data-pron="sawatdee (hello)" aria-expanded="false"><span class="native" lang="th">ไทย</span><span class="en">Thai</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Tibetan" data-native="བོད་སྐད" data-lang="bo" data-region="as" data-script="Other" data-greet="བཀྲ་ཤིས་བདེ་ལེགས" data-pron="tashi delek (good fortune)" aria-expanded="false"><span class="native" lang="bo">བོད་སྐད</span><span class="en">Tibetan</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Urdu" data-native="اردو" data-lang="ur" data-region="as" data-script="Arabic" data-greet="السلام علیکم" data-pron="as-salāmu ʿalaykum (peace be upon you)" aria-expanded="false"><span class="native" lang="ur">اردو</span><span class="en">Urdu</span></button></li>
+<li><button type="button" class="tile r-as" data-name="Vietnamese" data-native="Tiếng Việt" data-lang="vi" data-region="as" data-script="Latin" data-greet="Xin chào" data-pron="sin chow (hello)" aria-expanded="false"><span class="native" lang="vi">Tiếng Việt</span><span class="en">Vietnamese</span></button></li>
+<li><button type="button" class="tile r-me" data-name="Arabic" data-native="العربية" data-lang="ar" data-region="me" data-script="Arabic" data-greet="مرحبا" data-pron="marḥaba (hello)" aria-expanded="false"><span class="native" lang="ar">العربية</span><span class="en">Arabic</span></button></li>
+<li><button type="button" class="tile r-me" data-name="Farsi / Persian" data-native="فارسی" data-lang="fa" data-region="me" data-script="Arabic" data-greet="سلام" data-pron="salām (hello)" aria-expanded="false"><span class="native" lang="fa">فارسی</span><span class="en">Farsi / Persian</span></button></li>
+<li><button type="button" class="tile r-me" data-name="Hebrew (Modern)" data-native="עברית" data-lang="he" data-region="me" data-script="Hebrew" data-greet="שלום" data-pron="shalom (peace, hello)" aria-expanded="false"><span class="native" lang="he">עברית</span><span class="en">Hebrew (Modern)</span></button></li>
+<li><button type="button" class="tile r-me" data-name="Turkish" data-native="Türkçe" data-lang="tr" data-region="me" data-script="Latin" data-greet="Merhaba" data-pron="mer-ha-BA (hello)" aria-expanded="false"><span class="native" lang="tr">Türkçe</span><span class="en">Turkish</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Armenian" data-native="Հայերեն" data-lang="hy" data-region="eu" data-script="Other" data-greet="Բարեւ" data-pron="barev (hello)" aria-expanded="false"><span class="native" lang="hy">Հայերեն</span><span class="en">Armenian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Bulgarian" data-native="Български" data-lang="bg" data-region="eu" data-script="Cyrillic" data-greet="Здравейте" data-pron="zdraveyte (hello)" aria-expanded="false"><span class="native" lang="bg">Български</span><span class="en">Bulgarian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Catalan" data-native="Català" data-lang="ca" data-region="eu" data-script="Latin" data-greet="Hola" data-pron="OH-la (hello)" aria-expanded="false"><span class="native" lang="ca">Català</span><span class="en">Catalan</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Czech" data-native="Čeština" data-lang="cs" data-region="eu" data-script="Latin" data-greet="Dobrý den" data-pron="DOH-bree den (good day)" aria-expanded="false"><span class="native" lang="cs">Čeština</span><span class="en">Czech</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Danish" data-native="Dansk" data-lang="da" data-region="eu" data-script="Latin" data-greet="Goddag" data-pron="go-DAH (good day)" aria-expanded="false"><span class="native" lang="da">Dansk</span><span class="en">Danish</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Dutch" data-native="Nederlands" data-lang="nl" data-region="eu" data-script="Latin" data-greet="Hallo" data-pron="HAH-lo (hello)" aria-expanded="false"><span class="native" lang="nl">Nederlands</span><span class="en">Dutch</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="English (EAL)" data-native="English" data-lang="en" data-region="eu" data-script="Latin" data-greet="Hello" data-pron="heh-LOH (hello)" aria-expanded="false"><span class="native" lang="en">English</span><span class="en">English (EAL)</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Finnish" data-native="Suomi" data-lang="fi" data-region="eu" data-script="Latin" data-greet="Hei" data-pron="hay (hi)" aria-expanded="false"><span class="native" lang="fi">Suomi</span><span class="en">Finnish</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="French" data-native="Français" data-lang="fr" data-region="eu" data-script="Latin" data-greet="Bonjour" data-pron="bon-ZHOOR (good day)" aria-expanded="false"><span class="native" lang="fr">Français</span><span class="en">French</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="German" data-native="Deutsch" data-lang="de" data-region="eu" data-script="Latin" data-greet="Guten Tag" data-pron="GOO-ten tahk (good day)" aria-expanded="false"><span class="native" lang="de">Deutsch</span><span class="en">German</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Greek (Modern)" data-native="Ελληνικά" data-lang="el" data-region="eu" data-script="Greek" data-greet="Γεια σας" data-pron="yia sas (hello)" aria-expanded="false"><span class="native" lang="el">Ελληνικά</span><span class="en">Greek (Modern)</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Hungarian" data-native="Magyar" data-lang="hu" data-region="eu" data-script="Latin" data-greet="Szia" data-pron="SEE-yo (hi)" aria-expanded="false"><span class="native" lang="hu">Magyar</span><span class="en">Hungarian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Italian" data-native="Italiano" data-lang="it" data-region="eu" data-script="Latin" data-greet="Ciao" data-pron="chow (hi, bye)" aria-expanded="false"><span class="native" lang="it">Italiano</span><span class="en">Italian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Lithuanian" data-native="Lietuvių" data-lang="lt" data-region="eu" data-script="Latin" data-greet="Labas" data-pron="LAH-bas (hi)" aria-expanded="false"><span class="native" lang="lt">Lietuvių</span><span class="en">Lithuanian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Norwegian" data-native="Norsk" data-lang="no" data-region="eu" data-script="Latin" data-greet="Hei" data-pron="hay (hi)" aria-expanded="false"><span class="native" lang="no">Norsk</span><span class="en">Norwegian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Polish" data-native="Polski" data-lang="pl" data-region="eu" data-script="Latin" data-greet="Cześć" data-pron="cheshch (hi)" aria-expanded="false"><span class="native" lang="pl">Polski</span><span class="en">Polish</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Romanian" data-native="Română" data-lang="ro" data-region="eu" data-script="Latin" data-greet="Bună ziua" data-pron="BOO-nuh ZEE-wa (good day)" aria-expanded="false"><span class="native" lang="ro">Română</span><span class="en">Romanian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Russian" data-native="Русский" data-lang="ru" data-region="eu" data-script="Cyrillic" data-greet="Здравствуйте" data-pron="ZDRAH-stvooy-tye (hello)" aria-expanded="false"><span class="native" lang="ru">Русский</span><span class="en">Russian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Serbian / Croatian" data-native="Srpski / Hrvatski" data-lang="sr" data-region="eu" data-script="Latin" data-greet="Zdravo" data-pron="ZDRAH-vo (hello)" aria-expanded="false"><span class="native" lang="sr">Srpski / Hrvatski</span><span class="en">Serbian / Croatian</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Swedish" data-native="Svenska" data-lang="sv" data-region="eu" data-script="Latin" data-greet="Hej" data-pron="hay (hi)" aria-expanded="false"><span class="native" lang="sv">Svenska</span><span class="en">Swedish</span></button></li>
+<li><button type="button" class="tile r-eu" data-name="Ukrainian" data-native="Українська" data-lang="uk" data-region="eu" data-script="Cyrillic" data-greet="Привіт" data-pron="pryvit (hi)" aria-expanded="false"><span class="native" lang="uk">Українська</span><span class="en">Ukrainian</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Akkadian" data-native="Akkadian" data-lang="akk" data-region="an" data-script="Latin" data-greet="Šulmu" data-pron="SHUL-mu (well-being)" aria-expanded="false"><span class="native" lang="akk">Akkadian</span><span class="en">Akkadian</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Greek (Ancient)" data-native="Ἑλληνική" data-lang="grc" data-region="an" data-script="Greek" data-greet="Χαῖρε" data-pron="KHAI-re (rejoice, hello)" aria-expanded="false"><span class="native" lang="grc">Ἑλληνική</span><span class="en">Greek (Ancient)</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Hebrew (Biblical)" data-native="עברית מקראית" data-lang="hbo" data-region="an" data-script="Hebrew" data-greet="שָׁלוֹם" data-pron="shalom (peace)" aria-expanded="false"><span class="native" lang="hbo">עברית מקראית</span><span class="en">Hebrew (Biblical)</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Hittite" data-native="Nešili" data-lang="hit" data-region="an" data-script="Latin" data-greet="" data-pron="" aria-expanded="false"><span class="native" lang="hit">Nešili</span><span class="en">Hittite</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Latin" data-native="Latina" data-lang="la" data-region="an" data-script="Latin" data-greet="Salve" data-pron="SAL-weh (be well)" aria-expanded="false"><span class="native" lang="la">Latina</span><span class="en">Latin</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Middle Egyptian" data-native="Middle Egyptian" data-lang="egy" data-region="an" data-script="Latin" data-greet="" data-pron="" aria-expanded="false"><span class="native" lang="egy">Middle Egyptian</span><span class="en">Middle Egyptian</span></button></li>
+<li><button type="button" class="tile r-an" data-name="Sanskrit" data-native="संस्कृतम्" data-lang="sa" data-region="an" data-script="Indic" data-greet="नमस्ते" data-pron="namaste (I bow to you)" aria-expanded="false"><span class="native" lang="sa">संस्कृतम्</span><span class="en">Sanskrit</span></button></li>
+    </ul>
+    <p class="empty" id="empty" hidden>No language matches that search. Try a shorter word, or press Reset.</p>
+  </div>
+</section>
+
+<section class="band mission" id="about" aria-labelledby="mh">
+  <div class="wrap">
+    <p class="eyebrow">About the CLC</p>
+    <h2 id="mh">University of Chicago Language Center</h2>
+    <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+  </div>
+</section>
+
+<section class="band" aria-labelledby="uh">
+  <div class="wrap">
+    <p class="eyebrow">Two units, one home in Cobb Hall</p>
+    <h2 id="uh">Testing and English support</h2>
+    <div class="two">
+      <article class="card a" id="ola">
+        <span class="since">Since 2016</span>
+        <h3>Office of Language Assessment</h3>
+        <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+        <a class="more" href="#">Learn more about the OLA</a>
+      </article>
+      <article class="card b" id="eli">
+        <span class="since">Since 2015</span>
+        <h3>English Language Institute</h3>
+        <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+        <a class="more" href="#">Learn more about the ELI</a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="band" id="stories" aria-labelledby="sh">
+  <div class="wrap story">
+    <div>
+      <p class="eyebrow">Stories · 1 of 9</p>
+      <h2 id="sh">Where Will Language Study Take You?</h2>
+      <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+      <a class="more" href="#">Read the stories</a>
+      <ol class="dots" aria-label="Nine stories, first shown"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
+    </div>
+    <figure class="art" style="margin:0" role="img" aria-label="Illustration placeholder: a colorful hillside village in Korea. Photo slot.">
+      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <rect width="400" height="300" fill="#bad8ff"/>
+        <circle cx="320" cy="60" r="30" fill="#f5e39a"/>
+        <path d="M0 180 Q100 90 220 150 T400 120 V300 H0Z" fill="#c6e9b6"/>
+        <path d="M0 230 Q120 150 250 205 T400 190 V300 H0Z" fill="#9fd48b"/>
+        <g stroke="#2b1620" stroke-width="2.5">
+          <rect x="60" y="170" width="44" height="34" fill="#ffc6d3"/><path d="M54 170 L82 148 L110 170Z" fill="#ffd7a6"/>
+          <rect x="130" y="190" width="40" height="32" fill="#e3c8ff"/><path d="M124 190 L150 168 L176 190Z" fill="#ff9d8a"/>
+          <rect x="210" y="176" width="46" height="36" fill="#f5e39a"/><path d="M204 176 L233 152 L262 176Z" fill="#bad8ff"/>
+          <rect x="285" y="198" width="42" height="34" fill="#ffd7a6"/><path d="M279 198 L306 176 L333 198Z" fill="#c6e9b6"/>
+          <rect x="30" y="215" width="38" height="30" fill="#bad8ff"/><path d="M24 215 L49 195 L74 215Z" fill="#ffc6d3"/>
+        </g>
+        <text x="200" y="285" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#2b1620">Photo: student in a hillside village, Korea</text>
+      </svg>
+    </figure>
+  </div>
+</section>
+
+<section class="band" id="events" aria-labelledby="eh">
+  <div class="wrap">
+    <p class="eyebrow">Practice out loud</p>
+    <h2 id="eh">Coming up <span class="sample">sample events</span></h2>
+    <ul class="events">
+      <li><div class="date"><small>Oct</small><span>14</span></div><div><b>Language Table: Spanish</b><span class="m">Wed · 12:00–1:00 PM · Cobb 211</span></div></li>
+      <li><div class="date"><small>Oct</small><span>15</span></div><div><b>Placement Testing Info Session</b><span class="m">Thu · 5:30–6:30 PM · Cobb 201</span></div></li>
+      <li><div class="date"><small>Oct</small><span>19</span></div><div><b>Workshop: Teaching with Generative AI (instructors)</b><span class="m">Mon · 4:00–5:00 PM · Online</span></div></li>
+      <li><div class="date"><small>Oct</small><span>22</span></div><div><b>Language Exchange Night</b><span class="m">Thu · 6:00–7:30 PM · Reynolds Club</span></div></li>
+      <li><div class="date"><small>Oct</small><span>28</span></div><div><b>Language Table: Mandarin</b><span class="m">Wed · 12:00–1:00 PM · Cobb 211</span></div></li>
+      <li><div class="date"><small>Nov</small><span>4</span></div><div><b>Brown Bag: Study Abroad Stories</b><span class="m">Wed · 3:00–4:30 PM · Cobb 211</span></div></li>
+    </ul>
+  </div>
+</section>
+
+<section class="band" id="blog" aria-labelledby="bh">
+  <div class="wrap">
+    <p class="eyebrow">Professional development</p>
+    <h2 id="bh">The Latest From Our Blog</h2>
+    <div class="posts">
+      <article>
+        <p class="meta">Sep 19, 2024 · Instructional Technology</p>
+        <h3><a href="#">Setting Ground Rules for AI Use in Language Courses</a></h3>
+        <p class="meta">by Heather Guerrero</p>
+        <p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students…</p>
+      </article>
+      <article>
+        <p class="meta">Sep 6, 2024 · Instructional Technology</p>
+        <h3><a href="#">Generative AI: The Basics and Guardrails</a></h3>
+        <p class="meta">by Heather Guerrero</p>
+        <p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the…</p>
+      </article>
+      <article>
+        <p class="meta">May 8, 2024 · Events, Uncategorized</p>
+        <h3><a href="#">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</a></h3>
+        <p class="meta">by Heather Guerrero</p>
+        <p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses…</p>
+      </article>
+    </div>
+    <p><a href="#">« Older Entries</a></p>
+  </div>
+</section>
+
+<section class="band visit" id="visit" aria-labelledby="vh">
+  <div class="wrap">
+    <p class="eyebrow">Come say hello</p>
+    <h2 id="vh">Visit the CLC</h2>
+    <div class="vgrid">
+      <div>
+        <h3>Location</h3>
+        <p><strong>Cobb Hall, Suite 211</strong><br>5811 S Ellis Ave<br>Chicago, IL 60637</p>
+        <p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p>
+      </div>
+      <div>
+        <h3>Hours</h3>
+        <p><strong>Mon–Fri</strong><br>8:30 AM–5:00 PM</p>
+      </div>
+      <div>
+        <h3>Contact</h3>
+        <p>For questions, reservations, and further info, please contact us by phone or email:</p>
+        <p>Phone: <a href="tel:+17737029772">(773) 702-9772</a><br>Email: <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="wm">The University of Chicago</div>
+    <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · 773.702.9772 · <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+    <nav aria-label="Footer">
+      <ul>
+        <li><a href="#">Office of Language Assessment</a></li>
+        <li><a href="#">Mellon Collaborative Partners</a></li>
+        <li><a href="#">Language Pedagogy Innovation Initiative</a></li>
+        <li><a href="#">English Language Institute</a></li>
+        <li><a href="#">Accessibility</a></li>
+      </ul>
+    </nav>
+    <p class="fine">© 2019-2026 The University of Chicago All rights reserved. Design exploration: the language selection, greetings and events shown are sample content.</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var grid=document.getElementById('grid');
+  var tiles=Array.prototype.slice.call(grid.querySelectorAll('.tile'));
+  var q=document.getElementById('q'), countEl=document.getElementById('count'), emptyEl=document.getElementById('empty');
+  var REG={af:'Africa',am:'Americas',as:'Asia',eu:'Europe',me:'Middle East & North Africa',an:'Ancient & Classical'};
+  var COL={af:'var(--af)',am:'var(--am)',as:'var(--as)',eu:'var(--eu)',me:'var(--me)',an:'var(--an)'};
+  var state={q:'',region:'all',script:'all'};
+  var open=null, drawerLi=null;
+
+  function norm(s){return (s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');}
+  tiles.forEach(function(t){
+    var d=t.dataset;
+    t._hay=norm([d.name,d.native,d.greet,d.pron,REG[d.region],d.script,d.region==='an'?'ancient classical dead':''].join(' '));
+  });
+
+  function apply(){
+    var shown=0, qq=norm(state.q).trim();
+    tiles.forEach(function(t){
+      var ok=(state.region==='all'||t.dataset.region===state.region)&&
+             (state.script==='all'||t.dataset.script===state.script)&&
+             (!qq||t._hay.indexOf(qq)!==-1);
+      t.parentNode.hidden=!ok;
+      if(ok)shown++;
+    });
+    if(open&&open.parentNode.hidden)closeDrawer(false);
+    countEl.textContent=shown+' of '+tiles.length+' languages';
+    emptyEl.hidden=shown!==0;
+  }
+
+  function setChips(groupId,key){
+    var g=document.getElementById(groupId);
+    g.addEventListener('click',function(e){
+      var b=e.target.closest('.chip'); if(!b)return;
+      state[key]=b.dataset.v; sync(groupId,state[key]); closeDrawer(false); apply();
+    });
+  }
+  function sync(groupId,v){
+    Array.prototype.forEach.call(document.getElementById(groupId).querySelectorAll('.chip'),function(c){
+      c.setAttribute('aria-pressed',c.dataset.v===v?'true':'false');
+    });
+  }
+  setChips('regions','region'); setChips('scripts','script');
+  q.addEventListener('input',function(){state.q=q.value;closeDrawer(false);apply();});
+  document.getElementById('reset').addEventListener('click',function(){
+    state={q:'',region:'all',script:'all'}; q.value=''; sync('regions','all'); sync('scripts','all'); closeDrawer(false); apply(); q.focus();
+  });
+  document.getElementById('navsearch').addEventListener('click',function(){setTimeout(function(){q.focus();},50);});
+
+  function visible(){return tiles.filter(function(t){return !t.parentNode.hidden;});}
+  document.getElementById('surprise').addEventListener('click',function(){
+    var v=visible(); if(!v.length)return;
+    var t=v[Math.floor(Math.random()*v.length)];
+    showDrawer(t,true);
+    t.scrollIntoView({block:'center'});
+  });
+
+  function build(t){
+    var d=t.dataset, c=COL[d.region];
+    var el=document.createElement('div');
+    el.className='drawer'; el.id='drawer'; el.setAttribute('role','region'); el.setAttribute('aria-label',d.name+' details');
+    el.style.setProperty('--dc',c);
+    var left=document.createElement('div'); left.className='l';
+    var tag=document.createElement('span'); tag.className='tag'; tag.textContent=REG[d.region];
+    var tag2=document.createElement('span'); tag2.className='tag'; tag2.textContent=d.script+' script';
+    var h=document.createElement('h3'); h.tabIndex=-1; h.id='drawer-h'; h.textContent=d.native; h.lang=d.lang;
+    var sub=document.createElement('p'); sub.className='sub'; sub.textContent=d.name;
+    left.appendChild(tag); left.appendChild(tag2); left.appendChild(h); left.appendChild(sub);
+    var gr=document.createElement('div'); gr.className='greet';
+    var lab=document.createElement('b'); lab.textContent='Say hello';
+    gr.appendChild(lab);
+    if(d.greet){
+      var g=document.createElement('div'); g.className='g'; g.lang=d.lang; g.textContent=d.greet;
+      var p=document.createElement('div'); p.className='p'; p.textContent=d.pron;
+      gr.appendChild(g); gr.appendChild(p);
+    }else{
+      var g2=document.createElement('div'); g2.className='p'; g2.textContent='Studied through texts rather than conversation. No everyday greeting to show here.';
+      gr.appendChild(g2);
+    }
+    left.appendChild(gr);
+    var right=document.createElement('div');
+    var ul=document.createElement('ul');
+    var subj=encodeURIComponent('Question about studying '+d.name);
+    [['Placement and proficiency testing (OLA)','#ola'],
+     ['English Language Institute (ELI)','#eli'],
+     ['Language tables and exchange','#events'],
+     ['Ask the CLC about '+d.name,'mailto:languages@uchicago.edu?subject='+subj]].forEach(function(l){
+      var li=document.createElement('li'), a=document.createElement('a');
+      a.href=l[1]; a.textContent=l[0]; li.appendChild(a); ul.appendChild(li);
+    });
+    right.appendChild(ul);
+    var n=document.createElement('p'); n.className='note'; n.textContent='Sample detail for design exploration. Which courses run depends on the department and the year.';
+    right.appendChild(n);
+    var x=document.createElement('button'); x.type='button'; x.className='x'; x.setAttribute('aria-label','Close details'); x.textContent='×';
+    x.addEventListener('click',function(){closeDrawer(true);});
+    el.appendChild(x); el.appendChild(left); el.appendChild(right);
+    return el;
+  }
+
+  function place(t){
+    var top=t.offsetTop, last=t;
+    visible().forEach(function(v){if(v.offsetTop===top)last=v;});
+    var ref=last.parentNode.nextSibling;
+    grid.insertBefore(drawerLi,ref);
+  }
+
+  function showDrawer(t,focus){
+    if(open===t){closeDrawer(true);return;}
+    if(open)open.setAttribute('aria-expanded','false');
+    if(drawerLi&&drawerLi.parentNode)drawerLi.parentNode.removeChild(drawerLi);
+    drawerLi=document.createElement('li'); drawerLi.className='drawer-li';
+    drawerLi.appendChild(build(t));
+    open=t; t.setAttribute('aria-expanded','true'); t.setAttribute('aria-controls','drawer');
+    place(t);
+    var hh=drawerLi.querySelector('#drawer-h');
+    if(focus!==false)hh.focus({preventScroll:true});
+    var r=drawerLi.getBoundingClientRect();
+    var barH=document.querySelector('.bar').offsetHeight;
+    if(r.bottom>window.innerHeight||r.top<barH){
+      drawerLi.scrollIntoView({block:'nearest'});
+      window.scrollBy(0,0);
+    }
+  }
+  function closeDrawer(restore){
+    if(!open)return;
+    var t=open;
+    t.setAttribute('aria-expanded','false'); t.removeAttribute('aria-controls');
+    if(drawerLi&&drawerLi.parentNode)drawerLi.parentNode.removeChild(drawerLi);
+    open=null; drawerLi=null;
+    if(restore&&!t.parentNode.hidden)t.focus();
+  }
+  tiles.forEach(function(t){t.addEventListener('click',function(){showDrawer(t,true);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&open)closeDrawer(true);});
+
+  var rt;
+  window.addEventListener('resize',function(){
+    clearTimeout(rt);
+    rt=setTimeout(function(){if(open&&drawerLi)place(open);},120);
+  });
+
+  apply();
+})();
+</script>
+</body>
+</html>

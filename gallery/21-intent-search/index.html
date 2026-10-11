@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center — What are you looking for?</title>
+<meta name="description" content="Search the Chicago Language Center at the University of Chicago: classes, placement exams, certificates, funding, tutoring, rooms and more.">
+<style>
+:root{--maroon:#800000;--maroon-d:#5c0000;--ink:#1d1a1a;--mute:#5b5555;--line:#e3dddb;--bg:#fff;--tint:#faf6f4;--gold:#8a6a1f;--r:14px;
+--font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;--serif:Georgia,"Times New Roman",serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--font);color:var(--ink);background:var(--bg);line-height:1.55}
+a{color:var(--maroon)}
+a:focus-visible,button:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid #1a5fb4;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:.5rem 1rem;z-index:99}
+.skip:focus{left:8px;top:8px}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.55rem 1.25rem;font-size:.85rem;background:var(--maroon);color:#fff}
+.top a{color:#fff;text-decoration:none}.top a:hover{text-decoration:underline}
+.top nav{display:flex;gap:1.1rem;flex-wrap:wrap}
+.gal{font-size:.78rem;opacity:.85}
+.wrap{max-width:1080px;margin:0 auto;padding:0 1.25rem}
+
+/* search stage */
+.stage{position:relative;text-align:center;padding:3.5rem 1.25rem 2.5rem;transition:padding .3s}
+.stage::before{content:"";position:absolute;inset:0;background:url(../assets/hero-skyline.jpg) center bottom/cover no-repeat;opacity:.13;filter:grayscale(1);
+ -webkit-mask-image:linear-gradient(#000 0,transparent 85%);mask-image:linear-gradient(#000 0,transparent 85%);pointer-events:none}
+.stage>*{position:relative}
+.logo{display:inline-block;margin-bottom:.5rem}
+.logo img{width:min(300px,70vw);height:auto;display:block}
+.stage h1{font-family:var(--serif);font-weight:400;font-size:clamp(1.7rem,4.5vw,2.6rem);margin:.4rem 0 1.4rem;color:var(--maroon-d)}
+.sbox{max-width:680px;margin:0 auto;position:relative;text-align:left}
+form.search{display:flex;align-items:center;background:#fff;border:2px solid var(--line);border-radius:999px;box-shadow:0 2px 14px rgba(60,0,0,.1);padding:.25rem .3rem .25rem 1.2rem;transition:border-color .2s,box-shadow .2s}
+form.search:focus-within{border-color:var(--maroon);box-shadow:0 4px 22px rgba(128,0,0,.2)}
+form.search svg{flex:none;color:var(--mute)}
+form.search input{flex:1;min-width:0;border:0;background:none;font:inherit;font-size:1.2rem;padding:.9rem .8rem;color:var(--ink)}
+form.search input:focus-visible{outline:none}
+form.search button{flex:none;border:0;background:var(--maroon);color:#fff;font:inherit;font-weight:600;border-radius:999px;padding:.8rem 1.5rem;cursor:pointer}
+form.search button:hover{background:var(--maroon-d)}
+form.search:focus-within button{outline:2px solid #1a5fb4;outline-offset:2px}
+#sug{list-style:none;margin:.4rem 0 0;padding:.4rem;position:absolute;left:0;right:0;background:#fff;border:1px solid var(--line);border-radius:var(--r);box-shadow:0 12px 30px rgba(0,0,0,.15);z-index:20;max-height:360px;overflow:auto}
+#sug[hidden]{display:none}
+#sug li{display:flex;justify-content:space-between;gap:1rem;padding:.6rem .8rem;border-radius:8px;cursor:pointer}
+#sug li[aria-selected="true"],#sug li:hover{background:#f6e9e7}
+#sug .tg{font-size:.75rem;color:var(--maroon);text-transform:uppercase;letter-spacing:.06em;white-space:nowrap;align-self:center}
+.facets{margin:1.2rem 0 0;display:flex;gap:.5rem;justify-content:center;flex-wrap:wrap;align-items:center;border:0;padding:0}
+.facets legend{font-size:.85rem;color:var(--mute);padding:0;margin:0 .4rem 0 0;float:left;line-height:2.3}
+.chip{font:inherit;font-size:.92rem;border:1.5px solid #cfc6c3;background:#fff;color:var(--ink);border-radius:999px;padding:.35rem 1rem;cursor:pointer}
+.chip:hover{border-color:var(--maroon)}
+.chip[aria-pressed="true"]{background:var(--maroon);border-color:var(--maroon);color:#fff}
+.try{margin:1.1rem auto 0;font-size:.9rem;color:var(--mute);max-width:680px}
+.try a{margin:0 .35rem;white-space:nowrap}
+
+/* results mode compact */
+body.res .stage{padding:1rem 1.25rem 1rem;border-bottom:1px solid var(--line);text-align:left;background:#fff}
+body.res .stage::before{display:none}
+body.res .stage .wrap{display:grid;grid-template-columns:auto 1fr;gap:.6rem 1.8rem;align-items:center}
+body.res .logo img{width:150px}
+body.res .stage h1,body.res .try{display:none}
+body.res .sbox{margin:0;max-width:none}
+body.res .facets{grid-column:2;justify-content:flex-start;margin:0}
+body.res form.search input{font-size:1.05rem;padding:.65rem .6rem}
+body.res form.search button{padding:.6rem 1.2rem}
+
+/* results */
+#results{padding:1.5rem 0 2.5rem}
+.meta{color:var(--mute);font-size:.9rem;margin:0 0 1rem}
+.rlayout{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:2rem;align-items:start}
+.cards{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.card{border:1px solid var(--line);border-radius:var(--r);padding:1.1rem 1.25rem;background:#fff;display:grid;gap:.4rem;border-left:5px solid var(--maroon)}
+.card.dim{border-left-color:#cfc6c3}
+.card h3{margin:0;font-size:1.2rem;font-family:var(--serif);font-weight:600}
+.card p{margin:0;color:#3b3636}
+.tags{display:flex;gap:.4rem;flex-wrap:wrap;font-size:.72rem;text-transform:uppercase;letter-spacing:.07em}
+.tag{background:#f6e9e7;color:var(--maroon-d);padding:.1rem .6rem;border-radius:99px;font-weight:600}
+.tag.hit{background:var(--maroon);color:#fff}
+.tag.sample{background:#fff4d6;color:#5d4600}
+.btn{justify-self:start;display:inline-block;background:var(--maroon);color:#fff;text-decoration:none;font-weight:600;padding:.55rem 1.1rem;border-radius:8px;margin-top:.3rem}
+.btn:hover{background:var(--maroon-d)}
+.side h2{font-size:1rem;margin:0 0 .6rem;font-family:var(--serif)}
+.faq details{border-bottom:1px solid var(--line);padding:.7rem 0}
+.faq summary{cursor:pointer;font-weight:600;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";color:var(--maroon);font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq p{margin:.5rem 0 0;color:#3b3636}
+.tasks{background:var(--tint);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding:1rem 0}
+.tasks .wrap{display:flex;gap:.6rem;flex-wrap:wrap;align-items:center}
+.tasks strong{font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--maroon-d);margin-right:.5rem}
+.tasks a{background:#fff;border:1px solid #d9cfcc;border-radius:99px;padding:.35rem .95rem;text-decoration:none;color:var(--ink);font-size:.92rem}
+.tasks a:hover{border-color:var(--maroon);color:var(--maroon)}
+.none{padding:1.2rem;border:1px dashed #b9aeab;border-radius:var(--r)}
+
+/* below fold */
+section.blk{padding:3rem 0;border-top:1px solid var(--line)}
+section.blk h2{font-family:var(--serif);font-weight:400;font-size:1.8rem;margin:0 0 1rem;color:var(--maroon-d)}
+.mission{display:grid;grid-template-columns:1.3fr 1fr;gap:2.5rem;align-items:center}
+.mission img{width:100%;height:320px;object-fit:cover;border-radius:var(--r);filter:sepia(.25) saturate(.9)}
+.units{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.unit{border:1px solid var(--line);border-radius:var(--r);padding:1.4rem;display:grid;gap:.5rem;align-content:start}
+.unit img{width:54px;height:54px;object-fit:cover;border-radius:10px}
+.unit h3{margin:0;font-family:var(--serif)}.unit p{margin:0}
+.story{display:grid;grid-template-columns:1fr 1.2fr;border-radius:var(--r);overflow:hidden;background:var(--maroon-d);color:#fff;margin-top:1.4rem}
+.story img{width:100%;height:100%;min-height:220px;object-fit:cover}
+.story div{padding:1.6rem}.story h3{font-family:var(--serif);font-weight:400;font-size:1.5rem;margin:0 0 .5rem}
+.story a{color:#fff}
+.posts{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}
+.post{border:1px solid var(--line);border-radius:var(--r);padding:1.2rem;display:flex;flex-direction:column;gap:.4rem}
+.post h3{margin:0;font-size:1.05rem;font-family:var(--serif)}
+.post .by{font-size:.8rem;color:var(--mute);margin:0}
+.post p{margin:0;font-size:.95rem}
+.gar{width:100%;height:150px;object-fit:cover;border-radius:10px;margin-bottom:1.2rem;filter:grayscale(.4)}
+.visit{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.visit h3{margin:0 0 .3rem;font-size:.85rem;text-transform:uppercase;letter-spacing:.08em;color:var(--maroon)}
+.visit p{margin:0}
+.all ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(2,1fr);gap:.4rem 2rem}
+.all li.intent{display:block}
+.all li.intent h3{font-size:1rem;font-family:var(--font);font-weight:600;margin:0}
+.all li.intent p,.all li.intent .tags,.all li.intent .btn{display:none}
+.all li.intent h3 a{color:var(--maroon)}
+footer{background:#2a0b0b;color:#e8dcd9;padding:2.2rem 0 2.5rem;font-size:.9rem}
+footer a{color:#fff}
+footer img{width:200px;height:auto;display:block;margin-bottom:1rem}
+footer ul{list-style:none;padding:0;margin:1rem 0;display:flex;gap:.4rem 1.4rem;flex-wrap:wrap}
+footer small{display:block;opacity:.8;margin-top:.5rem}
+.js .nojs{display:none}
+[hidden]{display:none!important}
+@media(max-width:860px){
+ .rlayout,.mission,.story{grid-template-columns:1fr}
+ .units,.posts,.visit,.all ul{grid-template-columns:1fr}
+ body.res .stage .wrap{grid-template-columns:1fr}body.res .facets{grid-column:1}
+}
+@media(max-width:520px){form.search button{padding:.7rem 1rem}.top nav{display:none}}
+@media(prefers-reduced-motion:reduce){*{transition:none!important;scroll-behavior:auto!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header>
+ <div class="top"><a href="https://www.uchicago.edu">The University of Chicago</a>
+  <nav aria-label="Utility"><a href="#blog">News</a><a href="#visit">Visit</a><a href="#units">OLA &amp; ELI</a><a href="#visit">Contact</a></nav>
+  <a class="gal" href="../index.html">← Gallery</a></div>
+</header>
+
+<div class="stage" role="search" aria-label="Site search">
+ <div class="wrap">
+  <a class="logo" href="#" id="home" aria-label="Chicago Language Center — home"><img src="../assets/logo.jpg" alt="Chicago Language Center, The University of Chicago" width="300" height="85"></a>
+  <h1>What are you looking for?</h1>
+  <div class="sbox">
+   <form class="search" id="f" autocomplete="off">
+    <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M15.5 15.5 21 21"/></svg>
+    <label for="q" class="sr" style="position:absolute;left:-999px">Search the Language Center</label>
+    <input id="q" type="search" placeholder="Try “placement exam” or “book a study room”" role="combobox" aria-expanded="false" aria-controls="sug" aria-autocomplete="list" autocomplete="off">
+    <button type="submit">Search</button>
+   </form>
+   <ul id="sug" role="listbox" aria-label="Suggestions" hidden></ul>
+  </div>
+  <fieldset class="facets"><legend>I am a</legend>
+   <button type="button" class="chip" data-a="all" aria-pressed="true">Anyone</button>
+   <button type="button" class="chip" data-a="student" aria-pressed="false">Student</button>
+   <button type="button" class="chip" data-a="instructor" aria-pressed="false">Instructor</button>
+   <button type="button" class="chip" data-a="department" aria-pressed="false">Department</button>
+   <button type="button" class="chip" data-a="visitor" aria-pressed="false">Visitor</button>
+  </fieldset>
+  <p class="try">Popular: <a href="#q=placement%20exam">placement exam</a> <a href="#q=funding">funding</a> <a href="#q=study%20room">study room</a> <a href="#q=hours">hours</a></p>
+ </div>
+</div>
+
+<main id="main">
+ <!-- Results view (JS) -->
+ <div id="results" hidden>
+  <div class="tasks" aria-label="Top tasks"><div class="wrap"><strong>Top tasks</strong>
+   <a href="#q=placement%20exam">Take a placement exam</a><a href="#q=certificate">Get a certificate</a><a href="#q=funding">Find funding</a><a href="#q=study%20room">Book a room</a><a href="#q=hours">Hours &amp; location</a></div></div>
+  <div class="wrap" style="padding-top:1.5rem">
+   <p class="meta" id="meta" role="status" aria-live="polite"></p>
+   <div class="rlayout">
+    <ul class="cards" id="cards"></ul>
+    <aside class="side faq" aria-labelledby="paa"><h2 id="paa">People also ask</h2>
+     <details><summary>Do you offer language courses?</summary><p>The CLC supports the departments that teach them; it does not itself teach courses. (Sample content.)</p></details>
+     <details><summary>How do I take a placement exam?</summary><p>Contact the Office of Language Assessment. (Sample content.)</p></details>
+     <details><summary>Can I reserve a room?</summary><p>Email <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a>. (Sample content.)</p></details>
+     <details><summary>Is the building accessible?</summary><p>Yes. The Ellis Avenue entrance of Cobb Hall is accessible by wheelchair.</p></details>
+    </aside>
+   </div>
+  </div>
+ </div>
+
+ <!-- Default home content (always static) -->
+ <div id="home-content">
+  <section class="blk" id="mission" aria-labelledby="mh"><div class="wrap mission">
+   <div><h2 id="mh">University of Chicago Language Center</h2>
+    <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p></div>
+   <img src="../assets/lobby.jpg" alt="The Chicago Language Center front desk and lounge in Cobb Hall" loading="lazy"></div></section>
+
+  <section class="blk" id="units" aria-labelledby="uh"><div class="wrap"><h2 id="uh">Two units, one front door</h2>
+   <div class="units">
+    <article class="unit"><img src="../assets/icon-ola.jpg" alt="" loading="lazy"><h3>Office of Language Assessment</h3><p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p><a href="#q=placement%20exam">Learn more &gt;</a></article>
+    <article class="unit"><img src="../assets/icon-eli.jpg" alt="" loading="lazy"><h3>English Language Institute</h3><p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p><a href="#q=english">Learn more &gt;</a></article>
+   </div>
+   <div class="story"><img src="../assets/student.jpg" alt="A smiling student in front of a colorful hillside village in Korea" loading="lazy">
+    <div><h3>Where Will Language Study Take You?</h3><p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p><a href="#q=stories">Read the stories &gt;</a></div></div>
+  </div></section>
+
+  <section class="blk" id="blog" aria-labelledby="bh"><div class="wrap"><h2 id="bh">The Latest From Our Blog</h2>
+   <img class="gar" src="../assets/gargoyle.jpg" alt="A snow-capped gargoyle on a campus building" loading="lazy">
+   <div class="posts">
+    <article class="post"><h3>Setting Ground Rules for AI Use in Language Courses</h3><p class="by">Heather Guerrero · Sep 19, 2024 · Instructional Technology</p><p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses…</p></article>
+    <article class="post"><h3>Generative AI: The Basics and Guardrails</h3><p class="by">Heather Guerrero · Sep 6, 2024 · Instructional Technology</p><p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models…</p></article>
+    <article class="post"><h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3><p class="by">Heather Guerrero · May 8, 2024 · Events, Uncategorized</p><p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom…</p></article>
+   </div><p><a href="#blog">« Older Entries</a></p></div></section>
+
+  <section class="blk" id="visit" aria-labelledby="vh"><div class="wrap"><h2 id="vh">Visit, hours &amp; contact</h2>
+   <div class="visit">
+    <div><h3>Location</h3><p>Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637</p><p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p></div>
+    <div><h3>Hours</h3><p>Mon–Fri: 8:30 AM–5:00 PM</p></div>
+    <div><h3>Contact</h3><p>For questions, reservations, and further info, please contact us by phone or email:</p><p>Phone: <a href="tel:+17737029772">(773) 702-9772</a><br>Email: <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p></div>
+   </div></div></section>
+
+  <section class="blk all" id="all" aria-labelledby="ah"><div class="wrap"><h2 id="ah">All topics</h2>
+   <p>Every question we can answer, in one list. With scripting on, each opens as a search result.</p>
+   <ul id="intents">
+    <li class="intent" data-aud="student" data-kw="course classes language study departments requirement register enroll"><h3><a href="#q=language%20class">Take a language class</a></h3><p>The CLC supports the departments that teach more than 50 languages; it does not itself teach courses. Start with the department that offers your language, or write to us and we will point you in the right direction.</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Language%20classes">Ask which department</a></li>
+    <li class="intent" data-aud="student" data-kw="placement test exam level start ola"><h3><a href="#q=placement%20exam">Take a placement exam</a></h3><p>Placement exams are run by the Office of Language Assessment, which centralizes all language testing on campus. Contact the OLA to find out which exam fits your language. (Sample content)</p><a class="btn" href="#units">About the OLA</a></li>
+    <li class="intent" data-aud="student" data-kw="certificate proficiency exam credential document skills ola"><h3><a href="#q=certificate">Get a language certificate</a></h3><p>The CLC Language Proficiency Certificate documents your skills and is earned through an OLA proficiency exam. (Sample program)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Proficiency%20Certificate">Ask about the certificate</a></li>
+    <li class="intent" data-aud="student" data-kw="funding grants scholarship money abroad fellowship"><h3><a href="#q=funding">Find funding for study abroad</a></h3><p>Funding and grants can support summer study, study abroad and internships. Write to us and we will help you find options. (Sample content)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Funding%20and%20grants">Ask about funding</a></li>
+    <li class="intent" data-aud="student" data-kw="speak speaking conversation tables table practice fluency"><h3><a href="#q=practice%20speaking">Practice speaking</a></h3><p>Drop in to a language table over lunch, for example Spanish on Wed Oct 14 or Mandarin on Wed Oct 28, 12:00–1:00 PM in Cobb 211. (Sample events)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Language%20tables">Ask about tables</a></li>
+    <li class="intent" data-aud="student" data-kw="exchange partner tandem conversation meet"><h3><a href="#q=conversation%20partner">Find a conversation partner</a></h3><p>Language Exchange Night is Thu Oct 22, 6:00–7:30 PM at Reynolds Club. (Sample event)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Language%20exchange">Join an exchange</a></li>
+    <li class="intent" data-aud="student" data-kw="tutor tutoring help support homework"><h3><a href="#q=tutoring">Get language tutoring</a></h3><p>Language tutoring is available for students who want extra practice. Email us to be matched. (Sample content)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Language%20tutoring">Request a tutor</a></li>
+    <li class="intent" data-aud="student department" data-kw="room reserve reservation space study book"><h3><a href="#q=study%20room">Book a study room</a></h3><p>Study rooms and reservations are handled by email. Send the date, time and group size to languages@uchicago.edu. (Sample content)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Room%20reservation">Email to reserve</a></li>
+    <li class="intent" data-aud="student" data-kw="independent self study own pace"><h3><a href="#q=independent%20study">Study a language independently</a></h3><p>Independent study support is available for languages that are not taught in a regular course. (Sample content)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Independent%20study">Ask about independent study</a></li>
+    <li class="intent" data-aud="student" data-kw="english eal eli esl academic writing intercultural"><h3><a href="#q=english">Improve my English (EAL)</a></h3><p>The English Language Institute, established in 2015 and housed in the CLC, offers academic, professional and intercultural programming for UChicago individuals for whom English is an additional language.</p><a class="btn" href="#units">About the ELI</a></li>
+    <li class="intent" data-aud="student" data-kw="requirement fulfill satisfy core credit exam"><h3><a href="#q=language%20requirement">Meet the language requirement</a></h3><p>We help students navigate and go beyond the university's language requirements. A placement or proficiency exam is often the first step. Check with your college adviser too.</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Language%20requirement">Ask us</a></li>
+    <li class="intent" data-aud="student visitor" data-kw="stories korea abroad blog inspiration students"><h3><a href="#q=stories">Read student stories</a></h3><p>“Where Will Language Study Take You?” shares how UChicago students use their language abilities in the real world.</p><a class="btn" href="#units">See the stories</a></li>
+    <li class="intent" data-aud="instructor" data-kw="ai generative chatgpt teaching technology blog"><h3><a href="#q=teach%20with%20AI">Teach with AI</a></h3><p>Read “Generative AI: The Basics and Guardrails” on our blog, and join the sample workshop Teaching with Generative AI, Mon Oct 19, 4:00–5:00 PM, online.</p><a class="btn" href="#blog">Read the blog</a></li>
+    <li class="intent" data-aud="instructor" data-kw="ai rules policy syllabus students ground guardrails"><h3><a href="#q=ai%20ground%20rules">Set AI ground rules for my course</a></h3><p>“Setting Ground Rules for AI Use in Language Courses” offers recommendations for setting expectations for student use of generative AI.</p><a class="btn" href="#blog">Read the post</a></li>
+    <li class="intent" data-aud="instructor" data-kw="summer pedagogy courses online professional development"><h3><a href="#q=summer%20pedagogy">Summer pedagogy courses</a></h3><p>The CLC has offered a pair of mini online courses for language instructors and educational staff aimed at shaking up the language classroom.</p><a class="btn" href="#blog">Read the announcement</a></li>
+    <li class="intent" data-aud="instructor" data-kw="teaching certificate pedagogy credential language training"><h3><a href="#q=teaching%20certificate">Earn a Teaching Certificate in Language Pedagogy</a></h3><p>A certificate for instructors and graduate students who teach languages. (Sample program)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Teaching%20Certificate">Ask about the certificate</a></li>
+    <li class="intent" data-aud="instructor" data-kw="workshop fundamentals professional development training events"><h3><a href="#q=workshops">Find teaching workshops</a></h3><p>Fundamentals of Language Teaching and other workshops run through the year. (Sample events)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Workshops">Ask about workshops</a></li>
+    <li class="intent" data-aud="department" data-kw="testing request exam assessment ola students department"><h3><a href="#q=request%20testing">Request testing for my department</a></h3><p>The OLA centralizes all language testing on campus. Tell us your language, level and timeline and we will follow up. (Sample content)</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Department%20testing%20request">Request testing</a></li>
+    <li class="intent" data-aud="department" data-kw="partner collaboration collaborate initiative mellon"><h3><a href="#q=partner">Partner with the CLC</a></h3><p>We collaborate with departments and programs across the university on teaching and testing. Write to us with your idea.</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Partnership">Start a conversation</a></li>
+    <li class="intent" data-aud="department" data-kw="develop design create test assessment research applied linguistics"><h3><a href="#q=develop%20a%20test">Develop a test for my program</a></h3><p>Using research and practice from Applied Linguistics and Language Testing, the OLA develops strategies to expand and integrate testing and pedagogy programs.</p><a class="btn" href="#units">About the OLA</a></li>
+    <li class="intent" data-aud="visitor student" data-kw="cobb hall directions location address find where map"><h3><a href="#q=cobb%20hall">Visit Cobb Hall</a></h3><p>Cobb Hall, Suite 211, 5811 S Ellis Ave, Chicago, IL 60637, on the 2nd floor, on the main quadrangle in Hyde Park.</p><a class="btn" href="#visit">See location</a></li>
+    <li class="intent" data-aud="visitor student instructor department" data-kw="hours open when time schedule monday friday"><h3><a href="#q=hours">Hours</a></h3><p>Monday to Friday, 8:30 AM–5:00 PM.</p><a class="btn" href="#visit">See hours</a></li>
+    <li class="intent" data-aud="visitor" data-kw="accessibility wheelchair accessible entrance ellis disability"><h3><a href="#q=accessibility">Accessibility and entrances</a></h3><p>The Ellis Avenue entrance of Cobb Hall is accessible by wheelchair.</p><a class="btn" href="#visit">See location</a></li>
+    <li class="intent" data-aud="visitor student instructor department" data-kw="contact phone email call reach questions"><h3><a href="#q=contact">Contact us</a></h3><p>Call (773) 702-9772 or write to languages@uchicago.edu.</p><a class="btn" href="mailto:languages@uchicago.edu">Email us</a></li>
+    <li class="intent" data-aud="student instructor visitor" data-kw="events calendar upcoming brown bag info session open house"><h3><a href="#q=events">Upcoming events</a></h3><p>Sample events: Placement Testing Info Session (Oct 15, Cobb 201); Language Exchange Night (Oct 22); Brown Bag: Study Abroad Stories (Nov 4, Cobb 211).</p><a class="btn" href="mailto:languages@uchicago.edu?subject=Events">Ask about events</a></li>
+   </ul></div></section>
+ </div>
+</main>
+
+<footer><div class="wrap">
+ <img src="../assets/footer-logo.jpg" alt="The University of Chicago" width="200" height="56">
+ <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · 773.702.9772 · <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+ <ul><li><a href="#units">Office of Language Assessment</a></li><li><a href="#mission">Mellon Collaborative Partners</a></li><li><a href="#blog">Language Pedagogy Innovation Initiative</a></li><li><a href="#units">English Language Institute</a></li><li><a href="#visit">Accessibility</a></li></ul>
+ <small>© 2019-2026 The University of Chicago All rights reserved</small>
+ <small>Design exploration · includes sample content for illustration</small>
+</div></footer>
+
+<script>
+(function(){
+document.documentElement.classList.add('js');
+var AUD={student:'Student',instructor:'Instructor',department:'Department',visitor:'Visitor'};
+var items=[].map.call(document.querySelectorAll('#intents li.intent'),function(li,i){
+ var a=li.querySelector('h3 a'),b=li.querySelector('.btn'),p=li.querySelector('p');
+ return{i:i,title:a.textContent,answer:p.textContent,btn:b.textContent,href:b.getAttribute('href'),aud:li.dataset.aud.split(' '),kw:li.dataset.kw,sample:/Sample/i.test(p.textContent)};
+});
+var q=document.getElementById('q'),f=document.getElementById('f'),sug=document.getElementById('sug'),
+ chips=[].slice.call(document.querySelectorAll('.chip')),res=document.getElementById('results'),
+ home=document.getElementById('home-content'),cards=document.getElementById('cards'),meta=document.getElementById('meta');
+var aud='all',act=-1,cur=[];
+function esc(s){return s.replace(/[&<>"]/g,function(c){return{'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]})}
+function rank(text){
+ var toks=text.toLowerCase().split(/\s+/).filter(Boolean),out=[];
+ items.forEach(function(it){
+  var t=it.title.toLowerCase(),score=0,ok=true;
+  toks.forEach(function(w){
+   var s=0;if(t.indexOf(w)>-1)s=3;else if(it.kw.indexOf(w)>-1)s=2;else if(it.answer.toLowerCase().indexOf(w)>-1)s=1;
+   if(!s)ok=false;score+=s;});
+  if(!ok)return;
+  var m=aud==='all'||it.aud.indexOf(aud)>-1;
+  if(m)score+=6-it.aud.indexOf(aud>'' && aud!=='all'?aud:it.aud[0]);
+  out.push({it:it,score:score,match:m});});
+ out.sort(function(a,b){return b.score-a.score||a.it.i-b.it.i});
+ return out;}
+function showSug(){
+ var v=q.value.trim();
+ if(!v){hide();return}
+ cur=rank(v).slice(0,6);
+ if(!cur.length){hide();return}
+ sug.innerHTML=cur.map(function(r,i){return'<li role="option" id="s'+i+'" data-i="'+i+'" aria-selected="false"><span>'+esc(r.it.title)+'</span><span class="tg">'+AUD[r.it.aud[0]]+'</span></li>'}).join('');
+ sug.hidden=false;q.setAttribute('aria-expanded','true');act=-1;}
+function hide(){sug.hidden=true;q.setAttribute('aria-expanded','false');q.removeAttribute('aria-activedescendant');act=-1}
+function setAct(n){
+ var o=sug.children;if(!o.length)return;
+ if(act>-1)o[act].setAttribute('aria-selected','false');
+ act=(n+o.length)%o.length;o[act].setAttribute('aria-selected','true');
+ q.setAttribute('aria-activedescendant','s'+act);}
+function render(text){
+ var r=rank(text),shown=r;
+ document.body.classList.add('res');res.hidden=false;home.hidden=true;
+ meta.textContent=r.length+(r.length===1?' answer':' answers')+(text?' for “'+text+'”':' across the Language Center')+(aud!=='all'?', ranked for '+AUD[aud].toLowerCase()+'s':'');
+ if(!shown.length){cards.innerHTML='<li class="none">No exact match. Try “hours”, “funding” or “placement exam”, or email <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a>.</li>';return}
+ cards.innerHTML=shown.map(function(x){var it=x.it;
+  return'<li class="card'+(x.match?'':' dim')+'"><div class="tags">'+it.aud.map(function(a){return'<span class="tag'+(a===aud?' hit':'')+'">'+AUD[a]+'</span>'}).join('')+(it.sample?'<span class="tag sample">Sample</span>':'')+'</div><h3>'+esc(it.title)+'</h3><p>'+esc(it.answer)+'</p><a class="btn" href="'+it.href+'">'+esc(it.btn)+'</a></li>'}).join('');}
+function goHome(){document.body.classList.remove('res');res.hidden=true;home.hidden=false;q.value='';}
+function setHash(){var h='q='+encodeURIComponent(q.value.trim());if(aud!=='all')h+='&a='+aud;location.hash=h}
+function fromHash(){
+ var h=location.hash.replace(/^#/,'');
+ if(h.indexOf('q=')!==0){ if(!document.body.classList.contains('res'))return; if(h===''||h==='home'){goHome();} return}
+ var m={};h.split('&').forEach(function(p){var s=p.split('=');m[s[0]]=decodeURIComponent((s[1]||'').replace(/\+/g,' '))});
+ aud=AUD[m.a]?m.a:'all';syncChips();q.value=m.q||'';hide();render(q.value.trim());window.scrollTo(0,0);}
+function syncChips(){chips.forEach(function(c){c.setAttribute('aria-pressed',String(c.dataset.a===aud))})}
+q.addEventListener('input',showSug);
+q.addEventListener('keydown',function(e){
+ if(e.key==='ArrowDown'){e.preventDefault();if(sug.hidden)showSug();setAct(act+1)}
+ else if(e.key==='ArrowUp'){e.preventDefault();setAct(act-1)}
+ else if(e.key==='Escape'){hide()}
+ else if(e.key==='Enter'&&act>-1){e.preventDefault();q.value=cur[act].it.title;hide();setHash();}});
+sug.addEventListener('mousedown',function(e){var li=e.target.closest('li');if(!li)return;e.preventDefault();q.value=cur[+li.dataset.i].it.title;hide();setHash();});
+document.addEventListener('click',function(e){if(!e.target.closest('.sbox'))hide()});
+f.addEventListener('submit',function(e){e.preventDefault();hide();setHash();if(location.hash==='#q='+encodeURIComponent(q.value.trim())+(aud!=='all'?'&a='+aud:''))fromHash();});
+chips.forEach(function(c){c.addEventListener('click',function(){aud=c.dataset.a;syncChips();
+ if(document.body.classList.contains('res')){setHash()}else if(q.value.trim()){showSug()}else{
+  /* on home, selecting an audience shows its top answers */ setHash();}});});
+document.getElementById('home').addEventListener('click',function(e){e.preventDefault();history.pushState('',document.title,location.pathname);goHome();window.scrollTo(0,0);q.focus()});
+window.addEventListener('hashchange',fromHash);
+fromHash();
+})();
+</script>
+</body>
+</html>

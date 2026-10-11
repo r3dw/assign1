@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center | Campus Map</title>
+<meta name="description" content="The University of Chicago Language Center, drawn as a map of the Main Quadrangle. Find Cobb Hall 211, the Office of Language Assessment, the English Language Institute, study rooms, language tables and our blog.">
+<style>
+:root{
+  --paper:#f3ecd8; --paper2:#eae0c4; --ink:#22372a; --green:#3f5a43; --green2:#6f8a62; --lawn:#d5dfb9;
+  --maroon:#800000; --line:#b9ab82; --water:#bcd0c6; --serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",serif;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{animation:none!important;transition:none!important}}
+body{margin:0;background:var(--paper);color:var(--ink);font:17px/1.55 var(--serif);
+  background-image:radial-gradient(rgba(63,90,67,.07) 1px,transparent 1px);background-size:22px 22px}
+a{color:var(--maroon)}
+a:focus-visible,button:focus-visible,[tabindex]:focus-visible{outline:3px solid #0b5cad;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:.5rem 1rem;z-index:10}
+.skip:focus{left:8px;top:8px}
+.top{background:var(--ink);color:#efe8d0;font:13px var(--sans);display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;justify-content:space-between;align-items:center;padding:.45rem 1.25rem}
+.top a{color:#efe8d0;text-decoration:none}
+.top a:hover{text-decoration:underline}
+.top nav{display:flex;gap:1.1rem;flex-wrap:wrap}
+.gal{font:12px var(--sans);opacity:.85}
+header.site{max-width:1240px;margin:0 auto;padding:1.5rem 1.25rem .5rem;display:flex;flex-wrap:wrap;gap:1rem 2rem;align-items:flex-end;justify-content:space-between}
+.site h1{margin:0;font-size:clamp(1.9rem,4.5vw,3rem);line-height:1.05;font-weight:700;letter-spacing:.01em}
+.site h1 small{display:block;font:600 .78rem var(--sans);letter-spacing:.2em;text-transform:uppercase;color:var(--maroon);margin-bottom:.35rem}
+.site nav ul{list-style:none;margin:0;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font:600 .88rem var(--sans)}
+.site nav a{color:var(--ink);text-decoration:none;border-bottom:2px dotted var(--green2)}
+.site nav a:hover{color:var(--maroon)}
+.lede{max-width:1240px;margin:0 auto;padding:0 1.25rem 1rem;font-style:italic;color:#3a4f40}
+.lede p{margin:0;max-width:62ch}
+
+.atlas{max-width:1240px;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:260px minmax(0,1fr);gap:1.5rem;align-items:start}
+.legend{background:var(--paper2);border:2px solid var(--green);border-radius:4px;padding:1rem 1rem 1.1rem;position:sticky;top:.75rem;box-shadow:4px 4px 0 rgba(63,90,67,.25)}
+.legend h2{margin:0 0 .6rem;font:700 .8rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--green);border-bottom:1px dotted var(--green);padding-bottom:.4rem}
+.legend ol{list-style:none;margin:0;padding:0}
+.legend li+li{margin-top:.15rem}
+.legend a{display:flex;gap:.65rem;align-items:center;text-decoration:none;color:var(--ink);padding:.45rem .5rem;border-radius:3px;font-size:.98rem;line-height:1.25}
+.legend a:hover{background:rgba(63,90,67,.12)}
+.legend a[aria-current="true"]{background:var(--green);color:#fff}
+.legend .n{flex:none;width:1.7rem;height:1.7rem;border-radius:50% 50% 50% 0;transform:rotate(-45deg);background:var(--green);color:#fff;display:grid;place-items:center;font:700 .8rem var(--sans)}
+.legend .n b{transform:rotate(45deg);font-weight:700}
+.legend li:first-child .n{background:var(--maroon)}
+.legend a[aria-current="true"] .n{background:#fff;color:var(--ink)}
+.legend small{display:block;font:.75rem var(--sans);opacity:.8}
+.legend .tip{font:.78rem/1.4 var(--sans);margin:.9rem 0 0;color:#4a5a4d;border-top:1px dotted var(--green);padding-top:.6rem}
+
+.mapwrap{border:2px solid var(--green);background:var(--paper2);padding:6px;box-shadow:4px 4px 0 rgba(63,90,67,.25);overflow-x:auto}
+.mapwrap svg{display:block;width:100%;min-width:640px;height:auto}
+.pin{cursor:pointer;outline:none}
+.pin .body{fill:var(--green);stroke:#fff;stroke-width:2;transition:transform .2s}
+.pin.cobb .body{fill:var(--maroon)}
+.pin text{fill:#fff;font:700 15px var(--sans);text-anchor:middle;pointer-events:none}
+.pin:hover .body{transform:translateY(-3px)}
+.pin[aria-current="true"] .body{stroke:#ffd34d;stroke-width:3.5}
+.pin:focus-visible .halo{opacity:1}
+.halo{opacity:0;fill:none;stroke:#0b5cad;stroke-width:3;stroke-dasharray:4 3}
+.pin .pulse{fill:none;stroke:var(--maroon);stroke-width:2;opacity:0}
+.pin[aria-current="true"] .pulse{animation:pulse 1.8s ease-out infinite}
+@keyframes pulse{0%{opacity:.8;r:8}100%{opacity:0;r:30}}
+.route{fill:none;stroke:var(--line);stroke-width:2.2;stroke-dasharray:2 6;stroke-linecap:round}
+.route.on{stroke:var(--maroon);stroke-width:3.2;animation:march 1s linear infinite}
+@keyframes march{to{stroke-dashoffset:-16}}
+.map-note{font:.78rem var(--sans);margin:.4rem .2rem .1rem;color:#4a5a4d}
+
+.panels{margin-top:1.25rem}
+.panel{background:#fffaf0;border:2px solid var(--green);border-radius:4px;padding:1.4rem 1.5rem 1.5rem;margin-bottom:1.25rem;position:relative;box-shadow:4px 4px 0 rgba(63,90,67,.25)}
+.panel:focus{outline:3px solid #0b5cad;outline-offset:3px}
+.panel[hidden]{display:none}
+.panel h3{margin:0 0 .2rem;font-size:1.7rem;line-height:1.15}
+.panel .kicker{font:700 .75rem var(--sans);letter-spacing:.18em;text-transform:uppercase;color:var(--maroon);margin:0 0 .3rem;display:flex;gap:.6rem;align-items:center}
+.panel .kicker i{font-style:normal;background:var(--maroon);color:#fff;border-radius:50%;width:1.5rem;height:1.5rem;display:inline-grid;place-items:center;letter-spacing:0}
+.panel p{max-width:68ch}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.2rem 2rem}
+.panel h4{margin:1rem 0 .3rem;font:700 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--green)}
+table{border-collapse:collapse;width:100%;max-width:420px;font-size:.98rem}
+caption{text-align:left;font:700 .78rem var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--green);padding-bottom:.3rem}
+th,td{text-align:left;padding:.45rem .6rem;border-bottom:1px dotted var(--green2)}
+tr.closed td{color:#6a2a2a;font-style:italic}
+.access{display:flex;gap:.7rem;align-items:flex-start;background:#e6eed8;border-left:4px solid var(--green);padding:.7rem .9rem;margin:1rem 0 0;max-width:68ch}
+.access svg{flex:none;margin-top:.15rem}
+.btn{display:inline-block;margin-top:.5rem;background:var(--green);color:#fff;text-decoration:none;font:600 .9rem var(--sans);padding:.55rem 1rem;border-radius:3px}
+.btn:hover{background:var(--maroon)}
+.sample{font:.72rem var(--sans);background:#efe3b6;border:1px dashed #9a8a4f;padding:.05rem .4rem;border-radius:2px;margin-left:.4rem;white-space:nowrap}
+.evts{list-style:none;margin:.5rem 0 0;padding:0;max-width:68ch}
+.evts li{display:grid;grid-template-columns:4.2rem 1fr;gap:.8rem;padding:.55rem 0;border-bottom:1px dotted var(--green2)}
+.evts time{font:700 .85rem/1.2 var(--sans);color:var(--maroon);text-transform:uppercase}
+.evts span{display:block;font:.82rem var(--sans);color:#4a5a4d}
+.js .panel:not([hidden]){animation:fade .25s ease}
+@keyframes fade{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+
+.journey{max-width:1240px;margin:2rem auto 0;padding:0 1.25rem}
+.journey>h2{font-size:1.5rem;margin:0 0 .2rem}
+.journey>p.sub{margin:0 0 1.2rem;font:.9rem var(--sans);color:#4a5a4d}
+.itin{list-style:none;margin:0;padding:1.6rem 0 0;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.25rem;position:relative}
+.itin::before{content:"";position:absolute;left:0;right:0;top:2.3rem;border-top:3px dotted var(--green2)}
+.itin li{position:relative;padding-top:1.7rem}
+.itin li>.stop{position:absolute;top:-.1rem;left:0;width:2.1rem;height:2.1rem;border-radius:50%;background:var(--paper);border:3px solid var(--green);display:grid;place-items:center;font:700 .85rem var(--sans);z-index:1}
+.itin li:first-child>.stop{border-color:var(--maroon);color:var(--maroon)}
+.itin .card{background:#fffaf0;border:1px solid var(--line);border-radius:3px;padding:.9rem 1rem 1rem;height:100%}
+.itin h3{font-size:1.08rem;line-height:1.25;margin:0 0 .3rem}
+.itin .meta{font:.74rem var(--sans);color:#4a5a4d;margin:0 0 .5rem}
+.itin p{margin:0;font-size:.93rem}
+.itin a.more{display:inline-block;margin-top:.5rem;font:600 .85rem var(--sans)}
+
+footer{margin-top:3rem;background:var(--ink);color:#e8e1c8;font:.9rem/1.6 var(--sans);padding:2rem 1.25rem}
+footer .in{max-width:1240px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1.5rem}
+footer a{color:#fff}
+footer h2{font:700 .75rem var(--sans);letter-spacing:.18em;text-transform:uppercase;margin:0 0 .5rem;color:#c8d6b0}
+footer ul{list-style:none;margin:0;padding:0}
+footer .wm{font:700 1.15rem var(--serif);color:#fff}
+footer .fine{max-width:1240px;margin:1.5rem auto 0;border-top:1px dotted #6f8a62;padding-top:.8rem;font-size:.8rem;opacity:.9}
+
+@media (max-width:900px){
+  .atlas{grid-template-columns:1fr}
+  .legend{position:static}
+  .legend ol{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:.1rem .8rem}
+  .legend li+li{margin-top:0}
+}
+@media (max-width:520px){
+  body{font-size:16px}
+  .panel{padding:1.1rem 1rem 1.2rem}
+  .itin::before{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#places">Skip to places</a>
+<div class="top">
+  <a href="https://www.uchicago.edu">The University of Chicago</a>
+  <nav aria-label="Utility">
+    <a href="#">News</a><a href="#">Calendar</a><a href="#">Students &#9662;</a><a href="#">Instructors &#9662;</a>
+    <a class="gal" href="../index.html">&larr; Gallery</a>
+  </nav>
+</div>
+
+<header class="site">
+  <h1><small>The University of Chicago</small>Chicago Language Center</h1>
+  <nav aria-label="Main">
+    <ul><li><a href="#">About</a></li><li><a href="#">Language Study</a></li><li><a href="#">Innovative Programming</a></li><li><a href="#">Professional Development</a></li><li><a href="#">Search</a></li></ul>
+  </nav>
+</header>
+<div class="lede"><p>A hub of professional development and services for the hundreds of instructors and graduate students who teach 50+ languages across the university. Find your way around: choose a pin on the map, or a place from the legend.</p></div>
+
+<main id="main">
+<div class="atlas" id="places">
+  <aside class="legend" aria-labelledby="leg-h">
+    <h2 id="leg-h">Legend &middot; Places</h2>
+    <ol>
+      <li><a href="#p-cobb" data-place="cobb"><span class="n"><b>1</b></span><span>Cobb Hall 211<small>Visit, hours, contact</small></span></a></li>
+      <li><a href="#p-ola" data-place="ola"><span class="n"><b>2</b></span><span>Office of Language Assessment<small>Testing since 2016</small></span></a></li>
+      <li><a href="#p-eli" data-place="eli"><span class="n"><b>3</b></span><span>English Language Institute<small>Since 2015</small></span></a></li>
+      <li><a href="#p-rooms" data-place="rooms"><span class="n"><b>4</b></span><span>Study Rooms &amp; Reservations</span></a></li>
+      <li><a href="#p-tables" data-place="tables"><span class="n"><b>5</b></span><span>Language Tables</span></a></li>
+      <li><a href="#p-blog" data-place="blog"><span class="n"><b>6</b></span><span>Blog: The Reading Room</span></a></li>
+    </ol>
+    <p class="tip">Map tip: Tab to a pin and press Enter, or just use this list. Everything on the map is also here.</p>
+  </aside>
+
+  <div>
+    <div class="mapwrap" role="region" aria-label="Illustrated map of the Main Quadrangle (scrollable)" tabindex="0">
+<svg viewBox="0 0 900 560" role="group" aria-label="Stylized map of the Main Quadrangle with six pins">
+  <defs>
+    <pattern id="grid" width="30" height="30" patternUnits="userSpaceOnUse"><path d="M30 0H0V30" fill="none" stroke="#c9bd95" stroke-width=".6"/></pattern>
+    <pattern id="hatch" width="6" height="6" patternUnits="userSpaceOnUse" patternTransform="rotate(45)"><path d="M0 0V6" stroke="#9fb08a" stroke-width="1"/></pattern>
+  </defs>
+  <rect width="900" height="560" fill="#f1e8cc"/>
+  <rect width="900" height="560" fill="url(#grid)"/>
+  <rect x="6" y="6" width="888" height="548" fill="none" stroke="#3f5a43" stroke-width="3"/>
+  <rect x="14" y="14" width="872" height="532" fill="none" stroke="#3f5a43" stroke-width="1"/>
+
+  <!-- streets -->
+  <g fill="#e2d6b0" stroke="#b9ab82">
+    <rect x="14" y="14" width="872" height="24"/>
+    <rect x="14" y="522" width="872" height="24"/>
+    <rect x="808" y="14" width="56" height="532"/>
+    <rect x="22" y="38" width="36" height="484" fill="#e2d6b0"/>
+  </g>
+  <g font-family="Georgia,serif" font-size="11" fill="#5b6a52" letter-spacing="3" text-anchor="middle">
+    <text x="450" y="31">E. 57TH STREET</text>
+    <text x="450" y="539">E. 58TH STREET</text>
+    <text transform="translate(841 280) rotate(90)">S. ELLIS AVENUE</text>
+    <text transform="translate(40 280) rotate(-90)" font-size="10">UNIVERSITY AVE</text>
+  </g>
+
+  <!-- lawn -->
+  <rect x="170" y="135" width="520" height="295" rx="6" fill="#d5dfb9" stroke="#8aa377" stroke-width="2"/>
+  <rect x="170" y="135" width="520" height="295" rx="6" fill="url(#hatch)" opacity=".35"/>
+  <text x="300" y="418" font-family="Georgia,serif" font-style="italic" font-size="14" fill="#4c6845" text-anchor="middle" letter-spacing="2">The Main Quadrangle</text>
+
+  <!-- trees -->
+  <g fill="#8fae7d" stroke="#5f7d55" stroke-width="1.2">
+    <circle cx="205" cy="170" r="10"/><circle cx="235" cy="160" r="8"/><circle cx="205" cy="380" r="10"/><circle cx="650" cy="170" r="9"/><circle cx="655" cy="395" r="10"/><circle cx="560" cy="210" r="8"/><circle cx="330" cy="215" r="8"/><circle cx="330" cy="365" r="8"/><circle cx="570" cy="360" r="8"/><circle cx="100" cy="330" r="9"/><circle cx="130" cy="360" r="7"/><circle cx="105" cy="400" r="10"/>
+    <circle cx="760" cy="150" r="9"/><circle cx="770" cy="440" r="9"/><circle cx="740" cy="500" r="8"/>
+  </g>
+
+  <!-- routes (dotted paths, drawn from Cobb) -->
+  <g>
+    <path class="route" data-route="ola" d="M690 285H600V160H452V126"/>
+    <path class="route" data-route="eli" d="M690 285H637V126"/>
+    <path class="route" data-route="blog" d="M690 285H600V160H267V126"/>
+    <path class="route" data-route="tables" d="M690 285H440V298"/>
+    <path class="route" data-route="rooms" d="M690 285H440V400H267V466"/>
+  </g>
+
+  <!-- north row buildings -->
+  <g stroke="#3f5a43" stroke-width="2" fill="#cdbf94" font-family="Georgia,serif" font-size="12" text-anchor="middle">
+    <g><rect x="190" y="44" width="155" height="82"/><path d="M190 44h155M190 52h155" stroke-width="1"/>
+      <path d="M200 44v-8l5-5 5 5v8M225 44v-8l5-5 5 5v8M320 44v-8l5-5 5 5v8" fill="none" stroke-width="1.5"/><text x="267" y="66" fill="#22372a" stroke="none">Reading Room</text></g>
+    <g><rect x="375" y="44" width="155" height="82"/><path d="M375 52h155" stroke-width="1"/><text x="452" y="66" fill="#22372a" stroke="none">Language Assessment</text></g>
+    <g><rect x="560" y="44" width="155" height="82"/><path d="M560 52h155" stroke-width="1"/><text x="637" y="66" fill="#22372a" stroke="none">English Language Inst.</text></g>
+    <!-- south -->
+    <g><rect x="190" y="436" width="155" height="82"/><path d="M190 444h155" stroke-width="1"/><text x="267" y="510" fill="#22372a" stroke="none">Study Rooms</text></g>
+    <!-- Cobb Hall -->
+    <g><rect x="690" y="226" width="118" height="116" fill="#c7b283" stroke="#800000" stroke-width="3"/>
+       <path d="M698 226v-10l6-6 6 6v10M788 226v-10l6-6 6 6v10M698 342v10l6 6 6-6v-10M788 342v10l6 6 6-6v-10" fill="none" stroke="#800000" stroke-width="1.5"/>
+       <text x="749" y="246" fill="#800000" stroke="none" font-weight="700" font-size="13">Cobb Hall</text></g>
+  </g>
+  <!-- tables on the lawn -->
+  <g fill="#fffaf0" stroke="#5f7d55" stroke-width="1.5">
+    <circle cx="395" cy="330" r="12"/><circle cx="440" cy="342" r="12"/><circle cx="485" cy="330" r="12"/>
+  </g>
+  <g fill="#8aa377">
+    <circle cx="395" cy="313" r="3"/><circle cx="378" cy="330" r="3"/><circle cx="412" cy="330" r="3"/><circle cx="395" cy="347" r="3"/>
+    <circle cx="440" cy="325" r="3"/><circle cx="423" cy="342" r="3"/><circle cx="457" cy="342" r="3"/><circle cx="440" cy="359" r="3"/>
+    <circle cx="485" cy="313" r="3"/><circle cx="468" cy="330" r="3"/><circle cx="502" cy="330" r="3"/><circle cx="485" cy="347" r="3"/>
+  </g>
+
+  <!-- accessible entrance on Ellis Ave -->
+  <g>
+    <circle cx="808" cy="296" r="12" fill="#0b5cad" stroke="#fff" stroke-width="2"/>
+    <g fill="none" stroke="#fff" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"><circle cx="807" cy="289.5" r=".8" fill="#fff"/><path d="M807 291.5v4h4l2 3.5M805 296a4 4 0 1 0 5 5"/></g>
+    <text x="808" y="324" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#0b3f78" text-anchor="middle" paint-order="stroke" stroke="#f1e8cc" stroke-width="3">accessible</text>
+    <text x="808" y="335" font-family="Georgia,serif" font-size="10" font-style="italic" fill="#0b3f78" text-anchor="middle" paint-order="stroke" stroke="#f1e8cc" stroke-width="3">entrance</text>
+  </g>
+
+  <!-- compass rose -->
+  <g transform="translate(112 130)" font-family="Georgia,serif">
+    <circle r="44" fill="#f6efd7" stroke="#3f5a43" stroke-width="1.5"/>
+    <circle r="38" fill="none" stroke="#3f5a43" stroke-width=".8" stroke-dasharray="2 3"/>
+    <path d="M0-40L7-7 0 0-7-7z" fill="#800000"/><path d="M0 40L7 7 0 0-7 7z" fill="#3f5a43"/>
+    <path d="M-40 0L-7-7 0 0-7 7z" fill="#6f8a62"/><path d="M40 0L7-7 0 0 7 7z" fill="#6f8a62"/>
+    <path d="M0-30L4-4-30 0z" fill="none"/>
+    <circle r="3" fill="#f6efd7" stroke="#3f5a43"/>
+    <text y="-48" text-anchor="middle" font-size="14" font-weight="700" fill="#800000">N</text>
+    <text y="62" text-anchor="middle" font-size="11" fill="#3f5a43">S</text>
+    <text x="-52" y="4" text-anchor="middle" font-size="11" fill="#3f5a43">W</text>
+    <text x="52" y="4" text-anchor="middle" font-size="11" fill="#3f5a43">E</text>
+  </g>
+
+  <!-- cartouche + scale -->
+  <g font-family="Georgia,serif">
+    <rect x="400" y="448" width="270" height="62" fill="#f6efd7" stroke="#3f5a43" stroke-width="2"/>
+    <rect x="405" y="453" width="260" height="52" fill="none" stroke="#3f5a43" stroke-width=".8"/>
+    <text x="535" y="474" text-anchor="middle" font-size="15" font-weight="700" fill="#22372a" letter-spacing="1">CHICAGO LANGUAGE CENTER</text>
+    <text x="535" y="493" text-anchor="middle" font-size="11" font-style="italic" fill="#3f5a43">A plan of the Main Quadrangle, Hyde Park</text>
+  </g>
+  <g transform="translate(90 470)" font-family="Georgia,serif" font-size="10" fill="#3f5a43">
+    <path d="M0 0h80" stroke="#3f5a43" stroke-width="3"/><path d="M0-4v8M40-4v8M80-4v8" stroke="#3f5a43"/>
+    <text y="16">Not to scale</text>
+  </g>
+
+  <!-- pins -->
+  <g>
+    <a class="pin cobb" href="#p-cobb" data-place="cobb" aria-label="Pin 1: Cobb Hall 211" tabindex="0"><title>Cobb Hall 211</title>
+      <circle class="pulse" cx="749" cy="290" r="8"/><circle class="halo" cx="749" cy="295" r="26"/>
+      <g transform="translate(749 330)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">1</text></g></a>
+    <a class="pin" href="#p-ola" data-place="ola" aria-label="Pin 2: Office of Language Assessment" tabindex="0"><title>Office of Language Assessment</title>
+      <circle class="halo" cx="452" cy="100" r="26"/>
+      <g transform="translate(452 122)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">2</text></g></a>
+    <a class="pin" href="#p-eli" data-place="eli" aria-label="Pin 3: English Language Institute" tabindex="0"><title>English Language Institute</title>
+      <circle class="halo" cx="637" cy="100" r="26"/>
+      <g transform="translate(637 122)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">3</text></g></a>
+    <a class="pin" href="#p-rooms" data-place="rooms" aria-label="Pin 4: Study Rooms and Reservations" tabindex="0"><title>Study Rooms &amp; Reservations</title>
+      <circle class="halo" cx="267" cy="450" r="26"/>
+      <g transform="translate(267 474)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">4</text></g></a>
+    <a class="pin" href="#p-tables" data-place="tables" aria-label="Pin 5: Language Tables" tabindex="0"><title>Language Tables</title>
+      <circle class="halo" cx="440" cy="270" r="26"/>
+      <g transform="translate(440 302)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">5</text></g></a>
+    <a class="pin" href="#p-blog" data-place="blog" aria-label="Pin 6: Blog, the Reading Room" tabindex="0"><title>Blog: The Reading Room</title>
+      <circle class="halo" cx="267" cy="100" r="26"/>
+      <g transform="translate(267 122)"><path class="body" d="M0 0C-14-16-17-26-17-31a17 17 0 1 1 34 0C17-26 14-16 0 0z"/><text y="-25">6</text></g></a>
+  </g>
+  <g font-family="Georgia,serif" font-size="11" fill="#22372a" font-style="italic" text-anchor="middle" paint-order="stroke" stroke="#d5dfb9" stroke-width="3">
+    <text x="440" y="378">Language Tables</text>
+  </g>
+</svg>
+    </div>
+    <p class="map-note">Illustrative plan, not to scale. Pins mark services, not exact rooms. On a small screen, scroll the map sideways or use the legend.</p>
+
+    <div class="panels" id="panels" aria-live="polite">
+
+      <section class="panel" id="p-cobb" tabindex="-1" aria-labelledby="h-cobb">
+        <p class="kicker"><i>1</i> Pin &middot; Visit us</p>
+        <h3 id="h-cobb">Cobb Hall, Suite 211</h3>
+        <p>5811 S Ellis Ave, Chicago, IL 60637. We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park.</p>
+        <div class="access"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#22372a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="4" r="1.5"/><path d="M11 7v7h5l2 5M8 11a5 5 0 1 0 6 7"/></svg><span><strong>Accessible entrance.</strong> The Ellis Avenue entrance is accessible by wheelchair (marked in blue on the map).</span></div>
+        <div class="cols">
+          <div>
+            <table>
+              <caption>Hours</caption>
+              <thead class="sr" style="position:absolute;left:-999px"><tr><th>Days</th><th>Hours</th></tr></thead>
+              <tbody>
+                <tr><th scope="row">Mon&ndash;Fri</th><td>8:30 AM&ndash;5:00 PM</td></tr>
+                <tr class="closed"><th scope="row">Saturday</th><td>Closed</td></tr>
+                <tr class="closed"><th scope="row">Sunday</th><td>Closed</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <div>
+            <h4 style="margin-top:0">Contact</h4>
+            <p style="margin:.2rem 0">For questions, reservations, and further info, please contact us by phone or email.</p>
+            <p style="margin:.2rem 0"><a href="tel:+17737029772">(773) 702-9772</a><br><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+          </div>
+        </div>
+      </section>
+
+      <section class="panel" id="p-ola" tabindex="-1" aria-labelledby="h-ola">
+        <p class="kicker"><i>2</i> Pin &middot; Testing</p>
+        <h3 id="h-ola">Office of Language Assessment</h3>
+        <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+        <p><a class="btn" href="#">Learn more &rsaquo;</a></p>
+      </section>
+
+      <section class="panel" id="p-eli" tabindex="-1" aria-labelledby="h-eli">
+        <p class="kicker"><i>3</i> Pin &middot; English as an additional language</p>
+        <h3 id="h-eli">English Language Institute</h3>
+        <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+        <p><a class="btn" href="#">Learn more &rsaquo;</a></p>
+      </section>
+
+      <section class="panel" id="p-rooms" tabindex="-1" aria-labelledby="h-rooms">
+        <p class="kicker"><i>4</i> Pin &middot; Space <span class="sample">sample content</span></p>
+        <h3 id="h-rooms">Study Rooms &amp; Reservations</h3>
+        <p>Need a quiet place to practice, rehearse a presentation or meet a conversation partner? To reserve a room, email <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a> or call <a href="tel:+17737029772">(773) 702-9772</a>.</p>
+        <p>The CLC supports the departments that teach languages; it does not itself teach courses.</p>
+      </section>
+
+      <section class="panel" id="p-tables" tabindex="-1" aria-labelledby="h-tables">
+        <p class="kicker"><i>5</i> Pin &middot; Conversation <span class="sample">sample content</span></p>
+        <h3 id="h-tables">Language Tables</h3>
+        <p>Pull up a chair and practice informally. Upcoming sample sessions:</p>
+        <ul class="evts">
+          <li><time>Oct 14<span>Wed</span></time><div><strong>Language Table: Spanish</strong><span>12:00&ndash;1:00 PM &middot; Cobb 211</span></div></li>
+          <li><time>Oct 22<span>Thu</span></time><div><strong>Language Exchange Night</strong><span>6:00&ndash;7:30 PM &middot; Reynolds Club</span></div></li>
+          <li><time>Oct 28<span>Wed</span></time><div><strong>Language Table: Mandarin</strong><span>12:00&ndash;1:00 PM &middot; Cobb 211</span></div></li>
+        </ul>
+      </section>
+
+      <section class="panel" id="p-blog" tabindex="-1" aria-labelledby="h-blog">
+        <p class="kicker"><i>6</i> Pin &middot; The Reading Room</p>
+        <h3 id="h-blog">The Latest From Our Blog</h3>
+        <p>Dispatches on teaching, technology and events. Newest first:</p>
+        <ul class="evts" style="grid-template-columns:none">
+          <li><time>Sep 19<span>2024</span></time><div><a href="#post-1"><strong>Setting Ground Rules for AI Use in Language Courses</strong></a><span>Heather Guerrero &middot; Instructional Technology</span></div></li>
+          <li><time>Sep 6<span>2024</span></time><div><a href="#post-2"><strong>Generative AI: The Basics and Guardrails</strong></a><span>Heather Guerrero &middot; Instructional Technology</span></div></li>
+          <li><time>May 8<span>2024</span></time><div><a href="#post-3"><strong>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</strong></a><span>Heather Guerrero &middot; Events, Uncategorized</span></div></li>
+        </ul>
+        <p><a href="#">&laquo; Older Entries</a></p>
+      </section>
+
+    </div>
+  </div>
+</div>
+
+<section class="journey" aria-labelledby="j-h">
+  <h2 id="j-h">The Itinerary</h2>
+  <p class="sub">Five stops, in order: who we are, three recent dispatches, and where language study can take you.</p>
+  <ol class="itin">
+    <li><span class="stop" aria-hidden="true">1</span><div class="card">
+      <h3>Our Mission</h3><p class="meta">University of Chicago Language Center</p>
+      <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p></div></li>
+    <li id="post-1"><span class="stop" aria-hidden="true">2</span><div class="card">
+      <h3>Setting Ground Rules for AI Use in Language Courses</h3><p class="meta">Heather Guerrero &middot; Sep 19, 2024 &middot; Instructional Technology</p>
+      <p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students&hellip;</p></div></li>
+    <li id="post-2"><span class="stop" aria-hidden="true">3</span><div class="card">
+      <h3>Generative AI: The Basics and Guardrails</h3><p class="meta">Heather Guerrero &middot; Sep 6, 2024 &middot; Instructional Technology</p>
+      <p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the&hellip;</p></div></li>
+    <li id="post-3"><span class="stop" aria-hidden="true">4</span><div class="card">
+      <h3>Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</h3><p class="meta">Heather Guerrero &middot; May 8, 2024 &middot; Events, Uncategorized</p>
+      <p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses&hellip;</p>
+      <a class="more" href="#">&laquo; Older Entries</a></div></li>
+    <li><span class="stop" aria-hidden="true">5</span><div class="card">
+      <h3>Where Will Language Study Take You?</h3><p class="meta">Nine stories</p>
+      <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+      <a class="more" href="#">Read the stories &rsaquo;</a></div></li>
+  </ol>
+</section>
+</main>
+
+<footer>
+  <div class="in">
+    <div>
+      <p class="wm" style="margin:0 0 .4rem">The University of Chicago</p>
+      <p style="margin:0">5811 S. Ellis Ave. Cobb Hall, Suite 211<br>Chicago, IL. 60637<br>773.702.9772 &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+    </div>
+    <nav aria-label="Footer">
+      <h2>Also in the Center</h2>
+      <ul><li><a href="#">Office of Language Assessment</a></li><li><a href="#">Mellon Collaborative Partners</a></li><li><a href="#">Language Pedagogy Innovation Initiative</a></li><li><a href="#">English Language Institute</a></li><li><a href="#">Accessibility</a></li></ul>
+    </nav>
+  </div>
+  <p class="fine">&copy; 2019-2026 The University of Chicago All rights reserved. Language Tables and Study Rooms details are sample content for design exploration.</p>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement;
+  root.classList.add('js');
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  var triggers=[].slice.call(document.querySelectorAll('[data-place]'));
+  var routes=[].slice.call(document.querySelectorAll('[data-route]'));
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  function select(id,move){
+    var target=document.getElementById('p-'+id);
+    if(!target) return false;
+    panels.forEach(function(p){ p.hidden=(p!==target); });
+    triggers.forEach(function(t){
+      if(t.getAttribute('data-place')===id) t.setAttribute('aria-current','true');
+      else t.removeAttribute('aria-current');
+    });
+    routes.forEach(function(r){ r.classList.toggle('on', r.getAttribute('data-route')===id); });
+    if(move){
+      target.scrollIntoView({block:'nearest',behavior:reduce?'auto':'smooth'});
+      target.focus({preventScroll:true});
+    }
+    return true;
+  }
+  function fromHash(move){
+    var h=location.hash;
+    if(h.indexOf('#p-')===0 && select(h.slice(3),move)) return;
+    if(!h) select('cobb',false);
+  }
+  triggers.forEach(function(t){
+    t.addEventListener('click',function(e){
+      e.preventDefault();
+      var id=t.getAttribute('data-place');
+      select(id,true);
+      if(history.replaceState) history.replaceState(null,'','#p-'+id);
+    });
+    if(t.namespaceURI==='http://www.w3.org/2000/svg'){
+      t.addEventListener('keydown',function(e){
+        if(e.key===' '){ e.preventDefault(); t.dispatchEvent(new MouseEvent('click',{bubbles:true,cancelable:true})); }
+      });
+    }
+  });
+  window.addEventListener('hashchange',function(){ fromHash(true); });
+  // initial state: hash if it names a place, otherwise Cobb Hall
+  if(!(location.hash.indexOf('#p-')===0 && select(location.hash.slice(3),false))) select('cobb',false);
+})();
+</script>
+</body>
+</html>
