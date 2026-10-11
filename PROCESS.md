@@ -23,12 +23,20 @@ A record of how the 25-page gallery of Chicago Language Center home page concept
 
 Steps with no subagent cost (gallery index, image cropping, backups, verification) are described below. Their cost sits in my uncounted main-session usage.
 
+
+| Steps | % of Usage |
+|------|---------:|
+| 1-2 | approx 5% |
+| 3-4 | approx 8% |
+| 5-6 | approx 6% |
+|TOTAL| approx 19%|
+
 ## Step by step
 
 ### 1. Status line setup (22,313 tokens, 1.66%)
 You asked for the status line to be configured from your shell PS1. The `statusline-setup` agent found no PS1 (only conda init and a PATH export) and changed nothing. You then picked what to show: directory and git branch, model name, context % used, and rate limits. The agent wrote the status line to `~/.claude/settings.json`. It has not been run or tested, and it needs `jq` installed.
 
-### 2. Round 1: 10 concept pages, 01–10 (291,587 tokens, 21.66%)
+### 2. Round 1: 10 concept pages, 01–10 (291,587 tokens, 21.66%) [Approx 5% of Usage]
 - I read your two UChicago screenshots (`inputs/primary/`) and four of the inspiration screenshots (Harvard, Oxford, Stanford, Yale) to understand the current page.
 - I wrote a shared content file with the real text: mission, OLA and ELI, stories teaser, visit info, three blog posts and footer.
 - I picked ten concepts meant to differ in structure, information architecture and interaction, not just styling, and launched ten agents in parallel, one per page.
@@ -51,7 +59,7 @@ I then wrote the gallery `index.html` with a live thumbnail of each page. I chec
 
 **Fix, after your first review:** the gallery thumbnails were blank and clicking a card opened a Finder window. Cards linked to folders (`01-broadsheet/`), which doesn't work when opened from disk. I changed every card link and thumbnail to point at `…/index.html`.
 
-### 3. Peer-university screenshot analysis (113,525 tokens, 8.43%)
+### 3. Peer-university screenshot analysis (113,525 tokens, 8.43%) 
 For Round 2 you asked me to draw on the screenshots in `inputs/inspiration/`. One agent read all 19 screenshots (Brown, Cambridge, Columbia, Harvard, Oxford, Princeton, Stanford, UNC, Yale). It wrote a per-school analysis, a list of content and UI patterns the UChicago page lacks, and 12 ideas worth borrowing. Examples were events feeds, a language directory, "I am a…" audience paths, placement-test calls to action, testimonials and room booking.
 
 ### 4. Round 2: 10 concept pages, 11–20 (385,571 tokens, 28.64%)
