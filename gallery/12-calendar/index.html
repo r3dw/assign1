@@ -164,7 +164,7 @@ details.past li b{font:700 .85rem var(--mono);color:var(--navy);min-width:3.8rem
 .reel span{aspect-ratio:1/3;background:linear-gradient(180deg,var(--navy2),var(--blue));opacity:.35}
 .reel span.on{opacity:1;background:linear-gradient(180deg,var(--maroon),#d9825b 60%,var(--blue))}
 .art{position:relative;height:13rem;background:linear-gradient(180deg,#bcd9f2 0 45%,#f4c58d 45% 55%,#9ec5a3 55%);overflow:hidden;border:2px solid var(--navy)}
-.art svg{position:absolute;inset:0;width:100%;height:100%}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 50%}
 .art .cap{position:absolute;left:0;bottom:0;background:var(--navy);color:#fff;font:700 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem}
 .stories .btn{margin-top:.5rem}
 
@@ -198,6 +198,7 @@ details.past li b{font:700 .85rem var(--mono);color:var(--navy);min-width:3.8rem
 footer{background:#06162b;color:#c5d3e6;padding:2.2rem 0;font-size:.88rem}
 footer .wrap{display:grid;gap:1.2rem}
 footer .mark{font:700 1.3rem var(--serif);color:#fff;letter-spacing:.04em}
+footer .mark img{display:block;height:3.2rem;width:auto;filter:contrast(3);mix-blend-mode:lighten}
 footer ul{list-style:none;margin:0;padding:0;display:flex;gap:.4rem 1.4rem;flex-wrap:wrap}
 footer a{color:#fff}
 footer .fine{color:#93a5bf;font-size:.8rem}
@@ -379,18 +380,8 @@ footer .fine{color:#93a5bf;font-size:.8rem}
       <div class="reel" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
       <p><a class="btn" href="#stories">Read the stories</a></p>
     </div>
-    <div class="art" role="img" aria-label="Illustration of a colorful hillside village">
-      <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <circle cx="330" cy="40" r="22" fill="#fff6d6"/>
-        <path d="M0 120 Q100 60 200 100 T400 80 V200 H0Z" fill="#7fb08a"/>
-        <g stroke="#0b2545" stroke-width="1.5">
-          <rect x="40" y="110" width="34" height="28" fill="#e76f51"/><rect x="80" y="100" width="30" height="32" fill="#f4a261"/>
-          <rect x="116" y="112" width="36" height="26" fill="#e9c46a"/><rect x="160" y="96" width="32" height="34" fill="#2a9d8f"/>
-          <rect x="200" y="106" width="34" height="30" fill="#8fc1ee"/><rect x="242" y="92" width="30" height="34" fill="#e76f51"/>
-          <rect x="280" y="104" width="38" height="30" fill="#f4a261"/>
-        </g>
-        <path d="M0 150 Q120 120 240 150 T400 140 V200 H0Z" fill="#5f9a6e"/>
-      </svg>
+    <div class="art">
+      <img src="../assets/student.jpg" width="996" height="663" alt="A smiling student in front of a colorful hillside village in Korea">
       <span class="cap">Photo: student in a hillside village, Korea</span>
     </div>
   </div>
@@ -436,7 +427,7 @@ footer .fine{color:#93a5bf;font-size:.8rem}
 
 <footer>
   <div class="wrap">
-    <div class="mark">THE UNIVERSITY OF CHICAGO</div>
+    <div class="mark"><img src="../assets/footer-logo.jpg" width="284" height="70" alt="The University of Chicago"></div>
     <div>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></div>
     <nav aria-label="Footer"><ul>
       <li><a href="#ola">Office of Language Assessment</a></li><li><a href="#mission">Mellon Collaborative Partners</a></li><li><a href="#mission">Language Pedagogy Innovation Initiative</a></li><li><a href="#eli">English Language Institute</a></li><li><a href="#top">Accessibility</a></li>

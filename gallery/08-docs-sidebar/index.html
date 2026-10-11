@@ -37,6 +37,8 @@ a{color:inherit}
 .gal{display:inline-block;margin-top:.5rem;font-size:.72rem;color:#e7c9c9;opacity:.85}
 .brand{margin:2.2rem 0 .9rem;display:flex;gap:1rem;align-items:center}
 .crest{flex:none;width:54px;height:54px;border:2px solid var(--gold);display:grid;place-items:center;font-family:var(--serif);font-size:1.7rem;font-weight:700;color:var(--gold);border-radius:50% 50% 8px 8px}
+.crest.emb{padding:0;overflow:hidden;background:#fff;position:relative}
+.crest.emb img{position:absolute;width:420px;height:119px;max-width:none;left:-17px;top:-41px}
 .brand h1{margin:0;font-family:var(--serif);font-weight:400;font-size:clamp(1.5rem,2.5vw,2.2rem);line-height:1.1}
 .brand small{display:block;font-family:var(--sans);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;color:var(--gold);margin-bottom:.3rem}
 .mission{margin:0 0 1.6rem;max-width:30ch;font-family:var(--serif);font-style:italic;color:#f3dcdc;font-size:1.05rem;line-height:1.45}
@@ -79,6 +81,9 @@ h2.t::after{content:"";display:block;width:3rem;height:3px;background:var(--gold
 .lede::first-letter{float:left;font-size:4.2rem;line-height:.85;padding:.3rem .6rem 0 0;color:var(--maroon);font-weight:700}
 .photo{margin:2rem 0 0;min-height:180px;border:1px solid var(--rule);border-radius:4px;display:flex;align-items:flex-end;padding:.8rem 1rem;font-family:var(--mono);font-size:.72rem;color:var(--ink-2);
   background:repeating-linear-gradient(135deg,var(--paper-2) 0 14px,#ece3d0 14px 28px)}
+.photo{position:relative;overflow:hidden;background:var(--paper-2)}
+.photo img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;filter:sepia(.22) contrast(1.05) saturate(.9)}
+.photo span{position:relative}
 .facts{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;margin:2rem 0 0;background:var(--rule);border:1px solid var(--rule)}
 .facts div{background:var(--paper);padding:1rem}
 .facts b{display:block;font-family:var(--serif);font-size:1.9rem;color:var(--maroon);font-weight:400}
@@ -163,7 +168,7 @@ footer small{color:var(--ink-2)}
   <div><a class="gal" href="../index.html">← Gallery</a></div>
 
   <div class="brand">
-    <div class="crest" aria-hidden="true">C</div>
+    <div class="crest emb"><img src="../assets/logo.jpg" alt="Chicago Language Center emblem" width="420" height="119"></div>
     <h1><small>The University of Chicago</small>Chicago Language Center</h1>
   </div>
   <p class="mission">A hub for the instructors, students and 50+ languages of the University.</p>
@@ -208,7 +213,7 @@ footer small{color:var(--ink-2)}
         <div><b>2</b><span>units housed in the CLC</span></div>
         <div><b>Cobb 211</b><span>2nd floor, main quad</span></div>
       </div>
-      <div class="photo" role="img" aria-label="Photo placeholder: Cobb Hall front desk">Photo: Cobb Hall front desk and lounge</div>
+      <div class="photo" role="img" aria-label="Cobb Hall front desk and lounge"><img src="../assets/lobby.jpg" alt="" width="339" height="380" style="object-position:50% 35%"></div>
     </section>
 
     <section class="sec" id="units" aria-labelledby="h-units">
@@ -239,7 +244,7 @@ footer small{color:var(--ink-2)}
         <p class="eyebrow" id="p-eyebrow"></p>
         <h3 id="p-title"></h3>
         <p id="p-text"></p>
-        <div class="photo" role="img" id="p-photo" aria-label="Story photo placeholder"><span id="p-cap"></span></div>
+        <div class="photo" role="img" id="p-photo" aria-label="Story photo"><img src="../assets/student.jpg" alt="" width="996" height="663" style="object-position:70% 50%"><span id="p-cap"></span></div>
       </div>
       <div class="steps"><button type="button" id="prev">← Previous</button><button type="button" id="next">Next →</button></div>
     </section>

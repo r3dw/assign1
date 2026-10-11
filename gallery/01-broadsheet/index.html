@@ -88,6 +88,10 @@ figure{margin:0 0 14px}
 .t3{--tone:radial-gradient(circle at 30% 70%,#000 0,rgba(0,0,0,.1) 70%)}
 .t4{--tone:linear-gradient(0deg,#000 10%,rgba(0,0,0,.08) 90%)}
 .ph.sm{aspect-ratio:3/2}
+.ph.has-img{background:var(--paper2)}
+.ph.has-img::before,.ph.has-img::after{display:none}
+.ph.has-img img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;filter:grayscale(1) contrast(1.35) brightness(1.02);mix-blend-mode:multiply}
+.ph.has-img::after{display:block;content:"";z-index:1;pointer-events:none;background:radial-gradient(circle at center,rgba(0,0,0,.28) 28%,transparent 34%) 0 0/4px 4px;opacity:.5;-webkit-mask-image:none;mask-image:none}
 figcaption{font-size:.78rem;font-style:italic;color:var(--soft);padding-top:5px;border-bottom:1px solid var(--ink);padding-bottom:6px;line-height:1.35}
 figcaption b{font-style:normal;font-family:var(--sans);font-size:.62rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink)}
 
@@ -249,7 +253,7 @@ footer p{margin:0;color:var(--soft);font-size:.78rem}
       <p class="deck">A hub of professional development and services for the instructors and graduate students who teach more than fifty languages across the University</p>
       <p class="byline">By the Editors &nbsp;·&nbsp; Cobb Hall, Hyde Park</p>
       <figure>
-        <div class="ph t1" role="img" aria-label="Halftone placeholder for a photograph of the CLC front desk and lounge"><span>Photo placeholder</span></div>
+        <div class="ph t1 has-img"><img src="../assets/lobby.jpg" width="339" height="380" alt="The front desk and lounge of the Chicago Language Center in Cobb Hall" style="object-position:50% 45%"></div>
         <figcaption><b>Cobb Hall.</b> The front desk and lounge of the Language Center, where instructors, graduate students and curious undergraduates meet.</figcaption>
       </figure>
       <div class="cols2 body">
@@ -291,7 +295,7 @@ footer p{margin:0;color:var(--soft);font-size:.78rem}
       <h2 class="hed-xl" id="feat-h" style="font-size:clamp(1.8rem,3.6vw,2.8rem)">Where Will Language Study Take You?</h2>
       <div id="slides">
         <figure class="slide" aria-roledescription="slide" aria-label="1 of 9">
-          <div class="ph t2" role="img" aria-label="Halftone placeholder for a photograph of a smiling student in front of a colorful hillside village in Korea"><span>Photo: Student, hillside village, Korea</span></div>
+          <div class="ph t2 has-img"><img src="../assets/student.jpg" width="996" height="663" alt="A smiling UChicago student in sunglasses in front of a colorful hillside village in Korea" style="object-position:70% 50%"></div>
           <figcaption><b>Korea.</b> A UChicago student pauses before a colorful hillside village, language in hand.</figcaption>
         </figure>
         <figure class="slide" aria-roledescription="slide" aria-label="2 of 9" hidden></figure>
@@ -320,7 +324,7 @@ footer p{margin:0;color:var(--soft);font-size:.78rem}
       <h3><a href="#">Setting Ground Rules for AI Use in Language Courses</a></h3>
       <p class="byline">By Heather Guerrero &nbsp;|&nbsp; Sep 19, 2024</p>
       <figure>
-        <div class="ph t4" role="img" aria-label="Halftone placeholder for a photograph of a snow-capped gargoyle on a campus building"><span>Photo: Snow-capped gargoyle</span></div>
+        <div class="ph t4 has-img"><img src="../assets/gargoyle.jpg" width="490" height="710" alt="A snow-capped gargoyle statue on a campus building" style="object-position:50% 35%"></div>
         <figcaption><b>Winter watch.</b> A snow-capped stone figure keeps vigil over the quadrangle.</figcaption>
       </figure>
       <p class="body drop-cap">In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students…</p>

@@ -69,7 +69,7 @@ main{flex:1;min-height:0;display:grid;gap:var(--gap);
 .mission{grid-area:mission;background:linear-gradient(150deg,var(--rose),var(--peach));justify-content:flex-end}
 .mission::before{content:"";position:absolute;right:-60px;top:-60px;width:320px;height:320px;border-radius:50%;
   background:repeating-radial-gradient(circle,rgba(128,0,0,.12) 0 2px,transparent 2px 22px)}
-.mission .gothic{position:absolute;right:20px;top:18px;width:46%;max-width:300px;opacity:.9}
+.mission .gothic{position:absolute;right:20px;top:18px;width:46%;max-width:300px;height:auto;aspect-ratio:1800/152;object-fit:cover;border-radius:99px;opacity:.9;filter:sepia(.25) saturate(.9);-webkit-mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent);mask-image:linear-gradient(90deg,transparent,#000 18%,#000 82%,transparent)}
 .mission h1{font-family:var(--serif);font-size:clamp(1.8rem,3.6vw,3.3rem);line-height:1.02;margin:0 0 12px;color:var(--maroon);letter-spacing:-.02em;position:relative}
 .mission p{font-size:clamp(.88rem,1.05vw,1rem);color:#3e2a2a;max-width:60ch;position:relative}
 .stats{display:flex;gap:10px;flex-wrap:wrap;margin-top:6px;position:relative}
@@ -102,8 +102,9 @@ main{flex:1;min-height:0;display:grid;gap:var(--gap);
 .stories .eyebrow{color:#ffd9c7}
 .stories .slide{display:none;height:100%;padding:18px 22px 54px;position:relative}
 .stories .slide.on{display:flex;flex-direction:column;justify-content:center}
-.stories .art{position:absolute;right:0;bottom:0;width:48%;height:100%;opacity:.5;
-  background:repeating-linear-gradient(115deg,rgba(255,255,255,.1) 0 14px,transparent 14px 28px)}
+.stories .art{position:absolute;right:0;bottom:0;width:48%;height:100%;opacity:.5;overflow:hidden;
+  -webkit-mask-image:linear-gradient(90deg,transparent,#000 45%);mask-image:linear-gradient(90deg,transparent,#000 45%)}
+.stories .art img{display:block;width:100%;height:100%;object-fit:cover;object-position:80% 50%}
 .stories .slide>*{position:relative}
 .stories h2{font-family:var(--serif);font-size:clamp(1.15rem,1.7vw,1.6rem);line-height:1.12;margin:0 0 6px;max-width:80%}
 .stories p{color:#ffe9de;max-width:70%;font-size:.84rem;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
@@ -193,10 +194,7 @@ footer span.c{border:0;background:none;color:var(--muted)}
 
   <main id="main">
     <section class="tile mission" id="about" aria-labelledby="h-mission">
-      <svg class="gothic" viewBox="0 0 300 140" aria-hidden="true" fill="none" stroke="#800000" stroke-opacity=".35" stroke-width="2">
-        <path d="M10 130V70h30V40l15-20 15 20v30h20V50h40V30l10-15 10 15v20h40v20h30v60"/><path d="M0 130h300"/>
-        <path d="M105 130v-30a15 15 0 0130 0v30M170 130v-30a15 15 0 0130 0v30M40 130v-24a10 10 0 0120 0v24"/>
-      </svg>
+      <img class="gothic" src="../assets/hero-skyline.jpg" width="1800" height="152" alt="" aria-hidden="true">
       <span class="eyebrow">University of Chicago Language Center</span>
       <h1 id="h-mission">A hub for the 50+ languages of UChicago.</h1>
       <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
@@ -245,7 +243,7 @@ footer span.c{border:0;background:none;color:var(--muted)}
 
     <section class="tile stories" id="stories" aria-roledescription="carousel" aria-label="Stories: Where will language study take you?">
       <div id="slides">
-        <div class="slide on" aria-label="Slide 1 of 9"><div class="art" aria-hidden="true"></div>
+        <div class="slide on" aria-label="Slide 1 of 9"><div class="art" aria-hidden="true"><img src="../assets/student.jpg" width="996" height="663" alt=""></div>
           <span class="eyebrow">Where Will Language Study Take You?</span>
           <h2>A colorful hillside village in Korea</h2>
           <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p></div>

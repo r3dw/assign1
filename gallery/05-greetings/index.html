@@ -78,6 +78,8 @@ p{margin:0 0 1rem;max-width:62ch}
 .intro .big{font-size:clamp(1.15rem,2vw,1.6rem);font-weight:700;line-height:1.3;max-width:none}
 .photo{border:var(--b) solid var(--ink);background:repeating-linear-gradient(45deg,var(--maroon) 0 14px,#5e0000 14px 28px);color:#fff;min-height:15rem;display:flex;align-items:end;padding:.8rem;font-weight:900;text-transform:uppercase;font-size:.85rem;letter-spacing:.06em;box-shadow:10px 10px 0 var(--yellow);transform:rotate(1.5deg)}
 .photo span{background:var(--ink);padding:.2rem .5rem}
+.photo{padding:0;overflow:hidden;background:var(--maroon)}
+.photo img{display:block;width:100%;height:auto;aspect-ratio:339/380;object-fit:cover;object-position:50% 60%;filter:contrast(1.12) saturate(1.25)}
 .fifty{font-size:clamp(6rem,17vw,15rem);font-weight:900;color:var(--maroon);line-height:.8;letter-spacing:-.08em;margin:0 0 .5rem}
 
 .units{display:grid;grid-template-columns:5fr 7fr;gap:2.5rem;background:var(--cyan)}
@@ -88,6 +90,8 @@ p{margin:0 0 1rem;max-width:62ch}
 .story{display:grid;grid-template-columns:4fr 8fr;gap:0;background:var(--maroon);color:#fff}
 .story .photo{box-shadow:none;transform:none;border-width:0 var(--b) 0 0;border-style:solid;border-color:var(--ink);background:repeating-linear-gradient(0deg,#ff7a1a 0 22px,#ffd23a 22px 44px,#e8412c 44px 66px);color:var(--ink);min-height:22rem}
 .story .photo span{background:var(--paper);color:var(--ink)}
+.story .photo{position:relative;background:var(--maroon)}
+.story .photo img{position:absolute;inset:0;width:100%;height:100%;aspect-ratio:auto;object-fit:cover;object-position:78% 50%;filter:contrast(1.1) saturate(1.3)}
 .story .body{padding:clamp(1.2rem,3vw,3rem)}
 .story h2{color:var(--yellow)}
 .dots{display:flex;flex-wrap:wrap;gap:.4rem;align-items:center;margin-top:1.5rem;padding:0;list-style:none}
@@ -213,7 +217,7 @@ footer small{opacity:.9}
     </div>
     <div>
       <p class="fifty" aria-hidden="true">50+</p>
-      <div class="photo" role="img" aria-label="Photo placeholder: the CLC front desk and lounge in Cobb Hall"><span>Photo: Cobb Hall front desk</span></div>
+      <div class="photo"><img src="../assets/lobby.jpg" width="339" height="380" alt="The CLC front desk and lounge in Cobb Hall" loading="lazy"></div>
     </div>
   </section>
 
@@ -235,7 +239,7 @@ footer small{opacity:.9}
   </section>
 
   <section class="story" id="study" aria-labelledby="h-story">
-    <div class="photo" role="img" aria-label="Photo placeholder: a smiling student in front of a colorful hillside village in Korea"><span>Photo: student, hillside village, Korea</span></div>
+    <div class="photo"><img src="../assets/student.jpg" width="996" height="663" alt="A smiling student in front of a colorful hillside village in Korea" loading="lazy"></div>
     <div class="body">
       <span class="kick" style="background:var(--yellow);color:var(--ink)">Story 1 of 9</span>
       <h2 id="h-story">Where Will Language Study Take You?</h2>

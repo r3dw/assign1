@@ -116,10 +116,10 @@ aside h2{margin:0;padding:12px 16px;background:var(--blue);color:#fff;font-size:
 .map em{position:absolute;left:calc(46% + 22px);top:42%;font-style:normal;font-size:.75rem;font-weight:700;background:#fff;padding:1px 6px;border-radius:3px}
 /* stories */
 .story{margin-top:34px;display:grid;grid-template-columns:minmax(0,1fr) 1.2fr;background:var(--blue-d);color:#fff;border-radius:6px;overflow:hidden}
-.story .art{min-height:220px;background:
- linear-gradient(#0000 55%,rgba(7,42,102,.6)),
- radial-gradient(circle at 70% 25%,var(--yel) 0 14%,transparent 15%),
- linear-gradient(160deg,#ff8a5c 0 30%,#ffc629 30% 45%,#3aa17e 45% 70%,#2b6cb0 70%);position:relative}
+.story .art{min-height:220px;position:relative;overflow:hidden}
+.story .art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 50%}
+.story .art::after{content:"";position:absolute;inset:0;background:linear-gradient(#0000 55%,rgba(7,42,102,.6))}
+.story .art span{z-index:1}
 .story .art span{position:absolute;left:12px;bottom:10px;font-size:.75rem;background:rgba(0,0,0,.6);padding:2px 8px;border-radius:3px}
 .story .txt{padding:24px}
 .story h2{margin:0 0 8px;font-size:1.6rem;line-height:1.15}
@@ -141,7 +141,8 @@ aside h2{margin:0;padding:12px 16px;background:var(--blue);color:#fff;font-size:
 /* intro */
 .intro{background:#fff;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
 .intro .wrap{display:grid;grid-template-columns:1fr 2fr;gap:28px;padding-top:34px;padding-bottom:34px;align-items:center}
-.intro .ph{height:160px;border-radius:6px;background:repeating-linear-gradient(45deg,var(--blue-l) 0 12px,#fff 12px 24px);border:2px dashed var(--blue);display:grid;place-items:center;color:var(--blue-d);font-size:.85rem;text-align:center;padding:10px}
+.intro .ph{height:160px;border-radius:6px;border:2px solid var(--blue);overflow:hidden}
+.intro .ph img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 70%}
 .intro h2{margin:0 0 8px;font-size:1.6rem;color:var(--blue-d)}
 .intro p{margin:0;font-size:1.05rem}
 /* footer */
@@ -235,7 +236,7 @@ footer .sub p{margin:0 0 4px}
 
 <section class="intro" id="about" aria-labelledby="about-h">
  <div class="wrap">
-  <div class="ph" role="img" aria-label="Photo placeholder: the CLC front desk and lounge in Cobb Hall">Photo: Cobb Hall front desk &amp; lounge</div>
+  <div class="ph"><img src="../assets/lobby.jpg" width="339" height="380" alt="The CLC front desk and lounge in Cobb Hall"></div>
   <div>
    <h2 id="about-h">University of Chicago Language Center</h2>
    <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university&rsquo;s language requirements.</p>
@@ -343,7 +344,7 @@ footer .sub p{margin:0 0 4px}
   </div>
 
   <section class="story" id="stories" aria-labelledby="story-h">
-   <div class="art" role="img" aria-label="Illustration placeholder for a student photo in front of a colorful hillside village in Korea"><span>Photo: student in a hillside village, Korea</span></div>
+   <div class="art"><img src="../assets/student.jpg" width="996" height="663" alt="A smiling student in front of a colorful hillside village in Korea"><span>Photo: student in a hillside village, Korea</span></div>
    <div class="txt">
     <h2 id="story-h">Where Will Language Study Take You?</h2>
     <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors&rsquo; passion for language teaching.</p>

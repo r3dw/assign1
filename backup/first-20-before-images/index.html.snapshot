@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>CLC Home Page Redesigns — Gallery</title>
+<style>
+  :root { --maroon:#800000; --ink:#1d1d1d; --paper:#f6f3ee; }
+  * { box-sizing:border-box; }
+  body { margin:0; font:16px/1.5 system-ui, -apple-system, "Segoe UI", sans-serif; color:var(--ink); background:var(--paper); }
+  header { padding:48px 24px 24px; max-width:1100px; margin:0 auto; }
+  h1 { margin:0 0 8px; font-size:clamp(28px,4vw,44px); line-height:1.1; }
+  header p { margin:0; max-width:60ch; color:#555; }
+  main, .sec { max-width:1100px; margin:0 auto; padding:16px 24px 64px; display:grid; gap:20px; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); }
+  h2 { max-width:1100px; margin:24px auto 0; padding:0 24px; font-size:22px; }
+  h2 small { font-weight:400; color:#666; font-size:15px; margin-left:8px; }
+  a.card { display:flex; flex-direction:column; text-decoration:none; color:inherit; background:#fff; border:1px solid #ddd; border-radius:10px; overflow:hidden; transition:transform .15s, box-shadow .15s; }
+  a.card:hover, a.card:focus-visible { transform:translateY(-3px); box-shadow:0 8px 24px rgba(0,0,0,.12); outline:2px solid var(--maroon); }
+  .thumb { position:relative; height:190px; overflow:hidden; background:#eee; }
+  .thumb iframe { width:1280px; height:760px; border:0; transform:scale(.25); transform-origin:0 0; pointer-events:none; }
+  .meta { padding:14px 16px 16px; }
+  .meta b { display:block; font-size:18px; }
+  .meta span { color:#666; font-size:14px; }
+  .num { color:var(--maroon); font-variant-numeric:tabular-nums; margin-right:6px; }
+  footer { text-align:center; padding:0 24px 40px; color:#777; font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <h1>Chicago Language Center — 25 home page concepts</h1>
+  <p>Twenty-five structurally different takes on the same content: different layouts, information architecture, and interaction models. Round 2 also draws on other universities’ language-center sites. Round 3 is organized by audience and search intent. Click a card to open the full page.</p>
+</header>
+<h2>Round 1 <small>original concepts from the UChicago page</small></h2>
+<main>
+  <a class="card" href="01-broadsheet/index.html"><div class="thumb"><iframe src="01-broadsheet/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">01</span>The Broadsheet</b><span>Vintage newspaper front page, lead stories and notices.</span></div></a>
+  <a class="card" href="02-terminal/index.html"><div class="thumb"><iframe src="02-terminal/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">02</span>The Terminal</b><span>A shell session; content is command output.</span></div></a>
+  <a class="card" href="03-bento/index.html"><div class="thumb"><iframe src="03-bento/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">03</span>Bento Dashboard</b><span>One-screen app of tiles with a live open/closed status.</span></div></a>
+  <a class="card" href="04-horizontal/index.html"><div class="thumb"><iframe src="04-horizontal/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">04</span>The Long Hallway</b><span>Horizontal scroll through full-screen rooms.</span></div></a>
+  <a class="card" href="05-greetings/index.html"><div class="thumb"><iframe src="05-greetings/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">05</span>Hello, in 50 Languages</b><span>Brutalist type poster with cycling greetings.</span></div></a>
+  <a class="card" href="06-swiss/index.html"><div class="thumb"><iframe src="06-swiss/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">06</span>Swiss Grid</b><span>International Typographic Style, visible grid.</span></div></a>
+  <a class="card" href="07-boarding-pass/index.html"><div class="thumb"><iframe src="07-boarding-pass/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">07</span>Passport &amp; Boarding Pass</b><span>Travel-themed paper objects.</span></div></a>
+  <a class="card" href="08-docs-sidebar/index.html"><div class="thumb"><iframe src="08-docs-sidebar/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">08</span>Split-screen Handbook</b><span>Pinned maroon panel plus scrolling reading pane.</span></div></a>
+  <a class="card" href="09-conversation/index.html"><div class="thumb"><iframe src="09-conversation/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">09</span>The Conversation</b><span>The home page as a chat with quick replies.</span></div></a>
+  <a class="card" href="10-card-catalog/index.html"><div class="thumb"><iframe src="10-card-catalog/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">10</span>The Card Catalog</b><span>Library drawer with tabbed index cards.</span></div></a>
+</main>
+<h2>Round 2 <small>informed by peer-university examples</small></h2>
+<main>
+  <a class="card" href="11-switchboard/index.html"><div class="thumb"><iframe src="11-switchboard/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">11</span>The Switchboard</b><span>“I am a…” audience selector re-renders the page.</span></div></a>
+  <a class="card" href="12-calendar/index.html"><div class="thumb"><iframe src="12-calendar/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">12</span>Calendar First</b><span>Interactive month grid and events with Add to Calendar.</span></div></a>
+  <a class="card" href="13-atlas/index.html"><div class="thumb"><iframe src="13-atlas/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">13</span>The Language Atlas</b><span>Searchable, filterable grid of 50+ languages.</span></div></a>
+  <a class="card" href="14-pathway/index.html"><div class="thumb"><iframe src="14-pathway/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">14</span>Four-Year Pathway</b><span>Bold timeline from placement exam to graduation.</span></div></a>
+  <a class="card" href="15-wizard/index.html"><div class="thumb"><iframe src="15-wizard/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">15</span>The Placement Wizard</b><span>One question at a time, ending in a personalized result.</span></div></a>
+  <a class="card" href="16-story-wall/index.html"><div class="thumb"><iframe src="16-story-wall/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">16</span>The Story Wall</b><span>Dark editorial wall of student stories and a podcast player.</span></div></a>
+  <a class="card" href="17-campus-map/index.html"><div class="thumb"><iframe src="17-campus-map/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">17</span>Campus Map</b><span>Illustrated quad map with clickable pins.</span></div></a>
+  <a class="card" href="18-plain-index/index.html"><div class="thumb"><iframe src="18-plain-index/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">18</span>The Plain Index</b><span>Text-only academic page with dark mode and font size.</span></div></a>
+  <a class="card" href="19-launcher/index.html"><div class="thumb"><iframe src="19-launcher/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">19</span>The Launcher</b><span>App-style icon grid of services with a live open status.</span></div></a>
+  <a class="card" href="20-day-timeline/index.html"><div class="thumb"><iframe src="20-day-timeline/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">20</span>A Day at the CLS</b><span>Scrollytelling from 8:30 to 5:00 with a moving sky.</span></div></a>
+</main>
+<h2>Round 3 <small>by audience and search intent</small></h2>
+<main>
+  <a class="card" href="21-intent-search/index.html"><div class="thumb"><iframe src="21-intent-search/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">21</span>What Are You Looking For?</b><span>Search-first home page with audience filters and results.</span></div></a>
+  <a class="card" href="22-course-finder/index.html"><div class="thumb"><iframe src="22-course-finder/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">22</span>Find a Class</b><span>Student course finder with filters and a shortlist.</span></div></a>
+  <a class="card" href="23-instructor-hub/index.html"><div class="thumb"><iframe src="23-instructor-hub/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">23</span>Instructor Hub</b><span>Workspace with certificate tracker and command palette.</span></div></a>
+  <a class="card" href="24-certification-center/index.html"><div class="thumb"><iframe src="24-certification-center/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">24</span>Testing &amp; Certification</b><span>Flowchart and comparison table for exams and certificates.</span></div></a>
+  <a class="card" href="25-department-portal/index.html"><div class="thumb"><iframe src="25-department-portal/index.html" loading="lazy" tabindex="-1" title=""></iframe></div><div class="meta"><b><span class="num">25</span>Department Service Desk</b><span>Request form, routing table and policies for administrators.</span></div></a>
+</main>
+<footer>Concept designs for review. Plain HTML and CSS, minimal JS, no external assets.</footer>
+</body>
+</html>

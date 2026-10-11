@@ -140,7 +140,7 @@ nav.main a:hover{background:#f6e7e3}
 
 .story{display:grid;grid-template-columns:1.1fr 1fr;gap:28px;align-items:center}
 .art{border:2.5px solid var(--ink);border-radius:var(--r);overflow:hidden;background:#bad8ff;aspect-ratio:4/3}
-.art svg{display:block;width:100%;height:100%}
+.art img{display:block;width:100%;height:100%;object-fit:cover;object-position:center 40%}
 .dots{display:flex;gap:6px;margin:14px 0 0;padding:0;list-style:none}
 .dots li{width:12px;height:12px;border-radius:50%;border:2px solid var(--ink)}
 .dots li:first-child{background:var(--ink)}
@@ -393,22 +393,7 @@ footer .fine{opacity:.85;font-size:.85rem}
       <a class="more" href="#">Read the stories</a>
       <ol class="dots" aria-label="Nine stories, first shown"><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li><li></li></ol>
     </div>
-    <figure class="art" style="margin:0" role="img" aria-label="Illustration placeholder: a colorful hillside village in Korea. Photo slot.">
-      <svg viewBox="0 0 400 300" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
-        <rect width="400" height="300" fill="#bad8ff"/>
-        <circle cx="320" cy="60" r="30" fill="#f5e39a"/>
-        <path d="M0 180 Q100 90 220 150 T400 120 V300 H0Z" fill="#c6e9b6"/>
-        <path d="M0 230 Q120 150 250 205 T400 190 V300 H0Z" fill="#9fd48b"/>
-        <g stroke="#2b1620" stroke-width="2.5">
-          <rect x="60" y="170" width="44" height="34" fill="#ffc6d3"/><path d="M54 170 L82 148 L110 170Z" fill="#ffd7a6"/>
-          <rect x="130" y="190" width="40" height="32" fill="#e3c8ff"/><path d="M124 190 L150 168 L176 190Z" fill="#ff9d8a"/>
-          <rect x="210" y="176" width="46" height="36" fill="#f5e39a"/><path d="M204 176 L233 152 L262 176Z" fill="#bad8ff"/>
-          <rect x="285" y="198" width="42" height="34" fill="#ffd7a6"/><path d="M279 198 L306 176 L333 198Z" fill="#c6e9b6"/>
-          <rect x="30" y="215" width="38" height="30" fill="#bad8ff"/><path d="M24 215 L49 195 L74 215Z" fill="#ffc6d3"/>
-        </g>
-        <text x="200" y="285" text-anchor="middle" font-family="sans-serif" font-size="13" font-weight="700" fill="#2b1620">Photo: student in a hillside village, Korea</text>
-      </svg>
-    </figure>
+    <figure class="art" style="margin:0"><img src="../assets/student.jpg" alt="Student standing in front of a colorful hillside village" width="996" height="663" loading="lazy"></figure>
   </div>
 </section>
 

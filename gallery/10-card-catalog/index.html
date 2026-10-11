@@ -75,6 +75,9 @@ body:has(.card:target) #welcome:not(:target){display:none}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem;margin-top:1rem}
 .mini{border:1px dashed #a8905a;padding:.2rem 1rem 1rem;background:rgba(255,252,240,.7)}
 .ph{border:2px dashed #a8905a;background:repeating-linear-gradient(45deg,#efe3c1 0 10px,#e8dab3 10px 20px);padding:1.4rem 1rem;font:.8rem var(--type);color:#6a5236;text-align:center;margin:.8rem 0}
+.pic{display:block;width:100%;object-fit:cover;margin:.8rem 0;border:2px solid #a8905a;padding:5px;background:var(--cream2);filter:sepia(.35) contrast(1.05);box-shadow:0 2px 4px rgba(0,0,0,.3)}
+.pic.wide{height:240px}
+.foot b img{display:block;margin:0 auto;width:200px;height:auto;mix-blend-mode:lighten;filter:contrast(3)}
 .entry{border-top:1px dashed #a8905a;padding:.9rem 0}
 .entry:first-of-type{border-top:0}
 .entry h3{font:normal 1.2rem var(--serif);margin:0 0 .4rem}
@@ -143,7 +146,7 @@ body:has(.card:target) #welcome:not(:target){display:none}
 <dt>Location</dt><dd>Cobb Hall, Suite 211</dd>
 </dl>
 <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
-<div class="ph">Photo: Cobb Hall front desk and lounge</div>
+<img class="pic wide" src="../assets/lobby.jpg" width="339" height="380" style="object-position:50% 60%" alt="The Chicago Language Center front desk and lounge in Cobb Hall">
 <div class="two">
 <section class="mini"><h3>See also: OLA</h3><p>Office of Language Assessment, est. 2016.</p><a class="btn" href="#ola">Pull card &rsaquo;</a></section>
 <section class="mini"><h3>See also: ELI</h3><p>English Language Institute, est. 2015.</p><a class="btn" href="#eli">Pull card &rsaquo;</a></section>
@@ -191,7 +194,7 @@ Featured</div><div class="cardno">Card 4 of 6</div>
 <dt>Series</dt><dd>9 stories</dd>
 </dl>
 <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
-<div class="ph">Photo: A smiling student in front of a colorful hillside village in Korea</div>
+<img class="pic wide" src="../assets/student.jpg" width="996" height="663" style="object-position:75% 70%" alt="A smiling student in front of a colorful hillside village in Korea">
 <ol class="dots" aria-label="Story 1 of 9 shown"><li>1</li><li>2</li><li>3</li><li>4</li><li>5</li><li>6</li><li>7</li><li>8</li><li>9</li></ol>
 <span class="rod" aria-hidden="true"></span><span class="hole" aria-hidden="true"></span>
 </article>
@@ -216,7 +219,7 @@ Reference</div><div class="cardno">Card 5 of 6</div>
 <div class="callno">P53 .B56
 Serial</div><div class="cardno">Card 6 of 6</div>
 <h2 id="h-b">The Latest From Our Blog</h2>
-<div class="ph">Photo: Snow-capped gargoyle on a campus building</div>
+<img class="pic wide" src="../assets/gargoyle.jpg" width="490" height="710" style="object-position:50% 40%" alt="A snow-capped gargoyle on a campus building">
 <div class="entry"><h3>Setting Ground Rules for AI Use in Language Courses</h3>
 <dl class="fields"><dt>Author</dt><dd>Heather Guerrero</dd><dt>Date</dt><dd>Sep 19, 2024</dd><dt>Subject headings</dt><dd>Instructional Technology</dd></dl>
 <p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students&hellip;</p></div>
@@ -235,7 +238,7 @@ Serial</div><div class="cardno">Card 6 of 6</div>
 </main>
 
 <footer class="foot">
-<b>UChicago</b>
+<b><img src="../assets/footer-logo.jpg" width="284" height="70" alt="UChicago"></b>
 <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; languages@uchicago.edu</p>
 <nav aria-label="Footer"><ul>
 <li><a href="#">Office of Language Assessment</a></li><li><a href="#">Mellon Collaborative Partners</a></li><li><a href="#">Language Pedagogy Innovation Initiative</a></li><li><a href="#">English Language Institute</a></li><li><a href="#">Accessibility</a></li></ul></nav>

@@ -63,6 +63,7 @@ a{color:inherit}
   background:linear-gradient(160deg,var(--a),var(--b));box-shadow:0 6px 14px rgba(0,0,0,.4),inset 0 -2px 4px rgba(0,0,0,.25),inset 0 1px 0 rgba(255,255,255,.5);transition:transform .25s cubic-bezier(.3,1.5,.5,1)}
 .icon::after{content:"";position:absolute;left:0;right:0;top:0;height:52%;background:linear-gradient(rgba(255,255,255,.4),rgba(255,255,255,.04));border-radius:0 0 50% 50%/0 0 30% 30%}
 .icon svg{position:relative;z-index:1;width:56%;height:56%;fill:none;stroke:#fff;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round;filter:drop-shadow(0 1px 1px rgba(0,0,0,.35))}
+.icon img{position:relative;z-index:0;width:100%;height:100%;object-fit:contain;background:#fff;padding:12%;display:block}
 .app:hover .icon{transform:scale(1.07)}
 .app:active .icon{transform:scale(.9)}
 .badge{position:absolute;top:-3px;right:-3px;z-index:2}
@@ -91,6 +92,7 @@ a{color:inherit}
 .appdoc .list li{margin:0;padding:10px 14px;border-bottom:1px solid #e5e5ea}
 .appdoc .list li:last-child{border:0}
 .appdoc time,.appdoc .when{display:block;font-size:.78rem;color:var(--muted);font-weight:600}
+.appdoc .story-photo{display:block;width:100%;height:auto;aspect-ratio:996/663;object-fit:cover;border-radius:14px;margin:0 0 10px}
 .appdoc .meta{font-size:.8rem;color:var(--muted)}
 .appdoc .tag{display:inline-block;font-size:.66rem;font-weight:700;letter-spacing:.05em;text-transform:uppercase;background:#e5e5ea;color:#3a3a3c;padding:2px 8px;border-radius:99px;vertical-align:middle}
 .chips{display:flex;flex-wrap:wrap;gap:6px;list-style:none;padding:0!important}
@@ -104,6 +106,7 @@ a{color:inherit}
 
 footer{max-width:880px;margin:0 auto;padding:0 18px 190px;font-size:.82rem;color:#e0d8dc}
 footer nav ul{list-style:none;display:flex;flex-wrap:wrap;gap:6px 18px;padding:0;margin:10px 0}
+footer .wm-img{display:block;width:220px;max-width:100%;height:auto;aspect-ratio:284/70;filter:contrast(3);mix-blend-mode:lighten}
 footer .wm{font-family:Georgia,"Times New Roman",serif;font-weight:700;letter-spacing:.06em;font-size:1rem;color:#fff}
 
 /* modal */
@@ -178,8 +181,8 @@ dialog::backdrop{background:rgba(5,0,10,.55);backdrop-filter:blur(6px);-webkit-b
       <li><a class="app" href="#app-independent" data-open style="--a:#5ac8fa;--b:#0a84ff"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 6c3-1.5 6-1.5 9 1v12c-3-2.5-6-2.5-9-1zM21 6c-3-1.5-6-1.5-9 1v12c3-2.5 6-2.5 9-1z"/></svg></span>Independent Study</a></li>
       <li><a class="app" href="#app-tables" data-open style="--a:#ffd60a;--b:#ff9500"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 10h16M6 10v9M18 10v9M3 10l1-4h16l1 4"/><circle cx="9" cy="4.2" r=".6"/><circle cx="15" cy="4.2" r=".6"/></svg></span>Language Tables</a></li>
       <li><a class="app" href="#app-exchange" data-open style="--a:#bf5af2;--b:#5e5ce6"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 9h14l-3.5-3.5M20 15H6l3.5 3.5"/></svg></span>Language Exchange</a></li>
-      <li><a class="app" href="#app-ola" data-open style="--a:#34c759;--b:#0a8f3c"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4V3h6v1M8.5 13l2.5 2.5 4.5-5"/></svg></span>Testing (OLA)</a></li>
-      <li><a class="app" href="#app-eli" data-open style="--a:#ff375f;--b:#a2004f"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg></span>English Language Institute</a></li>
+      <li><a class="app" href="#app-ola" data-open style="--a:#34c759;--b:#0a8f3c"><span class="icon"><img src="../assets/icon-ola.jpg" width="55" height="65" alt=""></span>Testing (OLA)</a></li>
+      <li><a class="app" href="#app-eli" data-open style="--a:#ff375f;--b:#a2004f"><span class="icon"><img src="../assets/icon-eli.jpg" width="60" height="60" alt=""></span>English Language Institute</a></li>
       <li><a class="app" href="#app-rooms" data-open style="--a:#8e8e93;--b:#3a3a3c"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 21V4a1 1 0 011-1h10a1 1 0 011 1v17M3 21h18"/><circle cx="14.5" cy="12.5" r=".8"/></svg></span>Study Rooms</a></li>
       <li><a class="app" href="#app-instructors" data-open style="--a:#64d2ff;--b:#30a46c"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 9l10-5 10 5-10 5z"/><path d="M6 11.5V16c3 2.5 9 2.5 12 0v-4.5M22 9v6"/></svg></span>Instructor Development</a></li>
       <li><a class="app" href="#app-summer" data-open style="--a:#ffe066;--b:#ff7a00"><span class="icon"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v3M12 19v3M2 12h3M19 12h3M5 5l2 2M17 17l2 2M19 5l-2 2M7 17l-2 2"/></svg></span>Summer Courses</a></li>
@@ -227,6 +230,7 @@ dialog::backdrop{background:rgba(5,0,10,.55);backdrop-filter:blur(6px);-webkit-b
       <p class="kicker">Stories · 9 featured</p>
       <h3>Where Will Language Study Take You?</h3>
       <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+      <img class="story-photo" src="../assets/student.jpg" width="996" height="663" alt="A smiling student in sunglasses in front of a colorful hillside village in Korea">
       <p class="meta">Featured: a smiling student in front of a colorful hillside village in Korea.</p>
       <p><a href="#app-stories">Read the stories</a></p>
     </article>
@@ -345,7 +349,7 @@ dialog::backdrop{background:rgba(5,0,10,.55);backdrop-filter:blur(6px);-webkit-b
 </section>
 
 <footer>
-  <p class="wm">THE UNIVERSITY OF CHICAGO</p>
+  <p class="wm"><img class="wm-img" src="../assets/footer-logo.jpg" width="284" height="70" alt="The University of Chicago"></p>
   <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · <a href="tel:+17737029772">773.702.9772</a> · <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
   <nav aria-label="Footer">
     <ul>

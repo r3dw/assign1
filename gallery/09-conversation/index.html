@@ -18,6 +18,12 @@ a{color:var(--mar)}
 header.bar{position:sticky;top:0;z-index:10;background:#fff;border-bottom:1px solid var(--line);padding:10px 14px;display:flex;align-items:center;gap:12px}
 .avatar{flex:none;width:44px;height:44px;border-radius:50%;background:var(--mar);color:#fff;display:grid;place-items:center;font:700 1.1rem var(--serif);letter-spacing:-.5px;position:relative}
 .avatar:after{content:"";position:absolute;right:0;bottom:1px;width:11px;height:11px;border-radius:50%;background:#2e8b57;border:2px solid #fff}
+.avatar img{position:absolute;left:-27.3%;top:-68%;width:722%;height:auto;max-width:none;clip-path:inset(33.3% 82.4% 17.8% 3.8% round 50%)}
+.band .ico{position:absolute;right:12px;top:50%;transform:translateY(-50%);width:52px;height:52px;border-radius:50%;background:#fff;padding:6px;object-fit:contain;box-shadow:0 1px 3px rgba(0,0,0,.25)}
+.card>.pic{display:block;width:100%;height:200px;object-fit:cover;object-position:50% 62%}
+.slide.s1{position:relative;min-height:200px}
+.slide.s1 .sp{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:80% 70%}
+.slide.s1 small{position:relative;text-shadow:0 1px 3px rgba(0,0,0,.7)}
 .who{flex:1;min-width:0}.who h1{margin:0;font-size:1rem;line-height:1.2}.who p{margin:0;font-size:.8rem;color:var(--mute)}
 details.menu{position:relative}
 details.menu summary{list-style:none;cursor:pointer;width:44px;height:44px;border-radius:50%;display:grid;place-items:center;font-size:1.4rem;line-height:1;border:1px solid var(--line);background:#fff}
@@ -94,7 +100,7 @@ footer.foot a{color:var(--mute)}
 <div class="top"><a href="https://www.uchicago.edu">The University of Chicago</a> &middot; <a href="#">News</a> &middot; <a href="#">Calendar</a> &middot; <a href="#">Students</a> &middot; <a href="#">Instructors</a></div>
 <div class="app">
 <header class="bar">
-  <div class="avatar" aria-hidden="true">CLC</div>
+  <div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div>
   <div class="who"><h1>Chicago Language Center</h1><p>Typically replies instantly</p></div>
   <details class="menu">
     <summary aria-label="Menu"><span aria-hidden="true">&#9776;</span></summary>
@@ -132,28 +138,28 @@ footer.foot a{color:var(--mute)}
 <div class="msg in" id="a-what" data-a="what"><p>Two things, mostly. We support instructors and graduate students teaching 50+ languages, with professional development, pedagogy courses and services. And we help students find and pursue language study.</p><p>We also house two units: the <strong>Office of Language Assessment</strong> and the <strong>English Language Institute</strong>. Ask me about either.</p></div>
 
 <div class="msg out">Language testing</div>
-<div class="row" id="a-testing" data-a="testing"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
-<div class="card"><div class="band"><span>OLA</span></div><div class="cb"><span class="tag">Established 2016</span><h3>Office of Language Assessment</h3><p>The OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p><a class="btn" href="#">Learn more &rsaquo;</a></div></div></div></div>
+<div class="row" id="a-testing" data-a="testing"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
+<div class="card"><div class="band"><span>OLA</span><img class="ico" src="../assets/icon-ola.jpg" width="60" height="60" alt="Office of Language Assessment icon"></div><div class="cb"><span class="tag">Established 2016</span><h3>Office of Language Assessment</h3><p>The OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p><a class="btn" href="#">Learn more &rsaquo;</a></div></div></div></div>
 
 <div class="msg out">English as an additional language</div>
-<div class="row" id="a-eal" data-a="eal"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
-<div class="card"><div class="band b2"><span>ELI</span></div><div class="cb"><span class="tag">Established 2015</span><h3>English Language Institute</h3><p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). The ELI is housed in the CLC and partially funded by the Provost's Office.</p><a class="btn" href="#">Learn more &rsaquo;</a></div></div></div></div>
+<div class="row" id="a-eal" data-a="eal"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
+<div class="card"><div class="band b2"><span>ELI</span><img class="ico" src="../assets/icon-eli.jpg" width="60" height="60" alt="English Language Institute icon"></div><div class="cb"><span class="tag">Established 2015</span><h3>English Language Institute</h3><p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). The ELI is housed in the CLC and partially funded by the Provost's Office.</p><a class="btn" href="#">Learn more &rsaquo;</a></div></div></div></div>
 
 <div class="msg out">Where are you?</div>
-<div class="row" id="a-where" data-a="where"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
-<div class="card"><div class="photo">Photo: Cobb Hall front desk and lounge</div><div class="cb"><span class="tag">Visit us</span><h3>Cobb Hall, Suite 211</h3>
+<div class="row" id="a-where" data-a="where"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
+<div class="card"><img class="pic" src="../assets/lobby.jpg" width="339" height="380" alt="The Chicago Language Center reception desk and lounge in Cobb Hall"><div class="cb"><span class="tag">Visit us</span><h3>Cobb Hall, Suite 211</h3>
 <address style="font-style:normal">5811 S Ellis Ave<br>Chicago, IL 60637</address>
 <p>We are on the 2nd floor of Cobb Hall, on the main quadrangle of campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p>
 <dl class="hrs"><dt>Mon&ndash;Fri</dt><dd>8:30 AM&ndash;5:00 PM</dd></dl></div></div></div></div>
 
 <div class="msg out">When are you open?</div>
-<div class="row" id="a-hours" data-a="hours"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
+<div class="row" id="a-hours" data-a="hours"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
 <div class="card"><div class="cb"><span class="tag">Hours &amp; contact</span><dl class="hrs"><dt>Mon&ndash;Fri</dt><dd>8:30 AM&ndash;5:00 PM</dd></dl>
 <p>For questions, reservations, and further info, please contact us by phone or email:</p>
 <a class="btn" href="tel:+17737029772">(773) 702-9772</a> <a class="btn ghost" href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></div></div></div></div>
 
 <div class="msg out">Read the blog</div>
-<div class="row" id="a-blog" data-a="blog"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
+<div class="row" id="a-blog" data-a="blog"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
 <div class="msg in" style="max-width:100%"><p>Here is the latest from our blog.</p></div>
 <div class="card"><div class="post"><p class="meta">Heather Guerrero &middot; Sep 19, 2024 &middot; Instructional Technology</p><h4><a href="#">Setting Ground Rules for AI Use in Language Courses</a></h4><p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses&hellip;</p></div>
 <div class="post"><p class="meta">Heather Guerrero &middot; Sep 6, 2024 &middot; Instructional Technology</p><h4><a href="#">Generative AI: The Basics and Guardrails</a></h4><p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models&hellip;</p></div>
@@ -161,10 +167,10 @@ footer.foot a{color:var(--mute)}
 <div class="post"><a href="#">&laquo; Older Entries</a></div></div></div></div>
 
 <div class="msg out">Stories from students</div>
-<div class="row" id="a-stories" data-a="stories"><div class="avatar" aria-hidden="true">CLC</div><div class="stack">
+<div class="row" id="a-stories" data-a="stories"><div class="avatar" aria-hidden="true"><img src="../assets/logo.jpg" width="300" height="85" alt=""></div><div class="stack">
 <div class="card car" role="group" aria-roledescription="carousel" aria-label="Where Will Language Study Take You?"><div class="cb" style="padding-bottom:8px"><span class="tag">Feature stories</span><h3>Where Will Language Study Take You?</h3><p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p></div>
 <div class="slides" tabindex="0" aria-label="Stories, scroll horizontally">
-<div class="slide s1"><small>Story 1 of 9</small><strong>Photo: a student before a colorful hillside village in Korea</strong></div>
+<div class="slide s1"><img class="sp" src="../assets/student.jpg" width="996" height="663" alt="A smiling student in sunglasses in front of a colorful hillside village in Korea"><small>Story 1 of 9</small></div>
 <div class="slide s2"><small>Story 2 of 9</small><strong>Photo placeholder</strong></div>
 <div class="slide s3"><small>Story 3 of 9</small><strong>Photo placeholder</strong></div>
 <div class="slide s4"><small>Story 4 of 9</small><strong>Photo placeholder</strong></div>

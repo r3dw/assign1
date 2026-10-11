@@ -90,6 +90,7 @@ kbd{font-family:var(--sans);border:1px solid var(--line);border-radius:3px;paddi
 .story{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:2.5rem;align-items:center}
 .art{aspect-ratio:4/5;border-radius:4px;background:linear-gradient(160deg,#f3e7e3,#e8d3cd);position:relative;overflow:hidden}
 .art svg{position:absolute;inset:0;width:100%;height:100%}
+.art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:35% 50%;filter:sepia(.15) saturate(.9)}
 .art span{position:absolute;left:.75rem;bottom:.6rem;font-family:var(--sans);font-size:.7rem;color:var(--maroon-d)}
 .dotsrow{display:flex;gap:.45rem;margin-top:1.25rem}
 .dotsrow i{width:.5rem;height:.5rem;border-radius:50%;border:1.5px solid var(--maroon)}
@@ -243,10 +244,7 @@ footer p{margin:.3rem 0}
 
   <section id="stories" aria-labelledby="h-stories">
    <div class="story">
-    <div class="art" role="img" aria-label="Illustration placeholder: colorful hillside village">
-     <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="200" fill="#f1e2dc"/><path d="M0 120 Q40 70 90 100 T160 80 V200 H0Z" fill="#c9a39a"/><path d="M0 150 Q50 110 100 135 T160 120 V200 H0Z" fill="#a85f58"/><g fill="#800000"><rect x="22" y="128" width="16" height="14"/><rect x="48" y="138" width="14" height="12"/><rect x="82" y="130" width="18" height="14"/><rect x="112" y="124" width="14" height="12"/></g><circle cx="125" cy="40" r="14" fill="#fff" opacity=".8"/></svg>
-     <span>Photo: student in Korea</span>
-    </div>
+    <div class="art"><img src="../assets/student.jpg" width="996" height="663" alt="A student standing in front of a colorful hillside village"></div>
     <div>
      <p class="eyebrow">Stories</p>
      <h2 id="h-stories">Where Will Language Study Take You?</h2>

@@ -81,6 +81,8 @@ p{max-width:38em}
 .s1 .body p{font-size:var(--s2);line-height:1.12;letter-spacing:-.02em;max-width:none}
 .s1 .body p + p{font-size:var(--s1);letter-spacing:0;line-height:1.45;margin-top:1.5rem;max-width:34em}
 .photo{grid-column:2/6;margin-bottom:4rem;border:1px solid var(--ink);aspect-ratio:4/3;display:flex;align-items:flex-end;padding:.6rem !important;font-size:.75rem;background:repeating-linear-gradient(135deg,#fff 0 10px,#f1f1f1 10px 11px)}
+.photo{padding:0 !important;background:#fff;overflow:hidden}
+.photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 65%;filter:grayscale(1) contrast(1.2)}
 
 /* 02 units */
 .unit{padding-bottom:3rem}
@@ -245,7 +247,7 @@ footer .copy{grid-column:2/13;font-size:.78rem;display:flex;justify-content:spac
       <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the <b>50+ languages</b> spread across various departments within the university.</p>
       <p>We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
     </div>
-    <div class="photo">Photo: Cobb Hall front desk</div>
+    <div class="photo"><img src="../assets/lobby.jpg" width="339" height="380" alt="The CLC front desk and lounge in Cobb Hall" loading="lazy"></div>
   </section>
 
   <section class="s2" id="units" aria-labelledby="h-units">

@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center · The University of Chicago</title>
+<meta name="color-scheme" content="light dark">
+<script>
+(function(){try{var t=localStorage.getItem("plain-theme");if(t!=="dark"&&t!=="light"){t=matchMedia("(prefers-color-scheme: dark)").matches?"dark":"light"}
+document.documentElement.setAttribute("data-theme",t);
+var s=parseInt(localStorage.getItem("plain-size"),10);if(s>=-2&&s<=4)document.documentElement.setAttribute("data-size",s);}catch(e){}})();
+</script>
+<style>
+:root{--bg:#faf8f3;--fg:#111;--mute:#55524b;--rule:#cfcabd;--accent:#d9600b;--focus:#0b57d0;font-size:100%}
+[data-theme="dark"]{--bg:#141413;--fg:#ebe8e0;--mute:#a29e93;--rule:#3a3935;--accent:#ff9a4d;--focus:#8ab4ff}
+[data-size="-2"]{font-size:80%}[data-size="-1"]{font-size:90%}[data-size="1"]{font-size:112.5%}[data-size="2"]{font-size:125%}[data-size="3"]{font-size:143%}[data-size="4"]{font-size:162%}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;background:var(--bg);color:var(--fg);font-family:Charter,"Iowan Old Style","Palatino Linotype",Palatino,Georgia,"Times New Roman",serif;font-size:1.0625rem;line-height:1.6}
+.wrap{max-width:34rem;margin:0 auto;padding:1.25rem 1.25rem 4rem}
+a{color:inherit;text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px;text-underline-offset:.2em}
+a:hover{background:color-mix(in srgb,var(--accent) 22%,transparent)}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:var(--fg);color:var(--bg);padding:.5rem .8rem;z-index:9}
+.skip:focus{left:0}
+.label{font:600 .72rem/1.4 system-ui,-apple-system,"Segoe UI",sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0}
+.top{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:.5rem;padding-bottom:.6rem;border-bottom:1px solid var(--rule)}
+.top a{font-size:.85rem}
+.tools{display:flex;gap:.35rem}
+.tools button{font:600 .78rem system-ui,sans-serif;color:var(--fg);background:transparent;border:1px solid var(--rule);border-radius:2px;min-width:2.4rem;min-height:2.2rem;padding:0 .5rem;cursor:pointer}
+.tools button:hover{border-color:var(--accent)}
+.tools button[disabled]{opacity:.4;cursor:default}
+.nojs .tools{display:none}
+header.site{padding:2.6rem 0 1.2rem}
+h1{font-weight:400;font-size:2rem;line-height:1.15;margin:.3rem 0 .2rem;letter-spacing:-.01em}
+.sub{margin:0;color:var(--mute);font-style:italic}
+nav.main ul{list-style:none;margin:1.4rem 0 0;padding:.6rem 0;border-top:1px solid var(--rule);border-bottom:1px solid var(--rule);display:flex;flex-wrap:wrap;gap:.2rem 1.2rem;font-size:.95rem}
+section{padding:1.6rem 0 0;border-top:1px solid var(--rule);margin-top:1.8rem}
+nav.main+*{margin-top:0}
+h2{margin:0 0 .8rem}
+p{margin:.6rem 0}
+ol.list,ul.list{list-style:none;margin:0;padding:0}
+.list>li{padding:.55rem 0;border-bottom:1px dotted var(--rule)}
+.list>li:last-child{border-bottom:0}
+details summary{cursor:pointer;list-style:none;display:block}
+details summary::-webkit-details-marker{display:none}
+details summary::before{content:"+";display:inline-block;width:1.1em;color:var(--accent);font-weight:700;font-family:system-ui,sans-serif}
+details[open] summary::before{content:"\2212"}
+details summary:hover .t{text-decoration:underline;text-decoration-color:var(--accent);text-decoration-thickness:2px}
+.date{font-variant-numeric:tabular-nums;color:var(--mute);font-size:.9rem;margin-right:.5rem}
+.meta{color:var(--mute);font-size:.88rem;margin:.4rem 0 0 1.1em}
+.ex{margin:.4rem 0 0 1.1em}
+.ev{display:grid;grid-template-columns:5.2rem 1fr;gap:.1rem .9rem}
+.ev .d{font-variant-numeric:tabular-nums;color:var(--mute);font-size:.92rem}
+.ev .p{grid-column:2;color:var(--mute);font-size:.88rem;margin:0}
+.ev .t{margin:0}
+.past{color:var(--mute);font-size:.92rem;margin-top:.9rem}
+.langs{text-align:justify;hyphens:auto;line-height:1.75}
+dl{margin:0}dt{font-weight:700;margin-top:.7rem}dd{margin:0}
+footer{margin-top:2.6rem;padding-top:1.2rem;border-top:1px solid var(--rule);font-size:.9rem;color:var(--mute)}
+footer ul{list-style:none;padding:0;margin:.6rem 0;display:flex;flex-wrap:wrap;gap:.2rem 1.1rem}
+footer a{color:var(--fg)}
+.units p.u{margin:.2rem 0 .5rem}
+@media (max-width:30rem){h1{font-size:1.65rem}.ev{grid-template-columns:4.3rem 1fr}.langs{text-align:left}}
+@media (prefers-reduced-motion:no-preference){a,.tools button{transition:background-color .15s,border-color .15s}}
+@media print{.tools,.skip{display:none}body{background:#fff;color:#000}}
+</style>
+</head>
+<body class="nojs">
+<a class="skip" href="#main">Skip to main content</a>
+<div class="wrap">
+<div class="top">
+<span><a href="../index.html">&larr; Gallery</a> &nbsp;&middot;&nbsp; <a href="https://www.uchicago.edu/">The University of Chicago</a></span>
+<div class="tools" role="group" aria-label="Display settings">
+<button type="button" id="smaller" aria-label="Decrease font size">A&minus;</button>
+<button type="button" id="larger" aria-label="Increase font size">A+</button>
+<button type="button" id="theme" aria-pressed="false" aria-label="Dark mode">Dark</button>
+</div>
+</div>
+
+<header class="site">
+<p class="label">The University of Chicago</p>
+<h1>Chicago Language Center</h1>
+<p class="sub">Services and professional development for 50+ languages.</p>
+<nav class="main" aria-label="Main">
+<ul>
+<li><a href="#about">About</a></li>
+<li><a href="#news">News</a></li>
+<li><a href="#events">Events</a></li>
+<li><a href="#units">Units</a></li>
+<li><a href="#languages">Language Study</a></li>
+<li><a href="#visit">Visit</a></li>
+</ul>
+</nav>
+</header>
+
+<main id="main" tabindex="-1">
+
+<section id="about" aria-labelledby="h-about">
+<h2 class="label" id="h-about">Mission</h2>
+<p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university&rsquo;s language requirements.</p>
+<p>Stories on <a href="#about">where language study can take you</a>: how UChicago students use their language abilities in the real world, and our instructors&rsquo; passion for language teaching.</p>
+</section>
+
+<section id="news" aria-labelledby="h-news">
+<h2 class="label" id="h-news">News &mdash; from our blog</h2>
+<ol class="list">
+<li><details><summary><span class="date">Sep 19, 2024</span><span class="t">Setting Ground Rules for AI Use in Language Courses</span></summary>
+<p class="meta">Heather Guerrero &middot; Instructional Technology</p>
+<p class="ex">In my previous post I presented some very basic elements of AI literacy. Here I&rsquo;ll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students&hellip; <a href="#news">Read more</a></p></details></li>
+<li><details><summary><span class="date">Sep 6, 2024</span><span class="t">Generative AI: The Basics and Guardrails</span></summary>
+<p class="meta">Heather Guerrero &middot; Instructional Technology</p>
+<p class="ex">The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the&hellip; <a href="#news">Read more</a></p></details></li>
+<li><details><summary><span class="date">May 8, 2024</span><span class="t">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</span></summary>
+<p class="meta">Heather Guerrero &middot; Events, Uncategorized</p>
+<p class="ex">This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses&hellip; <a href="#news">Read more</a></p></details></li>
+</ol>
+<p><a href="#news">&laquo; Older entries</a></p>
+</section>
+
+<section id="events" aria-labelledby="h-events">
+<h2 class="label" id="h-events">Events <span style="text-transform:none;letter-spacing:0;font-weight:400">(sample)</span></h2>
+<ol class="list">
+<li class="ev"><span class="d">Oct 14, Wed</span><p class="t"><a href="#events">Language Table: Spanish</a></p><p class="p">12:00&ndash;1:00 PM &middot; Cobb 211</p></li>
+<li class="ev"><span class="d">Oct 15, Thu</span><p class="t"><a href="#events">Placement Testing Info Session</a></p><p class="p">5:30&ndash;6:30 PM &middot; Cobb 201</p></li>
+<li class="ev"><span class="d">Oct 19, Mon</span><p class="t"><a href="#events">Workshop: Teaching with Generative AI (instructors)</a></p><p class="p">4:00&ndash;5:00 PM &middot; Online</p></li>
+<li class="ev"><span class="d">Oct 22, Thu</span><p class="t"><a href="#events">Language Exchange Night</a></p><p class="p">6:00&ndash;7:30 PM &middot; Reynolds Club</p></li>
+<li class="ev"><span class="d">Oct 28, Wed</span><p class="t"><a href="#events">Language Table: Mandarin</a></p><p class="p">12:00&ndash;1:00 PM &middot; Cobb 211</p></li>
+<li class="ev"><span class="d">Nov 4, Wed</span><p class="t"><a href="#events">Brown Bag: Study Abroad Stories</a></p><p class="p">3:00&ndash;4:30 PM &middot; Cobb 211</p></li>
+</ol>
+<p class="past">Past: Sep 24, Welcome Back Open House; Sep 10, Fundamentals of Language Teaching, session 1.</p>
+</section>
+
+<section id="units" class="units" aria-labelledby="h-units">
+<h2 class="label" id="h-units">Units</h2>
+<h3 style="font-weight:700;font-size:1rem;margin:.2rem 0">Office of Language Assessment (OLA)</h3>
+<p class="u">Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University&rsquo;s language testing and pedagogy programs. <a href="#units">Learn more</a></p>
+<h3 style="font-weight:700;font-size:1rem;margin:1.1rem 0 .2rem">English Language Institute (ELI)</h3>
+<p class="u">Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost&rsquo;s Office. <a href="#units">Learn more</a></p>
+</section>
+
+<section id="languages" aria-labelledby="h-lang">
+<h2 class="label" id="h-lang">Languages <span style="text-transform:none;letter-spacing:0;font-weight:400">(partial, sample list)</span></h2>
+<p class="langs"><a href="#languages">Akan</a>, <a href="#languages">Akkadian</a>, <a href="#languages">Arabic</a>, <a href="#languages">Armenian</a>, <a href="#languages">Bangla</a>, <a href="#languages">Bulgarian</a>, <a href="#languages">Catalan</a>, <a href="#languages">Chinese (Mandarin)</a>, <a href="#languages">Czech</a>, <a href="#languages">Danish</a>, <a href="#languages">Dutch</a>, <a href="#languages">Egyptian (Middle)</a>, <a href="#languages">English (EAL)</a>, <a href="#languages">Farsi/Persian</a>, <a href="#languages">Finnish</a>, <a href="#languages">French</a>, <a href="#languages">German</a>, <a href="#languages">Greek (Ancient)</a>, <a href="#languages">Greek (Modern)</a>, <a href="#languages">Hebrew (Biblical)</a>, <a href="#languages">Hebrew (Modern)</a>, <a href="#languages">Hindi</a>, <a href="#languages">Hittite</a>, <a href="#languages">Hungarian</a>, <a href="#languages">Igbo</a>, <a href="#languages">Italian</a>, <a href="#languages">Japanese</a>, <a href="#languages">Kazakh</a>, <a href="#languages">Korean</a>, <a href="#languages">Latin</a>, <a href="#languages">Lithuanian</a>, <a href="#languages">Nahuatl</a>, <a href="#languages">Norwegian</a>, <a href="#languages">Polish</a>, <a href="#languages">Portuguese</a>, <a href="#languages">Quechua</a>, <a href="#languages">Romanian</a>, <a href="#languages">Russian</a>, <a href="#languages">Sanskrit</a>, <a href="#languages">Serbian/Croatian</a>, <a href="#languages">Spanish</a>, <a href="#languages">Swahili</a>, <a href="#languages">Swedish</a>, <a href="#languages">Tamil</a>, <a href="#languages">Thai</a>, <a href="#languages">Tibetan</a>, <a href="#languages">Turkish</a>, <a href="#languages">Ukrainian</a>, <a href="#languages">Urdu</a>, <a href="#languages">Vietnamese</a>, <a href="#languages">Wolof</a>, <a href="#languages">Yoruba</a>, <a href="#languages">Zulu</a>.</p>
+</section>
+
+<section id="visit" aria-labelledby="h-visit">
+<h2 class="label" id="h-visit">Visit &amp; contact</h2>
+<dl>
+<dt>Location</dt>
+<dd><address style="font-style:normal">Cobb Hall, Suite 211<br>5811 S Ellis Ave, Chicago, IL 60637</address>
+<p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p></dd>
+<dt>Hours</dt><dd>Mon&ndash;Fri: 8:30 AM&ndash;5:00 PM</dd>
+<dt>Contact</dt><dd>For questions, reservations, and further info, please contact us by phone or email:<br>
+<a href="tel:+17737029772">(773) 702-9772</a><br><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></dd>
+</dl>
+</section>
+</main>
+
+<footer>
+<p class="label">The University of Chicago</p>
+<p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; languages@uchicago.edu</p>
+<ul>
+<li><a href="#units">Office of Language Assessment</a></li>
+<li><a href="#about">Mellon Collaborative Partners</a></li>
+<li><a href="#about">Language Pedagogy Innovation Initiative</a></li>
+<li><a href="#units">English Language Institute</a></li>
+<li><a href="#visit">Accessibility</a></li>
+</ul>
+<p>&copy; 2019&ndash;2026 The University of Chicago. All rights reserved.</p>
+<p>Events and the language list are sample content for design exploration.</p>
+</footer>
+</div>
+<script>
+(function(){
+var root=document.documentElement,b=document.body;b.classList.remove("nojs");
+var MIN=-2,MAX=4;
+function store(k,v){try{localStorage.setItem(k,v)}catch(e){}}
+var tb=document.getElementById("theme"),sm=document.getElementById("smaller"),lg=document.getElementById("larger");
+function theme(){return root.getAttribute("data-theme")==="dark"?"dark":"light"}
+function paintTheme(){var d=theme()==="dark";tb.setAttribute("aria-pressed",d);tb.textContent=d?"Light":"Dark";tb.setAttribute("aria-label",d?"Switch to light mode":"Switch to dark mode");tb.removeAttribute("aria-pressed")}
+function size(){var s=parseInt(root.getAttribute("data-size"),10);return isNaN(s)?0:s}
+function paintSize(){var s=size();sm.disabled=s<=MIN;lg.disabled=s>=MAX}
+tb.addEventListener("click",function(){var n=theme()==="dark"?"light":"dark";root.setAttribute("data-theme",n);store("plain-theme",n);paintTheme()});
+function step(d){var s=Math.max(MIN,Math.min(MAX,size()+d));root.setAttribute("data-size",s);store("plain-size",s);paintSize()}
+sm.addEventListener("click",function(){step(-1)});
+lg.addEventListener("click",function(){step(1)});
+paintTheme();paintSize();
+})();
+</script>
+</body>
+</html>

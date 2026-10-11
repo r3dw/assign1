@@ -92,6 +92,13 @@ dt{color:var(--green)}dd{margin:0}
 .story{border:1px solid #2f5a40;padding:.8rem 1rem;background:#0f1a13}
 .story .pic{height:7rem;margin:.6rem 0;border:1px solid #2f5a40;display:flex;align-items:flex-end;padding:.4rem .6rem;color:#7fb899;font-size:.75rem;
   background:linear-gradient(135deg,#1c3a28,#3b1d1d 55%,#5a3a10)}
+.story .pic.has-img{padding:0;position:relative;overflow:hidden;background:#0b1a11}
+.story .pic.has-img img,.term-img img{display:block;width:100%;height:100%;object-fit:cover;filter:grayscale(1) contrast(1.15) brightness(.9) sepia(1) hue-rotate(75deg) saturate(1.6)}
+.story .pic.has-img::after,.term-img::after{content:"";position:absolute;inset:0;pointer-events:none;background:repeating-linear-gradient(0deg,rgba(0,0,0,.28) 0 1px,transparent 1px 3px)}
+.term-img{position:relative;overflow:hidden;border:1px solid #2f5a40;margin:.6rem 0;background:#0b1a11}
+.term-img.lobby{max-width:30rem;aspect-ratio:16/9}
+.term-img.garg{max-width:16rem;aspect-ratio:4/5}
+.term-img img{position:absolute;inset:0}
 .story .ctl{display:flex;gap:.4rem;flex-wrap:wrap;align-items:center}
 .story button{font:inherit;color:var(--green);background:#0b0a0a;border:1px solid #2f5a40;padding:.1rem .6rem;cursor:pointer}
 .story button:hover{background:var(--maroon);color:#fff}
@@ -193,7 +200,7 @@ footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.6rem
   <div class="out">
     <h3>University of Chicago Language Center</h3>
     <p>The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
-    <p class="d">[ Photo: the CLC front desk and lounge, Cobb Hall ]</p>
+    <div class="term-img lobby"><img src="../assets/lobby.jpg" width="339" height="380" alt="The front desk and lounge of the Chicago Language Center in Cobb Hall" style="object-position:50% 45%"></div>
   </div>
 </section>
 
@@ -248,7 +255,7 @@ footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.6rem
     <div class="story" id="story">
       <h3>Where Will Language Study Take You?</h3>
       <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
-      <div class="pic" role="img" aria-label="Placeholder for photo: a smiling student in front of a colorful hillside village in Korea">Photo: a smiling student before a colorful hillside village, Korea</div>
+      <div class="pic has-img"><img src="../assets/student.jpg" width="996" height="663" alt="A smiling UChicago student in front of a colorful hillside village in Korea" style="object-position:70% 50%"></div>
       <p class="d" id="story-n">story 1 of 9 (8 more in the archive)</p>
       <div class="ctl story-js" role="group" aria-label="Story navigation">
         <button type="button" id="sprev" aria-label="Previous story">&lt; prev</button>
@@ -273,7 +280,8 @@ footer ul{list-style:none;padding:0;display:flex;flex-wrap:wrap;gap:.3rem 1.6rem
 <section id="blog" aria-labelledby="h-blog">
   <h2 class="cmd" id="h-blog"><span class="ps">visitor@clc:<i>~</i>$</span><span class="c">tail -n 3 blog.log</span></h2>
   <div class="out">
-    <p class="d">The Latest From Our Blog &mdash; [ Photo: snow-capped gargoyle on a campus building ]</p>
+    <p class="d">The Latest From Our Blog</p>
+    <div class="term-img garg"><img src="../assets/gargoyle.jpg" width="490" height="710" alt="A snow-capped gargoyle statue on a campus building" style="object-position:50% 30%"></div>
     <ol class="log">
       <li>
         <span class="ts">[2024-09-19]</span> <span class="lv">INFO</span> <h3>Setting Ground Rules for AI Use in Language Courses</h3>

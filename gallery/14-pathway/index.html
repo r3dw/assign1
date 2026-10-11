@@ -143,6 +143,8 @@ nav a:hover{border-color:var(--navy);background:var(--lime);color:var(--navy)}
 .cards li:nth-child(4) .story{background:#fff;border-color:#fff;box-shadow:7px 7px 0 var(--coral)}
 .swatch{height:130px;position:relative;overflow:hidden;border-bottom:3px solid var(--navy)}
 .swatch span{position:absolute;left:8px;bottom:6px;background:var(--navy);color:#fff;font-size:.68rem;font-weight:700;padding:2px 7px}
+.swatch img{display:block;width:100%;height:100%;object-fit:cover}
+.s1 img{object-position:center 40%}.s2 img{object-position:80% 30%;filter:contrast(1.05) saturate(1.2)}.s3 img{object-position:center 40%}.s4 img{object-position:center 25%}
 .s1{background:linear-gradient(160deg,#ff9e8f 0 30%,#ffd24d 30% 52%,#0f8c8c 52% 74%,#0c2347 74%)}
 .s2{background:repeating-linear-gradient(45deg,#16346b 0 16px,#0f8c8c 16px 32px)}
 .s3{background:radial-gradient(circle at 70% 40%,#ffd24d 0 22%,transparent 23%),linear-gradient(#ff6b57,#c2321f)}
@@ -439,19 +441,19 @@ footer ul{list-style:none;padding:0;margin:0;display:grid;gap:8px}
     <p class="sub">Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
     <ul class="cards">
       <li><article class="story">
-        <div class="swatch s1" role="img" aria-label="Placeholder: colorful hillside village"><span>Photo: village in Korea</span></div>
+        <div class="swatch s1"><img src="../assets/student.jpg" alt="Student standing before a colorful hillside village" width="300" height="130" loading="lazy"></div>
         <div class="tx"><q>Language took me to a colorful hillside village in Korea.</q><p>Student story</p><a href="#">Read the story<span style="position:absolute;left:-999px"> from Korea</span> &rsaquo;</a></div>
       </article></li>
       <li><article class="story">
-        <div class="swatch s2" role="img" aria-label="Placeholder pattern"><span>Photo placeholder</span></div>
+        <div class="swatch s2"><img src="../assets/student.jpg" alt="Student smiling in front of a colorful hillside" width="300" height="130" loading="lazy"></div>
         <div class="tx"><q>Language skills open doors in the real world.</q><p>Student story</p><a href="#">Read the story<span style="position:absolute;left:-999px"> about real-world language use</span> &rsaquo;</a></div>
       </article></li>
       <li><article class="story">
-        <div class="swatch s3" role="img" aria-label="Placeholder pattern"><span>Photo placeholder</span></div>
+        <div class="swatch s3"><img src="../assets/lobby.jpg" alt="Chicago Language Center front desk" width="300" height="130" loading="lazy"></div>
         <div class="tx"><q>Our instructors love teaching language.</q><p>Instructor story</p><a href="#">Read the story<span style="position:absolute;left:-999px"> about instructors</span> &rsaquo;</a></div>
       </article></li>
       <li><article class="story">
-        <div class="swatch s4" role="img" aria-label="Placeholder pattern"><span>Photo placeholder</span></div>
+        <div class="swatch s4"><img src="../assets/gargoyle.jpg" alt="Snow-dusted stone gargoyle on the University of Chicago campus" width="300" height="130" loading="lazy"></div>
         <div class="tx"><q>Where will your language take you?</q><p>Your story next</p><a href="#ask">Ask us how<span style="position:absolute;left:-999px"> to start your story</span> &rsaquo;</a></div>
       </article></li>
     </ul>

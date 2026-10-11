@@ -68,11 +68,9 @@ h2{font-size:clamp(2.6rem,7vw,6.5rem);margin-bottom:1.5rem;max-width:12ch}
 .r3 :focus-visible{outline-color:var(--maroon);box-shadow:0 0 0 6px #fff}
 .r3 .label{color:var(--maroon)}
 .r3 .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(24px,5vw,80px);align-items:center}
-.photo{aspect-ratio:4/5;max-height:62vh;width:100%;position:relative;overflow:hidden;
-  background:linear-gradient(180deg,#9ec5d6 0 38%,transparent 38%),
-  repeating-linear-gradient(90deg,#d65a3a 0 8%,#f0b43c 8% 16%,#3f8f7b 16% 24%,#e8847a 24% 32%),#c0553a;display:flex;align-items:flex-end}
-.photo::before{content:"";position:absolute;inset:38% 0 0 0;background:linear-gradient(160deg,transparent 30%,rgba(60,90,50,.55));}
-.photo span{position:relative;background:#2a1a12;color:var(--cream);font-size:.75rem;padding:.5em .9em;letter-spacing:.06em}
+.photo{aspect-ratio:4/5;max-height:62vh;width:100%;position:relative;overflow:hidden;background:#2a1a12}
+.photo img{display:block;width:100%;height:100%;object-fit:cover;object-position:84% 50%;filter:saturate(.92) contrast(1.04)}
+.photo::after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 60%,rgba(42,26,18,.28));pointer-events:none}
 .r3 .btn{color:var(--maroon)}
 .r3 .btn:hover{background:var(--maroon);color:#fff}
 .r3 .num{color:var(--maroon);opacity:.15}
@@ -190,7 +188,7 @@ footer ul{display:contents;list-style:none}
       <p class="lead">Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
       <a class="btn" href="#">Read all 9 stories &rsaquo;</a>
     </div>
-    <div class="photo" role="img" aria-label="Placeholder: a smiling student in front of a colorful hillside village in Korea"><span>Photo: student, hillside village, Korea</span></div>
+    <div class="photo"><img src="../assets/student.jpg" width="996" height="663" alt="A smiling student in sunglasses in front of a colorful hillside village in Korea"></div>
   </div>
 </section>
 

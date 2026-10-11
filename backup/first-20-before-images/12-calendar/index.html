@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center | The University of Chicago</title>
+<meta name="description" content="The Chicago Language Center: events, language assessment, English Language Institute, and professional development for 50+ languages.">
+<style>
+:root{
+  --navy:#0b2545;--navy2:#13315c;--blue:#8fc1ee;--pale:#e6f0fa;--paler:#f4f8fc;
+  --ink:#14213a;--mute:#4a5a73;--line:#c9d8ea;--maroon:#800000;--white:#fff;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --serif:Georgia,"Times New Roman",serif;
+  --mono:ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font:16px/1.55 var(--sans);color:var(--ink);background:var(--white)}
+a{color:var(--navy2)}
+:focus-visible{outline:3px solid #ffb703;outline-offset:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;color:#000;padding:.6rem 1rem;z-index:50}
+.skip:focus{left:0}
+.wrap{max-width:1200px;margin:0 auto;padding:0 1.25rem}
+h1,h2,h3{line-height:1.1;margin:0}
+.eyebrow{font:700 .75rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 0 .6rem}
+.band-navy .eyebrow{color:var(--blue)}
+.rule{display:block;width:3rem;height:.3rem;background:var(--maroon);margin-bottom:.8rem}
+.band-navy .rule{background:var(--blue)}
+
+/* top bar */
+.topbar{background:var(--maroon);color:#fff;font-size:.82rem}
+.topbar .wrap{display:flex;justify-content:space-between;align-items:center;gap:1rem;flex-wrap:wrap;padding-top:.45rem;padding-bottom:.45rem}
+.topbar a{color:#fff;text-decoration:none}
+.topbar a:hover{text-decoration:underline}
+.topbar ul{display:flex;gap:1.2rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+.topbar details{position:relative}
+.topbar summary{cursor:pointer;list-style:none}
+.topbar summary::after{content:" \25BE"}
+.topbar summary::-webkit-details-marker{display:none}
+.topbar details div{position:absolute;right:0;z-index:20;background:#fff;color:var(--ink);min-width:12rem;padding:.4rem 0;box-shadow:0 8px 24px rgba(0,0,0,.25)}
+.topbar details div a{display:block;color:var(--navy);padding:.4rem 1rem}
+.topbar details div a:hover{background:var(--pale)}
+
+/* header */
+.site-head{background:#fff;border-bottom:1px solid var(--line)}
+.site-head .wrap{display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;padding-top:1rem;padding-bottom:1rem}
+.brand{text-decoration:none;color:var(--navy)}
+.brand b{display:block;font:700 1.6rem/1 var(--serif)}
+.brand span{font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute)}
+nav ul{display:flex;gap:.2rem 1.4rem;list-style:none;margin:0;padding:0;flex-wrap:wrap}
+nav a{text-decoration:none;font-weight:600;font-size:.85rem;letter-spacing:.06em;text-transform:uppercase;color:var(--navy);padding:.4rem 0;border-bottom:3px solid transparent}
+nav a:hover{border-color:var(--blue)}
+
+/* hero */
+.band-navy{background:var(--navy);color:#fff}
+.band-pale{background:var(--pale)}
+.hero{padding:3rem 0 2.5rem;position:relative;overflow:hidden}
+.hero .wrap{display:grid;grid-template-columns:1.3fr 1fr;gap:2rem;align-items:end;position:relative}
+.hero h1{font:800 clamp(2.6rem,7vw,5.6rem)/.95 var(--sans);letter-spacing:-.03em}
+.hero h1 em{font-style:normal;color:var(--blue)}
+.hero p.lede{font:1.1rem/1.5 var(--serif);max-width:38rem;color:#dbe7f5;margin:1.2rem 0 0}
+.ghost-num{position:absolute;right:-1rem;top:-2.2rem;font:800 clamp(10rem,28vw,24rem)/1 var(--sans);color:rgba(143,193,238,.08);pointer-events:none;user-select:none}
+.next{background:var(--white);color:var(--ink);border-left:.5rem solid var(--blue);padding:1.2rem 1.4rem}
+.next .eyebrow{color:var(--maroon)}
+.next h2{font:700 1.35rem/1.2 var(--serif)}
+.next p{margin:.4rem 0 .9rem;color:var(--mute)}
+.btn{display:inline-flex;align-items:center;gap:.4rem;font:700 .82rem/1 var(--sans);letter-spacing:.04em;text-transform:uppercase;padding:.7rem 1rem;border:2px solid var(--navy);background:var(--navy);color:#fff;text-decoration:none;cursor:pointer;border-radius:0}
+.btn:hover{background:var(--navy2)}
+.btn.ghost{background:transparent;color:var(--navy)}
+.btn.ghost:hover{background:var(--pale)}
+.btn.small{padding:.55rem .8rem;font-size:.75rem}
+.band-navy .btn{background:var(--blue);border-color:var(--blue);color:var(--navy)}
+.band-navy .btn:hover{background:#fff}
+
+/* calendar section */
+.cal-sec{padding:3rem 0}
+.sec-head{display:flex;justify-content:space-between;align-items:end;gap:1rem;flex-wrap:wrap;margin-bottom:1.5rem}
+.sec-head h2{font:800 clamp(2rem,4.5vw,3.2rem)/1 var(--sans);letter-spacing:-.02em;color:var(--navy)}
+.cal-layout{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);gap:2rem;align-items:start}
+.calendar{background:#fff;border:2px solid var(--navy)}
+.cal-top{display:flex;align-items:center;justify-content:space-between;background:var(--navy);color:#fff;padding:.8rem 1rem}
+.cal-top h3{font:800 1.8rem/1 var(--sans);letter-spacing:-.01em}
+.cal-top h3 small{font:600 .9rem var(--mono);color:var(--blue);margin-left:.4rem}
+.cal-top button{background:transparent;border:2px solid var(--blue);color:#fff;width:2.5rem;height:2.5rem;font-size:1.2rem;cursor:pointer}
+.cal-top button:hover:not(:disabled){background:var(--blue);color:var(--navy)}
+.cal-top button:disabled{opacity:.35;cursor:default}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:0}
+.grid .dow{font:700 .7rem/1 var(--mono);letter-spacing:.1em;text-transform:uppercase;text-align:center;padding:.6rem 0;background:var(--pale);color:var(--navy);border-bottom:1px solid var(--line)}
+.cell{min-height:4.6rem;border:0;border-right:1px solid var(--line);border-bottom:1px solid var(--line);background:#fff;font:inherit;color:var(--ink);text-align:left;padding:.4rem .45rem;position:relative;display:flex;flex-direction:column;justify-content:space-between}
+.cell:nth-child(7n+14){border-right:0}
+.cell.blank{background:var(--paler)}
+.cell .n{font:800 1.35rem/1 var(--sans);color:var(--mute)}
+.cell.has{cursor:pointer;background:var(--paler)}
+.cell.has .n{color:var(--navy)}
+.cell.has:hover{background:var(--pale)}
+.cell .tag{font:700 .62rem/1.2 var(--mono);text-transform:uppercase;letter-spacing:.04em;color:#fff;background:var(--navy2);padding:.15rem .3rem;align-self:flex-start;max-width:100%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.cell.sel{background:var(--navy);outline:3px solid var(--blue);outline-offset:-3px}
+.cell.sel .n{color:#fff}
+.cell.sel .tag{background:var(--blue);color:var(--navy)}
+.cell.today .n::after{content:"";display:inline-block;width:.5rem;height:.5rem;border-radius:50%;background:var(--maroon);margin-left:.3rem;vertical-align:middle}
+.cell.today.sel .n::after{background:#ffb703}
+.cell.past{opacity:.6}
+.cal-foot{padding:.7rem 1rem;font-size:.82rem;color:var(--mute);display:flex;gap:1rem;flex-wrap:wrap;align-items:center;border-top:1px solid var(--line)}
+.key i{display:inline-block;width:.7rem;height:.7rem;background:var(--navy2);margin-right:.3rem}
+.key.t i{background:var(--maroon);border-radius:50%}
+.nojs-note{padding:1rem;margin:0}
+.js .nojs-note{display:none}
+.cal-body{display:none}
+.js .cal-body{display:block}
+
+/* upcoming */
+.tools{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1rem}
+.tools label{position:absolute;left:-999px}
+.tools input[type=search]{flex:1 1 12rem;font:inherit;padding:.7rem .8rem;border:2px solid var(--navy);border-radius:0;background:#fff;color:var(--ink)}
+.filter-state{display:none;align-items:center;gap:.6rem;font-size:.9rem;margin:0 0 1rem;background:var(--pale);padding:.5rem .8rem}
+.filter-state.on{display:flex;justify-content:space-between}
+.filter-state button{font:700 .8rem var(--sans);border:0;background:none;color:var(--navy);text-decoration:underline;cursor:pointer}
+.events{list-style:none;margin:0;padding:0;display:grid;gap:1rem}
+.ev{display:grid;grid-template-columns:5.5rem 1fr;background:#fff;border:1px solid var(--line);border-left:0}
+.ev[hidden]{display:none}
+.tile{background:var(--navy);color:#fff;text-align:center;padding:.7rem .3rem;display:flex;flex-direction:column;justify-content:center;font-family:var(--sans)}
+.tile .mon{font:700 .8rem/1 var(--mono);letter-spacing:.16em;text-transform:uppercase;color:var(--blue)}
+.tile .day{font:800 3.1rem/1 var(--sans);letter-spacing:-.04em;margin:.15rem 0}
+.tile .dow{font:700 .72rem/1 var(--mono);letter-spacing:.14em;text-transform:uppercase}
+.ev .body{padding:.9rem 1.1rem}
+.ev h3{font:700 1.15rem/1.25 var(--serif);color:var(--navy)}
+.ev .meta{margin:.3rem 0;font-size:.9rem;color:var(--mute)}
+.count{display:inline-block;font:700 .72rem/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;background:var(--pale);color:var(--navy);padding:.3rem .5rem;margin:.2rem 0 .7rem}
+.count:empty{display:none}
+.count.soon{background:var(--maroon);color:#fff}
+.acts{display:flex;gap:.5rem;flex-wrap:wrap}
+.ics{display:none}
+.js .ics{display:inline-flex}
+.empty{display:none;padding:1.5rem;border:2px dashed var(--line);text-align:center;color:var(--mute)}
+.empty.on{display:block}
+
+details.past{margin-top:1.5rem;border-top:2px solid var(--navy)}
+details.past summary{cursor:pointer;font:800 1.1rem var(--sans);padding:.9rem 0;color:var(--navy);list-style:none}
+details.past summary::before{content:"+";display:inline-block;width:1.4rem;font-family:var(--mono)}
+details.past[open] summary::before{content:"\2212"}
+details.past summary::-webkit-details-marker{display:none}
+details.past ul{list-style:none;padding:0;margin:0 0 .5rem}
+details.past li{display:flex;gap:1rem;padding:.55rem 0;border-top:1px solid var(--line);color:var(--mute)}
+details.past li b{font:700 .85rem var(--mono);color:var(--navy);min-width:3.8rem}
+
+/* mission band */
+.mission{padding:3.5rem 0}
+.mission .wrap{display:grid;grid-template-columns:1.1fr 1fr 1fr;gap:2rem}
+.mission h2{font:800 clamp(1.8rem,3.4vw,2.6rem)/1.05 var(--sans);letter-spacing:-.02em}
+.mission p{margin:.9rem 0 0;color:#dbe7f5}
+.unit{border-top:.35rem solid var(--blue);padding-top:1rem}
+.unit h3{font:700 1.4rem/1.15 var(--serif)}
+.unit .since{font:800 3.6rem/1 var(--sans);letter-spacing:-.04em;color:var(--blue);display:block;margin-bottom:.4rem}
+.unit .since small{font:700 .75rem var(--mono);letter-spacing:.14em;text-transform:uppercase;display:block;color:#fff;margin-bottom:.3rem}
+.unit a{color:#fff;font-weight:700}
+.unit a:hover{color:var(--blue)}
+
+/* stories */
+.stories{padding:3rem 0}
+.stories .wrap{display:grid;grid-template-columns:1fr 1.3fr;gap:2rem;align-items:center}
+.stories h2{font:800 clamp(1.8rem,3.4vw,2.6rem)/1.05 var(--sans);letter-spacing:-.02em;color:var(--navy)}
+.stories p{color:var(--mute);font:1.05rem/1.5 var(--serif)}
+.reel{display:grid;grid-template-columns:repeat(9,1fr);gap:.35rem}
+.reel span{aspect-ratio:1/3;background:linear-gradient(180deg,var(--navy2),var(--blue));opacity:.35}
+.reel span.on{opacity:1;background:linear-gradient(180deg,var(--maroon),#d9825b 60%,var(--blue))}
+.art{position:relative;height:13rem;background:linear-gradient(180deg,#bcd9f2 0 45%,#f4c58d 45% 55%,#9ec5a3 55%);overflow:hidden;border:2px solid var(--navy)}
+.art svg{position:absolute;inset:0;width:100%;height:100%}
+.art .cap{position:absolute;left:0;bottom:0;background:var(--navy);color:#fff;font:700 .72rem var(--mono);letter-spacing:.08em;text-transform:uppercase;padding:.4rem .7rem}
+.stories .btn{margin-top:.5rem}
+
+/* blog */
+.blog{padding:3rem 0}
+.posts{list-style:none;padding:0;margin:0;display:grid;gap:0;border-top:2px solid var(--navy)}
+.post{display:grid;grid-template-columns:7rem 1fr;gap:1.5rem;padding:1.3rem 0;border-bottom:1px solid var(--line)}
+.post time{font:800 2.4rem/.9 var(--sans);letter-spacing:-.03em;color:var(--navy)}
+.post time span{display:block;font:700 .75rem var(--mono);letter-spacing:.14em;color:var(--maroon);text-transform:uppercase;margin-bottom:.2rem}
+.post time small{display:block;font:600 .8rem var(--mono);color:var(--mute);letter-spacing:.04em;margin-top:.35rem}
+.post h3{font:700 1.3rem/1.25 var(--serif)}
+.post h3 a{color:var(--navy);text-decoration:none}
+.post h3 a:hover{text-decoration:underline}
+.post .by{font-size:.82rem;color:var(--mute);margin:.3rem 0}
+.post p{margin:.2rem 0 0;color:#2c3a52}
+.older{display:inline-block;margin-top:1rem;font-weight:700}
+
+/* visit */
+.visit{padding:3rem 0}
+.visit .wrap{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.visit h2{font:800 clamp(1.8rem,3.4vw,2.6rem)/1.05 var(--sans);letter-spacing:-.02em;grid-column:1/-1}
+.visit h3{font:700 .8rem var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin-bottom:.5rem}
+.visit .big{font:800 clamp(1.6rem,3vw,2.3rem)/1.05 var(--sans);letter-spacing:-.02em;margin:0}
+.visit p{margin:.5rem 0 0;color:#dbe7f5}
+.visit a{color:#fff}
+.visit address{font-style:normal}
+.week{display:flex;gap:.25rem;margin-top:.8rem}
+.week span{flex:1;text-align:center;font:700 .7rem var(--mono);padding:.5rem 0;background:rgba(255,255,255,.1);color:#aab9cf}
+.week span.open{background:var(--blue);color:var(--navy)}
+
+footer{background:#06162b;color:#c5d3e6;padding:2.2rem 0;font-size:.88rem}
+footer .wrap{display:grid;gap:1.2rem}
+footer .mark{font:700 1.3rem var(--serif);color:#fff;letter-spacing:.04em}
+footer ul{list-style:none;margin:0;padding:0;display:flex;gap:.4rem 1.4rem;flex-wrap:wrap}
+footer a{color:#fff}
+footer .fine{color:#93a5bf;font-size:.8rem}
+
+.gal{position:fixed;left:.6rem;bottom:.6rem;z-index:40;background:rgba(11,37,69,.92);color:#fff;font:600 .75rem var(--sans);padding:.4rem .7rem;text-decoration:none;border-radius:2rem}
+.gal:hover{background:#000}
+
+@media (max-width:980px){
+  .hero .wrap,.cal-layout,.stories .wrap{grid-template-columns:1fr}
+  .mission .wrap{grid-template-columns:1fr 1fr}
+  .mission .wrap>div:first-child{grid-column:1/-1}
+  .visit .wrap{grid-template-columns:1fr}
+}
+@media (max-width:620px){
+  .mission .wrap{grid-template-columns:1fr}
+  .cell{min-height:3.6rem;padding:.3rem}
+  .cell .n{font-size:1.05rem}
+  .cell .tag{font-size:0;padding:.25rem;width:.6rem;height:.6rem}
+  .ev{grid-template-columns:4.2rem 1fr}
+  .tile .day{font-size:2.3rem}
+  .post{grid-template-columns:1fr;gap:.5rem}
+  .post time{display:flex;gap:.6rem;align-items:baseline}
+  .post time span,.post time small{display:inline;margin:0}
+}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to main content</a>
+<a class="gal" href="../index.html">&larr; Gallery</a>
+
+<div class="topbar">
+  <div class="wrap">
+    <a href="https://www.uchicago.edu">The University of Chicago</a>
+    <ul aria-label="Utility links">
+      <li><a href="#blog">News</a></li>
+      <li><a href="#calendar">Calendar</a></li>
+      <li><details><summary>Students</summary><div><a href="#calendar">Language tables &amp; exchange</a><a href="#ola">Placement testing</a><a href="#stories">Stories</a></div></details></li>
+      <li><details><summary>Instructors</summary><div><a href="#calendar">Workshops</a><a href="#blog">Pedagogy posts</a><a href="#ola">Testing support</a></div></details></li>
+    </ul>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="wrap">
+    <a class="brand" href="#top"><b>Chicago Language Center</b><span>The University of Chicago</span></a>
+    <nav aria-label="Main">
+      <ul>
+        <li><a href="#mission">About</a></li>
+        <li><a href="#calendar">Language Study</a></li>
+        <li><a href="#stories">Innovative Programming</a></li>
+        <li><a href="#calendar">Professional Development</a></li>
+        <li><a href="#calendar">Search</a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+<section class="band-navy hero" id="top" aria-labelledby="h1">
+  <div class="ghost-num" aria-hidden="true">26</div>
+  <div class="wrap">
+    <div>
+      <p class="eyebrow">University of Chicago Language Center</p>
+      <h1 id="h1">Every language<br>has a <em>date</em>.</h1>
+      <p class="lede">The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university.</p>
+    </div>
+    <aside class="next" aria-label="Next event" id="nextCard">
+      <p class="eyebrow">Next up</p>
+      <h2>Language Table: Spanish</h2>
+      <p>Wed, Oct 14 &middot; 12:00&ndash;1:00 PM &middot; Cobb 211</p>
+      <a class="btn small" href="#calendar">See the calendar</a>
+    </aside>
+  </div>
+</section>
+
+<section class="cal-sec band-pale" id="calendar" aria-labelledby="calh">
+  <div class="wrap">
+    <div class="sec-head">
+      <div><span class="rule"></span><p class="eyebrow">Sample events &middot; Fall 2026</p><h2 id="calh">What&rsquo;s on, and when</h2></div>
+      <p style="margin:0;color:var(--mute);max-width:26rem">Pick a day to filter, or search by keyword. The CLC supports departments that teach language courses; it does not itself teach them.</p>
+    </div>
+    <div class="cal-layout">
+      <div class="calendar" aria-label="Event calendar">
+        <p class="nojs-note">The month grid needs JavaScript. All events are listed beside it, in date order.</p>
+        <div class="cal-body">
+          <div class="cal-top">
+            <button type="button" id="prev" aria-label="Previous month">&lsaquo;</button>
+            <h3 id="monthLabel" aria-live="polite">October</h3>
+            <button type="button" id="next" aria-label="Next month">&rsaquo;</button>
+          </div>
+          <div class="grid" id="grid" role="group" aria-labelledby="monthLabel"></div>
+          <div class="cal-foot"><span class="key"><i></i>Event day (select to filter)</span><span class="key t"><i></i>Today</span></div>
+        </div>
+      </div>
+
+      <div>
+        <div class="tools" role="search">
+          <label for="q">Filter events by keyword</label>
+          <input type="search" id="q" placeholder="Filter by keyword: table, workshop, Mandarin&hellip;" autocomplete="off">
+        </div>
+        <p class="filter-state" id="fstate" role="status"><span id="ftext"></span><button type="button" id="clear">Clear filters</button></p>
+        <h3 class="eyebrow" style="margin-top:.2rem">Upcoming events</h3>
+        <ol class="events" id="events">
+          <li class="ev" data-date="2026-10-14" data-start="12:00" data-end="13:00" data-loc="Cobb 211">
+            <div class="tile" aria-hidden="true"><span class="mon">Oct</span><span class="day">14</span><span class="dow">Wed</span></div>
+            <div class="body"><h3>Language Table: Spanish</h3><p class="meta"><span class="sr-date">Wed, Oct 14 &middot; </span>12:00&ndash;1:00 PM &middot; Cobb 211</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Language%20Table%3A%20Spanish">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+          <li class="ev" data-date="2026-10-15" data-start="17:30" data-end="18:30" data-loc="Cobb 201">
+            <div class="tile" aria-hidden="true"><span class="mon">Oct</span><span class="day">15</span><span class="dow">Thu</span></div>
+            <div class="body"><h3>Placement Testing Info Session</h3><p class="meta"><span class="sr-date">Thu, Oct 15 &middot; </span>5:30&ndash;6:30 PM &middot; Cobb 201</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Placement%20Testing%20Info%20Session">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+          <li class="ev" data-date="2026-10-19" data-start="16:00" data-end="17:00" data-loc="Online">
+            <div class="tile" aria-hidden="true"><span class="mon">Oct</span><span class="day">19</span><span class="dow">Mon</span></div>
+            <div class="body"><h3>Workshop: Teaching with Generative AI <small>(instructors)</small></h3><p class="meta"><span class="sr-date">Mon, Oct 19 &middot; </span>4:00&ndash;5:00 PM &middot; Online</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Workshop%3A%20Teaching%20with%20Generative%20AI">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+          <li class="ev" data-date="2026-10-22" data-start="18:00" data-end="19:30" data-loc="Reynolds Club">
+            <div class="tile" aria-hidden="true"><span class="mon">Oct</span><span class="day">22</span><span class="dow">Thu</span></div>
+            <div class="body"><h3>Language Exchange Night</h3><p class="meta"><span class="sr-date">Thu, Oct 22 &middot; </span>6:00&ndash;7:30 PM &middot; Reynolds Club</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Language%20Exchange%20Night">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+          <li class="ev" data-date="2026-10-28" data-start="12:00" data-end="13:00" data-loc="Cobb 211">
+            <div class="tile" aria-hidden="true"><span class="mon">Oct</span><span class="day">28</span><span class="dow">Wed</span></div>
+            <div class="body"><h3>Language Table: Mandarin</h3><p class="meta"><span class="sr-date">Wed, Oct 28 &middot; </span>12:00&ndash;1:00 PM &middot; Cobb 211</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Language%20Table%3A%20Mandarin">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+          <li class="ev" data-date="2026-11-04" data-start="15:00" data-end="16:30" data-loc="Cobb 211">
+            <div class="tile" aria-hidden="true"><span class="mon">Nov</span><span class="day">4</span><span class="dow">Wed</span></div>
+            <div class="body"><h3>Brown Bag: Study Abroad Stories</h3><p class="meta"><span class="sr-date">Wed, Nov 4 &middot; </span>3:00&ndash;4:30 PM &middot; Cobb 211</p><p class="count"></p>
+              <div class="acts"><a class="btn small" href="mailto:languages@uchicago.edu?subject=Register%3A%20Brown%20Bag%3A%20Study%20Abroad%20Stories">Register</a><a class="btn small ghost ics" href="#">Add to Calendar</a></div></div>
+          </li>
+        </ol>
+        <p class="empty" id="empty">No events match. Try another keyword or clear the filters.</p>
+
+        <details class="past" id="pastBox">
+          <summary>Past events archive</summary>
+          <ul id="pastList">
+            <li data-sample><b>Sep 24</b><span>Welcome Back Open House</span></li>
+            <li data-sample><b>Sep 10</b><span>Fundamentals of Language Teaching, session 1</span></li>
+          </ul>
+        </details>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="band-navy mission" id="mission" aria-labelledby="mh">
+  <div class="wrap">
+    <div>
+      <span class="rule"></span>
+      <h2 id="mh">Language study, beyond the requirement.</h2>
+      <p>We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university&rsquo;s language requirements.</p>
+    </div>
+    <div class="unit" id="ola">
+      <span class="since"><small>Since</small>2016</span>
+      <h3>Office of Language Assessment</h3>
+      <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University&rsquo;s language testing and pedagogy programs.</p>
+      <p><a href="#ola">Learn more &rsaquo;</a></p>
+    </div>
+    <div class="unit" id="eli">
+      <span class="since"><small>Since</small>2015</span>
+      <h3>English Language Institute</h3>
+      <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost&rsquo;s Office.</p>
+      <p><a href="#eli">Learn more &rsaquo;</a></p>
+    </div>
+  </div>
+</section>
+
+<section class="stories" id="stories" aria-labelledby="sh">
+  <div class="wrap">
+    <div>
+      <span class="rule"></span>
+      <h2 id="sh">Where Will Language Study Take You?</h2>
+      <p>Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors&rsquo; passion for language teaching.</p>
+      <p class="eyebrow" style="margin-top:1rem">Story 1 of 9</p>
+      <div class="reel" aria-hidden="true"><span class="on"></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+      <p><a class="btn" href="#stories">Read the stories</a></p>
+    </div>
+    <div class="art" role="img" aria-label="Illustration of a colorful hillside village">
+      <svg viewBox="0 0 400 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+        <circle cx="330" cy="40" r="22" fill="#fff6d6"/>
+        <path d="M0 120 Q100 60 200 100 T400 80 V200 H0Z" fill="#7fb08a"/>
+        <g stroke="#0b2545" stroke-width="1.5">
+          <rect x="40" y="110" width="34" height="28" fill="#e76f51"/><rect x="80" y="100" width="30" height="32" fill="#f4a261"/>
+          <rect x="116" y="112" width="36" height="26" fill="#e9c46a"/><rect x="160" y="96" width="32" height="34" fill="#2a9d8f"/>
+          <rect x="200" y="106" width="34" height="30" fill="#8fc1ee"/><rect x="242" y="92" width="30" height="34" fill="#e76f51"/>
+          <rect x="280" y="104" width="38" height="30" fill="#f4a261"/>
+        </g>
+        <path d="M0 150 Q120 120 240 150 T400 140 V200 H0Z" fill="#5f9a6e"/>
+      </svg>
+      <span class="cap">Photo: student in a hillside village, Korea</span>
+    </div>
+  </div>
+</section>
+
+<section class="blog band-pale" id="blog" aria-labelledby="bh">
+  <div class="wrap">
+    <div class="sec-head"><div><span class="rule"></span><p class="eyebrow">News &amp; posts</p><h2 id="bh" style="font:800 clamp(2rem,4.5vw,3.2rem)/1 var(--sans);letter-spacing:-.02em;color:var(--navy)">The Latest From Our Blog</h2></div></div>
+    <ol class="posts">
+      <li class="post"><time datetime="2024-09-19"><span>Sep</span>19<small>2024</small></time>
+        <div><h3><a href="#blog">Setting Ground Rules for AI Use in Language Courses</a></h3><p class="by">by Heather Guerrero &middot; Instructional Technology</p><p>In my previous post I presented some very basic elements of AI literacy. Here I&rsquo;ll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students&hellip;</p></div></li>
+      <li class="post"><time datetime="2024-09-06"><span>Sep</span>6<small>2024</small></time>
+        <div><h3><a href="#blog">Generative AI: The Basics and Guardrails</a></h3><p class="by">by Heather Guerrero &middot; Instructional Technology</p><p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the&hellip;</p></div></li>
+      <li class="post"><time datetime="2024-05-08"><span>May</span>8<small>2024</small></time>
+        <div><h3><a href="#blog">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</a></h3><p class="by">by Heather Guerrero &middot; Events, Uncategorized</p><p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses&hellip;</p></div></li>
+    </ol>
+    <a class="older" href="#blog">&laquo; Older Entries</a>
+  </div>
+</section>
+
+<section class="band-navy visit" id="visit" aria-labelledby="vh">
+  <div class="wrap">
+    <h2 id="vh">Visit, call, or write.</h2>
+    <div>
+      <h3>Location</h3>
+      <address><p class="big">Cobb Hall, Suite 211</p><p>5811 S Ellis Ave, Chicago, IL 60637</p></address>
+      <p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p>
+    </div>
+    <div>
+      <h3>Hours</h3>
+      <p class="big">Mon&ndash;Fri<br>8:30 AM&ndash;5:00 PM</p>
+      <div class="week" aria-hidden="true"><span>S</span><span class="open">M</span><span class="open">T</span><span class="open">W</span><span class="open">T</span><span class="open">F</span><span>S</span></div>
+    </div>
+    <div>
+      <h3>Contact</h3>
+      <p>For questions, reservations, and further info, please contact us by phone or email:</p>
+      <p class="big"><a href="tel:+17737029772">(773) 702-9772</a></p>
+      <p><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="mark">THE UNIVERSITY OF CHICAGO</div>
+    <div>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; 773.702.9772 &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></div>
+    <nav aria-label="Footer"><ul>
+      <li><a href="#ola">Office of Language Assessment</a></li><li><a href="#mission">Mellon Collaborative Partners</a></li><li><a href="#mission">Language Pedagogy Innovation Initiative</a></li><li><a href="#eli">English Language Institute</a></li><li><a href="#top">Accessibility</a></li>
+    </ul></nav>
+    <div class="fine">&copy; 2019-2026 The University of Chicago All rights reserved. Design exploration: events and the event calendar are sample content, not real listings.</div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+  var MONTHS=['January','February','March','April','May','June','July','August','September','October','November','December'];
+  var DOW=['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+  function parse(s){var p=s.split('-');return new Date(+p[0],+p[1]-1,+p[2]);}
+  function key(d){return d.getFullYear()+'-'+('0'+(d.getMonth()+1)).slice(-2)+'-'+('0'+d.getDate()).slice(-2);}
+  function mid(d){return new Date(d.getFullYear(),d.getMonth(),d.getDate());}
+
+  // Reference "today": real date while the sample season is current, else a fixed demo date.
+  var real=mid(new Date()), lo=new Date(2026,8,1), hi=new Date(2026,10,4);
+  var today=(real>=lo&&real<=hi)?real:new Date(2026,9,11);
+
+  var list=document.getElementById('events');
+  var items=[].slice.call(list.querySelectorAll('.ev'));
+  var pastList=document.getElementById('pastList');
+  var events=items.map(function(li){
+    return {li:li,date:li.getAttribute('data-date'),title:li.querySelector('h3').textContent.trim(),
+      loc:li.getAttribute('data-loc'),start:li.getAttribute('data-start'),end:li.getAttribute('data-end'),
+      text:li.textContent.toLowerCase()};
+  });
+  var byDate={};
+  events.forEach(function(e){(byDate[e.date]=byDate[e.date]||[]).push(e);});
+
+  // countdown + ics
+  function icsEsc(s){return s.replace(/\\/g,'\\\\').replace(/;/g,'\;').replace(/,/g,'\\,').replace(/\n/g,'\\n');}
+  function stamp(date,time){return date.replace(/-/g,'')+'T'+time.replace(':','')+'00';}
+  events.forEach(function(e,i){
+    var days=Math.round((parse(e.date)-today)/86400000);
+    e.days=days;
+    var c=e.li.querySelector('.count');
+    if(days<0){c.textContent='Ended';}
+    else if(days===0){c.textContent='Today';c.classList.add('soon');}
+    else if(days===1){c.textContent='Starts tomorrow';c.classList.add('soon');}
+    else{c.textContent='Starts in '+days+' days';if(days<=3)c.classList.add('soon');}
+    var a=e.li.querySelector('.ics');
+    var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Chicago Language Center//Sample//EN','BEGIN:VEVENT',
+      'UID:clc-sample-'+e.date+'-'+i+'@languages.example','DTSTAMP:20261001T000000Z',
+      'DTSTART:'+stamp(e.date,e.start),'DTEND:'+stamp(e.date,e.end),
+      'SUMMARY:'+icsEsc(e.title.replace(/\s+/g,' ')),'LOCATION:'+icsEsc(e.loc+', University of Chicago'),
+      'DESCRIPTION:'+icsEsc('Chicago Language Center sample event.'),'END:VEVENT','END:VCALENDAR'].join('\r\n');
+    a.href='data:text/calendar;charset=utf-8,'+encodeURIComponent(ics);
+    a.setAttribute('download','clc-'+e.date+'.ics');
+    a.setAttribute('aria-label','Add '+e.title.replace(/\s+/g,' ')+' to calendar');
+  });
+  // move ended events into the archive
+  events.forEach(function(e){
+    if(e.days<0){
+      var li=document.createElement('li');
+      var d=parse(e.date);
+      li.innerHTML='<b>'+MONTHS[d.getMonth()].slice(0,3)+' '+d.getDate()+'</b>';
+      var s=document.createElement('span');s.textContent=e.title;li.appendChild(s);
+      pastList.insertBefore(li,pastList.firstChild);
+      e.li.remove();e.ended=true;
+    }
+  });
+  var live=events.filter(function(e){return !e.ended;});
+
+  // next-up card
+  var nx=live[0],card=document.getElementById('nextCard');
+  if(nx){
+    var nd=parse(nx.date);
+    card.querySelector('h2').textContent=nx.title;
+    var cnt=nx.li.querySelector('.count').textContent;
+    card.querySelector('p:not(.eyebrow)').textContent=DOW[nd.getDay()]+', '+MONTHS[nd.getMonth()].slice(0,3)+' '+nd.getDate()+' \u00b7 '+nx.li.querySelector('.meta').textContent.replace(/^[^\u00b7]*\u00b7\s*/,'')+' \u00b7 '+cnt;
+  }
+
+  // calendar
+  var grid=document.getElementById('grid'),label=document.getElementById('monthLabel');
+  var prev=document.getElementById('prev'),next=document.getElementById('next');
+  var view=0, base=[[2026,9],[2026,10]];
+  var sel=null;
+  function render(){
+    var y=base[view][0],m=base[view][1];
+    label.innerHTML=MONTHS[m]+' <small>'+y+'</small>';
+    grid.innerHTML='';
+    DOW.forEach(function(d){var s=document.createElement('div');s.className='dow';s.textContent=d;grid.appendChild(s);});
+    var first=new Date(y,m,1).getDay(), n=new Date(y,m+1,0).getDate();
+    for(var i=0;i<first;i++){var b=document.createElement('div');b.className='cell blank';grid.appendChild(b);}
+    for(var d=1;d<=n;d++){
+      var dt=new Date(y,m,d),k=key(dt),evs=byDate[k];
+      var el=document.createElement(evs?'button':'div');
+      el.className='cell';
+      var num=document.createElement('span');num.className='n';num.textContent=d;el.appendChild(num);
+      if(+dt===+today){el.classList.add('today');}
+      if(dt<today)el.classList.add('past');
+      if(evs){
+        el.type='button';el.classList.add('has');
+        el.setAttribute('aria-pressed',sel===k?'true':'false');
+        el.setAttribute('aria-label',MONTHS[m]+' '+d+', '+evs.length+' event'+(evs.length>1?'s':'')+': '+evs.map(function(e){return e.title.replace(/\s+/g,' ');}).join('; ')+(+dt===+today?' (today)':''));
+        var t=document.createElement('span');t.className='tag';t.textContent=evs[0].title.replace(/^(Language Table|Workshop|Brown Bag):\s*/,'$1 ').replace(/\s*\(instructors\)/,'');
+        t.setAttribute('aria-hidden','true');
+        el.appendChild(t);
+        if(sel===k)el.classList.add('sel');
+        (function(kk){el.addEventListener('click',function(){sel=(sel===kk)?null:kk;apply();render();focusDay(kk);});})(k);
+        el.setAttribute('data-k',k);
+      } else if(+dt===+today){ el.setAttribute('aria-label',MONTHS[m]+' '+d+' (today)'); }
+      grid.appendChild(el);
+    }
+    prev.disabled=view===0;next.disabled=view===base.length-1;
+  }
+  function focusDay(k){var b=grid.querySelector('[data-k="'+k+'"]');if(b)b.focus();}
+  prev.addEventListener('click',function(){if(view>0){view--;render();}});
+  next.addEventListener('click',function(){if(view<base.length-1){view++;render();}});
+
+  // filtering
+  var q=document.getElementById('q'),fstate=document.getElementById('fstate'),ftext=document.getElementById('ftext'),empty=document.getElementById('empty');
+  function apply(){
+    var term=q.value.trim().toLowerCase(),shown=0;
+    live.forEach(function(e){
+      var ok=(!sel||e.date===sel)&&(!term||e.text.indexOf(term)>-1);
+      e.li.hidden=!ok;if(ok)shown++;
+    });
+    var parts=[];
+    if(sel){var d=parse(sel);parts.push(DOW[d.getDay()]+', '+MONTHS[d.getMonth()]+' '+d.getDate());}
+    if(term)parts.push('\u201c'+q.value.trim()+'\u201d');
+    fstate.classList.toggle('on',parts.length>0);
+    ftext.textContent=parts.length?'Showing '+shown+' event'+(shown===1?'':'s')+' for '+parts.join(' + '):'';
+    empty.classList.toggle('on',shown===0);
+  }
+  q.addEventListener('input',apply);
+  document.getElementById('clear').addEventListener('click',function(){sel=null;q.value='';apply();render();q.focus();});
+
+  // open on the month of the next event
+  if(nx){var nd2=parse(nx.date);for(var v=0;v<base.length;v++){if(base[v][0]===nd2.getFullYear()&&base[v][1]===nd2.getMonth())view=v;}}
+  render();apply();
+})();
+</script>
+</body>
+</html>

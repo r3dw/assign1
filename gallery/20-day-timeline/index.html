@@ -86,6 +86,9 @@ section.hour{position:relative;overflow:hidden;padding:5.5rem 0 6rem}
 .spires.dusk{background:#2b1a4a}
 .spires.dusk.back{background:#7a3f6e}
 
+.skyline{position:absolute;left:0;right:0;bottom:0;width:100%;height:150px;object-fit:cover;object-position:50% 100%;z-index:1;pointer-events:none;mix-blend-mode:multiply;filter:sepia(.35) saturate(.9);-webkit-mask-image:linear-gradient(transparent,#000 55%);mask-image:linear-gradient(transparent,#000 55%)}
+@media (max-width:520px){.skyline{height:100px}}
+
 /* ---------- clouds ---------- */
 .cloud{position:absolute;z-index:1;width:150px;height:44px;background:#fff;border-radius:44px;opacity:.85;pointer-events:none;animation:drift 70s linear infinite alternate}
 .cloud::before,.cloud::after{content:"";position:absolute;background:#fff;border-radius:50%}
@@ -106,6 +109,7 @@ section.hour{position:relative;overflow:hidden;padding:5.5rem 0 6rem}
 .site{max-width:1160px;margin:0 auto;padding:1.4rem 1.25rem 0;display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:1rem 2rem}
 .site .name{font-family:var(--round);font-size:1.5rem;font-weight:800;color:var(--maroon);line-height:1.1}
 .site .name span{display:block;font-size:.75rem;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);font-weight:700}
+.logo-chip{display:block;width:230px;max-width:100%;height:auto;aspect-ratio:300/85;background:#fff;padding:.35rem .6rem;border-radius:16px;box-shadow:0 6px 16px -8px rgba(27,33,64,.4)}
 .site ul{display:flex;flex-wrap:wrap;gap:.3rem 1.2rem;font-weight:600;font-size:.95rem}
 .site a{color:var(--ink);text-decoration:none;padding:.2rem 0;border-bottom:2px solid transparent}
 .site a:hover{border-bottom-color:var(--maroon)}
@@ -122,8 +126,7 @@ h1 em{font-style:normal;color:var(--maroon)}
 .agenda a:hover{background:rgba(128,0,0,.09)}
 .agenda time{font-family:var(--round);font-weight:800;color:var(--maroon);min-width:4.4em;font-variant-numeric:tabular-nums}
 .door{display:flex;gap:1rem;align-items:center;margin-top:1.4rem;padding:1rem;border:2px dashed rgba(27,33,64,.3);border-radius:20px;font-size:.9rem}
-.door .d{flex:none;width:54px;height:76px;border-radius:27px 27px 4px 4px;background:linear-gradient(90deg,#5c0000 0 48%,#430000 48% 52%,#5c0000 52%);position:relative}
-.door .d::after{content:"";position:absolute;right:9px;top:44px;width:6px;height:6px;border-radius:50%;background:#ffd45c}
+.door .d{flex:none;width:54px;height:76px;border-radius:27px 27px 4px 4px;object-fit:cover;object-position:50% 40%;display:block;box-shadow:0 0 0 3px #5c0000}
 
 /* ---------- 10:00 testing ---------- */
 #testing{background:linear-gradient(#ffe3b8 0,#d8e8ee 35%,#bfe3f5 100%)}
@@ -162,19 +165,8 @@ details p{margin:.6rem 0 0}
 #postcard{background:linear-gradient(#8fd0f5 0,#a9d9ee 50%,#c8e3df 100%);padding:4.5rem 0 5.5rem}
 .pc{display:grid;grid-template-columns:minmax(0,1.1fr) minmax(0,1fr);background:#fffaf0;border-radius:14px;box-shadow:0 22px 44px -18px rgba(27,33,64,.55);transform:rotate(-1.4deg);max-width:980px;margin:0 auto;overflow:hidden;border:10px solid #fff;outline:1px solid rgba(27,33,64,.12);position:relative}
 .pc-art{position:relative;min-height:320px;background:linear-gradient(#9fd7f2 0,#d8f0f7 45%,#fbe6b5 100%);overflow:hidden}
-.pc-art .sunny{position:absolute;right:16%;top:12%;width:64px;height:64px;border-radius:50%;background:#ffd45c}
-.pc-art .hill{position:absolute;left:-10%;right:-10%;bottom:0;height:75%;background:linear-gradient(#5aa05a,#2f6f4d);clip-path:polygon(0 38%,18% 20%,40% 32%,64% 6%,100% 30%,100% 100%,0 100%)}
-.pc-art .town{position:absolute;left:8%;right:8%;bottom:0;height:60%;display:flex;align-items:flex-end;gap:0;padding-bottom:6%}
-.pc-art .town i{display:block;flex:1;position:relative;margin:0 1px;border-radius:2px 2px 0 0}
-.pc-art .town i::before{content:"";position:absolute;left:-6%;right:-6%;top:-11px;height:12px;background:inherit;filter:brightness(.78);clip-path:polygon(0 100%,50% 0,100% 100%)}
-.pc-art .town i:nth-child(1){height:46%;background:#f4a9a0}
-.pc-art .town i:nth-child(2){height:62%;background:#ffd45c}
-.pc-art .town i:nth-child(3){height:40%;background:#f08a5d}
-.pc-art .town i:nth-child(4){height:72%;background:#7fc4d8}
-.pc-art .town i:nth-child(5){height:50%;background:#e9728f}
-.pc-art .town i:nth-child(6){height:64%;background:#ffe9a6}
-.pc-art .town i:nth-child(7){height:44%;background:#b49be0}
-.pc-art .photo{position:absolute;left:.7rem;bottom:.6rem;background:rgba(255,255,255,.85);font-size:.7rem;padding:.15rem .6rem;border-radius:999px}
+.pc-art img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:75% 40%;display:block;filter:saturate(1.05) contrast(1.03)}
+.pc-art .photo{z-index:1;position:absolute;left:.7rem;bottom:.6rem;background:rgba(255,255,255,.85);font-size:.7rem;padding:.15rem .6rem;border-radius:999px}
 .pc-text{padding:1.6rem 1.8rem;position:relative;background:repeating-linear-gradient(transparent 0 33px,rgba(27,33,64,.08) 33px 34px)}
 .pc-text .stamp{position:absolute;right:1.2rem;top:1.1rem;width:66px;height:78px;border:3px dotted var(--maroon);background:#fff;display:grid;place-items:center;font-family:var(--round);font-weight:800;color:var(--maroon);font-size:.8rem;text-align:center;line-height:1.1}
 .pc-text .mark{position:absolute;right:5.2rem;top:2.2rem;width:74px;height:74px;border:2px solid rgba(27,33,64,.5);border-radius:50%;display:grid;place-items:center;font-size:.58rem;font-weight:800;letter-spacing:.06em;text-align:center;color:rgba(27,33,64,.75);transform:rotate(-12deg);line-height:1.2}
@@ -242,6 +234,7 @@ footer{position:relative;z-index:2;background:#120f26;color:#e8e3f5;padding:3rem
 footer a{color:#ffe08a}
 footer a:hover{color:#fff}
 footer .wm{font-family:var(--round);font-size:1.6rem;font-weight:800;color:#fff;letter-spacing:.02em}
+footer .wm-img{display:block;width:240px;max-width:100%;height:auto;aspect-ratio:284/70;filter:contrast(3);mix-blend-mode:lighten}
 footer .links{display:flex;flex-wrap:wrap;gap:.4rem 1.4rem;margin:1.2rem 0}
 footer address{font-style:normal}
 footer .fine{margin-top:1.4rem;font-size:.82rem;color:#c9c2e0}
@@ -328,7 +321,7 @@ footer :focus-visible{outline-color:#ffe08a}
       </ul>
     </div></div>
     <div class="site">
-      <div class="name"><span>The University of Chicago</span>Chicago Language Center</div>
+      <div class="name"><img class="logo-chip" src="../assets/logo.jpg" width="300" height="85" alt="The University of Chicago, Chicago Language Center"></div>
       <nav aria-label="Main">
         <ul>
           <li><a href="#">About</a></li>
@@ -359,12 +352,11 @@ footer :focus-visible{outline-color:#ffe08a}
           <li><a href="#eli"><time>3:30 PM</time> English Language Institute</a></li>
           <li><a href="#close"><time>5:00 PM</time> Closing time</a></li>
         </ol>
-        <div class="door"><span class="d" aria-hidden="true"></span><span>Photo slot: the CLC front desk and lounge in Cobb Hall, Suite 211.</span></div>
+        <div class="door"><img class="d" src="../assets/lobby.jpg" width="54" height="76" alt="The CLC front desk and lounge in Cobb Hall"><span>Photo slot: the CLC front desk and lounge in Cobb Hall, Suite 211.</span></div>
       </div>
     </div>
   </div>
-  <div class="spires dawn back" aria-hidden="true"></div>
-  <div class="spires dawn" aria-hidden="true"></div>
+  <img class="skyline" src="../assets/hero-skyline.jpg" width="1800" height="152" alt="Gothic towers and rooftops of the University of Chicago campus seen from above">
 </section>
 
 <!-- ================= 10:00 ================= -->
@@ -437,10 +429,9 @@ footer :focus-visible{outline-color:#ffe08a}
 <section class="hour" id="postcard" data-min="780" aria-labelledby="h-post">
   <div class="wrap">
     <article class="pc">
-      <div class="pc-art" aria-hidden="true">
-        <span class="sunny"></span><span class="hill"></span>
-        <span class="town"><i></i><i></i><i></i><i></i><i></i><i></i><i></i></span>
-        <span class="photo">Photo: student before a hillside village in Korea</span>
+      <div class="pc-art">
+        <img src="../assets/student.jpg" width="996" height="663" alt="A smiling student in sunglasses in front of a colorful hillside village in Korea">
+        <span class="photo" aria-hidden="true">Photo: student before a hillside village in Korea</span>
       </div>
       <div class="pc-text">
         <span class="stamp" aria-hidden="true">9<br>stories</span>
@@ -564,7 +555,7 @@ footer :focus-visible{outline-color:#ffe08a}
 
 <footer>
   <div class="wrap">
-    <div class="wm">THE UNIVERSITY OF CHICAGO</div>
+    <div class="wm"><img class="wm-img" src="../assets/footer-logo.jpg" width="284" height="70" alt="The University of Chicago"></div>
     <address>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 &middot; <a href="tel:+17737029772">773.702.9772</a> &middot; <a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></address>
     <nav class="links" aria-label="Footer">
       <a href="#">Office of Language Assessment</a>

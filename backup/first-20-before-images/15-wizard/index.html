@@ -1,0 +1,438 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Chicago Language Center — Find your starting point</title>
+<meta name="description" content="Three questions to find the right door at the University of Chicago Language Center.">
+<style>
+:root{--maroon:#800000;--maroon-d:#5c0000;--ink:#1d1a1a;--mute:#5f5858;--line:#e6e0dd;--tint:#faf6f4;--serif:Georgia,"Iowan Old Style","Palatino Linotype",Palatino,"Times New Roman",serif;--sans:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;font-family:var(--serif);color:var(--ink);background:#fff;line-height:1.6;font-size:1.125rem}
+a{color:var(--maroon);text-underline-offset:3px}
+a:hover{color:var(--maroon-d)}
+:focus-visible{outline:3px solid var(--maroon);outline-offset:3px;border-radius:2px}
+.skip{position:absolute;left:-999px;top:0;background:#fff;padding:.5rem 1rem;z-index:10;font-family:var(--sans)}
+.skip:focus{left:0}
+.top{display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:1.1rem clamp(1.25rem,5vw,4rem);font-family:var(--sans);font-size:.85rem}
+.top a{color:var(--mute);text-decoration:none}
+.top a:hover{color:var(--maroon);text-decoration:underline}
+.top .gal{font-size:.8rem}
+.brand{font-family:var(--serif);font-size:1.05rem;color:var(--ink)!important;letter-spacing:.01em}
+.brand b{color:var(--maroon);font-weight:400}
+.wrap{max-width:62rem;margin:0 auto;padding:0 clamp(1.25rem,5vw,3rem)}
+.narrow{max-width:42rem}
+
+/* wizard */
+.wizard{min-height:calc(100vh - 8rem);min-height:calc(100svh - 8rem);display:flex;flex-direction:column;justify-content:center;padding:2rem 0 4rem}
+.eyebrow{font-family:var(--sans);font-size:.8rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);margin:0 0 1.5rem}
+.intro-nojs{margin:0}
+h1,h2,h3{font-weight:400;line-height:1.12;margin:0}
+.q{font-size:clamp(2.2rem,6.5vw,4.6rem);letter-spacing:-.015em;margin-bottom:.4em;outline:none}
+.hint{font-family:var(--sans);color:var(--mute);font-size:.95rem;margin:0 0 2rem}
+fieldset{border:0;margin:0;padding:0;min-width:0}
+.opts{display:grid;gap:.5rem;list-style:none;margin:0;padding:0;max-width:34rem}
+.opt{position:relative}
+.opt input{position:absolute;opacity:0;inset:0;width:100%;height:100%;margin:0;cursor:pointer}
+.opt label{display:flex;align-items:baseline;gap:1rem;padding:.8rem 1.1rem;border:1px solid var(--line);border-radius:4px;font-size:clamp(1.2rem,3vw,1.6rem);cursor:pointer;transition:border-color .15s,background .15s}
+.opt label small{font-family:var(--sans);font-size:.75rem;color:var(--mute);min-width:1rem}
+.opt:hover label{border-color:var(--maroon)}
+.opt input:checked+label{border-color:var(--maroon);background:var(--tint);box-shadow:inset 3px 0 0 var(--maroon)}
+.opt input:focus-visible+label{outline:3px solid var(--maroon);outline-offset:2px}
+.lang{width:100%;max-width:34rem;font:inherit;font-size:clamp(1.4rem,4vw,2rem);padding:.4rem 0;border:0;border-bottom:2px solid var(--ink);background:transparent;border-radius:0;color:var(--ink)}
+.lang:focus{outline:none;border-color:var(--maroon)}
+.lang:focus-visible{outline:3px solid var(--maroon);outline-offset:6px}
+.nav{display:flex;align-items:center;gap:1.5rem;margin-top:2.25rem;font-family:var(--sans);flex-wrap:wrap}
+.btn{font:inherit;font-size:1rem;background:var(--maroon);color:#fff;border:2px solid var(--maroon);padding:.7rem 1.6rem;border-radius:999px;cursor:pointer;text-decoration:none;display:inline-block}
+.btn:hover:not(:disabled){background:var(--maroon-d);border-color:var(--maroon-d);color:#fff}
+.btn:disabled{background:#e9e3e0;border-color:#e9e3e0;color:#6b6464;cursor:not-allowed}
+.btn.ghost{background:transparent;color:var(--maroon)}
+.btn.ghost:hover{background:var(--tint);color:var(--maroon-d)}
+.link{font:inherit;font-size:.95rem;background:none;border:0;color:var(--maroon);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:.3rem 0}
+.keys{font-size:.8rem;color:var(--mute)}
+kbd{font-family:var(--sans);border:1px solid var(--line);border-radius:3px;padding:0 .35em;background:var(--tint)}
+.dots{display:flex;gap:.7rem;align-items:center;margin-bottom:2.5rem;font-family:var(--sans);font-size:.8rem;color:var(--mute)}
+.dots i{width:.7rem;height:.7rem;border-radius:50%;border:1.5px solid var(--maroon);display:block;transition:background .2s,transform .2s}
+.dots i.on{background:var(--maroon);transform:scale(1.25)}
+.dots i.done{background:var(--maroon);opacity:.45}
+.step[hidden]{display:none}
+.step{animation:rise .45s ease both}
+@keyframes rise{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
+
+.result{border:1px solid var(--maroon);border-radius:6px;padding:clamp(1.5rem,4vw,2.75rem);background:linear-gradient(180deg,#fff,var(--tint));max-width:44rem}
+.result h3{font-size:clamp(1.9rem,5vw,3rem);margin-bottom:.5em;letter-spacing:-.01em}
+.result p{margin:.6em 0}
+.result .acts{display:flex;gap:.75rem;flex-wrap:wrap;margin-top:1.5rem;font-family:var(--sans)}
+.result ul{padding-left:1.2rem;margin:.6em 0}
+.mission{border-top:1px solid var(--line);margin-top:1.5rem;padding-top:1rem;font-size:1rem;color:var(--mute)}
+.recap{font-family:var(--sans);font-size:.85rem;color:var(--mute);margin:0 0 1rem}
+
+.nojs-only{display:block}
+.js .nojs-only{display:none}
+.wizard-js{display:none}
+.js .wizard-js{display:block}
+
+/* divider */
+.divider{display:flex;align-items:center;gap:1.25rem;font-family:var(--sans);font-size:.85rem;letter-spacing:.14em;text-transform:uppercase;color:var(--mute);margin:0 auto;max-width:62rem;padding:0 clamp(1.25rem,5vw,3rem)}
+.divider::before,.divider::after{content:"";flex:1;height:1px;background:var(--line)}
+.divider a{color:var(--mute);text-decoration:none}
+
+/* browse */
+.browse section{padding:clamp(3rem,8vw,6rem) 0;border-top:1px solid var(--line)}
+.browse section:first-child{border-top:0}
+.browse h2{font-size:clamp(1.9rem,4.5vw,3rem);margin-bottom:.6em;letter-spacing:-.01em}
+.browse h2+p.lede{font-size:1.3rem}
+.units{display:grid;grid-template-columns:1fr 1fr;gap:clamp(1.5rem,5vw,4rem)}
+.unit{border-top:2px solid var(--maroon);padding-top:1rem}
+.unit h3{font-size:1.7rem;margin-bottom:.4em}
+.unit .est{font-family:var(--sans);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--maroon)}
+.story{display:grid;grid-template-columns:minmax(0,18rem) 1fr;gap:2.5rem;align-items:center}
+.art{aspect-ratio:4/5;border-radius:4px;background:linear-gradient(160deg,#f3e7e3,#e8d3cd);position:relative;overflow:hidden}
+.art svg{position:absolute;inset:0;width:100%;height:100%}
+.art span{position:absolute;left:.75rem;bottom:.6rem;font-family:var(--sans);font-size:.7rem;color:var(--maroon-d)}
+.dotsrow{display:flex;gap:.45rem;margin-top:1.25rem}
+.dotsrow i{width:.5rem;height:.5rem;border-radius:50%;border:1.5px solid var(--maroon)}
+.dotsrow i:first-child{background:var(--maroon)}
+.posts{list-style:none;margin:0;padding:0}
+.posts li{padding:1.5rem 0;border-top:1px solid var(--line)}
+.posts li:first-child{border-top:0;padding-top:0}
+.posts h3{font-size:1.45rem;margin-bottom:.25em}
+.meta{font-family:var(--sans);font-size:.8rem;color:var(--mute);margin:0 0 .4rem}
+.posts p{margin:0;color:#3d3838;font-size:1rem}
+.visit{display:grid;grid-template-columns:repeat(3,1fr);gap:2rem}
+.visit h3{font-family:var(--sans);font-size:.78rem;letter-spacing:.14em;text-transform:uppercase;color:var(--maroon);margin-bottom:.6rem}
+.visit p{margin:0 0 .6rem;font-size:1rem}
+footer{border-top:1px solid var(--line);padding:3rem 0 3.5rem;font-family:var(--sans);font-size:.88rem;color:var(--mute)}
+footer .wm{font-family:var(--serif);font-size:1.3rem;color:var(--maroon);margin:0 0 .75rem}
+footer ul{list-style:none;padding:0;margin:1rem 0;display:flex;flex-wrap:wrap;gap:.4rem 1.5rem}
+footer p{margin:.3rem 0}
+.sitenav{display:flex;flex-wrap:wrap;gap:.5rem 1.5rem;font-family:var(--sans);font-size:.9rem;padding:0 clamp(1.25rem,5vw,4rem) 0}
+.sitenav a{color:var(--ink);text-decoration:none}
+.sitenav a:hover{color:var(--maroon);text-decoration:underline}
+.again{margin:1.5rem 0 0;font-family:var(--sans);font-size:.9rem}
+
+@media (max-width:760px){
+ .units,.story,.visit{grid-template-columns:1fr}
+ .art{aspect-ratio:16/9;max-height:14rem}
+ .top{flex-wrap:wrap}
+ .keys{display:none}
+}
+@media (prefers-reduced-motion:reduce){
+ html{scroll-behavior:auto}
+ .step{animation:none}
+ *{transition:none!important}
+}
+</style>
+<script>document.documentElement.className+=" js";</script>
+</head>
+<body>
+<a class="skip" href="#browse">Skip to site information</a>
+<header>
+ <div class="top">
+  <a href="https://www.uchicago.edu/">The University of Chicago</a>
+  <span><a class="gal" href="../index.html">← Gallery</a></span>
+ </div>
+ <div class="top" style="padding-top:0">
+  <a class="brand" href="#top"><b>Chicago</b> Language Center</a>
+ </div>
+ <nav class="sitenav" aria-label="Main">
+  <a href="#mission">About</a><a href="#units">Language Study</a><a href="#stories">Innovative Programming</a><a href="#blog">Professional Development</a><a href="#visit">Visit</a>
+ </nav>
+</header>
+
+<main id="top">
+ <div class="wrap">
+  <section class="wizard" aria-labelledby="wiz-title">
+   <!-- no-JS intro -->
+   <div class="nojs-only">
+    <p class="eyebrow">University of Chicago Language Center</p>
+    <h1 class="q">A hub for the 50+ languages taught at Chicago.</h1>
+    <p class="hint" style="font-size:1.1rem;max-width:34rem">Scroll down to browse our units, stories, news and visiting information.</p>
+   </div>
+
+   <!-- JS wizard -->
+   <div class="wizard-js" id="wiz" aria-live="off">
+    <p class="eyebrow">University of Chicago Language Center</p>
+    <div class="dots" id="dots" role="img" aria-label="Step 1 of 3">
+     <i></i><i></i><i></i><span id="dotlabel" style="margin-left:.5rem">Step 1 of 3</span>
+    </div>
+
+    <form id="form" novalidate>
+     <div class="step" data-step="0">
+      <fieldset>
+       <legend><h1 class="q" id="wiz-title" tabindex="-1">Who are you?</h1></legend>
+       <p class="hint">Choose the one that fits best.</p>
+       <ul class="opts" role="presentation">
+        <li class="opt"><input type="radio" name="who" id="w1" value="student"><label for="w1"><small>1</small>A student</label></li>
+        <li class="opt"><input type="radio" name="who" id="w2" value="instructor"><label for="w2"><small>2</small>An instructor or teaching fellow</label></li>
+        <li class="opt"><input type="radio" name="who" id="w3" value="admin"><label for="w3"><small>3</small>A department or administrator</label></li>
+        <li class="opt"><input type="radio" name="who" id="w4" value="visitor"><label for="w4"><small>4</small>A visitor</label></li>
+       </ul>
+      </fieldset>
+     </div>
+
+     <div class="step" data-step="1" hidden>
+      <fieldset>
+       <legend><h2 class="q" tabindex="-1">What would you like to do?</h2></legend>
+       <p class="hint">One thing at a time. You can always start over.</p>
+       <ul class="opts" role="presentation">
+        <li class="opt"><input type="radio" name="goal" id="g1" value="learn"><label for="g1"><small>1</small>Learn a language</label></li>
+        <li class="opt"><input type="radio" name="goal" id="g2" value="test"><label for="g2"><small>2</small>Test my level</label></li>
+        <li class="opt"><input type="radio" name="goal" id="g3" value="teach"><label for="g3"><small>3</small>Teach</label></li>
+        <li class="opt"><input type="radio" name="goal" id="g4" value="room"><label for="g4"><small>4</small>Find a room</label></li>
+        <li class="opt"><input type="radio" name="goal" id="g5" value="visit"><label for="g5"><small>5</small>Just visit</label></li>
+       </ul>
+      </fieldset>
+     </div>
+
+     <div class="step" data-step="2" hidden>
+      <h2 class="q" tabindex="-1"><label for="lang">Which language?</label></h2>
+      <p class="hint">Start typing, or pick from the list. Leave it blank if you are not sure yet.</p>
+      <input class="lang" id="lang" name="lang" list="langs" autocomplete="off" placeholder="e.g. Korean" aria-describedby="langhelp">
+      <p class="hint" id="langhelp" style="margin-top:.75rem">The Center supports 50+ languages across departments.</p>
+      <datalist id="langs">
+       <option value="Akan"><option value="Akkadian"><option value="Arabic"><option value="Armenian"><option value="Bangla"><option value="Bulgarian"><option value="Catalan"><option value="Chinese (Mandarin)"><option value="Czech"><option value="Danish"><option value="Dutch"><option value="Egyptian (Middle)"><option value="English (EAL)"><option value="Farsi/Persian"><option value="Finnish"><option value="French"><option value="German"><option value="Greek (Ancient)"><option value="Greek (Modern)"><option value="Hebrew (Biblical)"><option value="Hebrew (Modern)"><option value="Hindi"><option value="Hittite"><option value="Hungarian"><option value="Igbo"><option value="Italian"><option value="Japanese"><option value="Kazakh"><option value="Korean"><option value="Latin"><option value="Lithuanian"><option value="Nahuatl"><option value="Norwegian"><option value="Polish"><option value="Portuguese"><option value="Quechua"><option value="Romanian"><option value="Russian"><option value="Sanskrit"><option value="Serbian/Croatian"><option value="Spanish"><option value="Swahili"><option value="Swedish"><option value="Tamil"><option value="Thai"><option value="Tibetan"><option value="Turkish"><option value="Ukrainian"><option value="Urdu"><option value="Vietnamese"><option value="Wolof"><option value="Yoruba"><option value="Zulu">
+      </datalist>
+     </div>
+
+     <div class="step" data-step="3" hidden>
+      <h2 class="q" id="res-title" tabindex="-1">Here is your starting point.</h2>
+      <p class="recap" id="recap"></p>
+      <div class="result" id="result" aria-live="polite"></div>
+      <p class="again"><button type="button" class="link" id="restart">Start over</button> · <a href="#browse">Or just browse</a></p>
+     </div>
+
+     <div class="nav" id="nav">
+      <button type="button" class="btn ghost" id="back" hidden>Back</button>
+      <button type="submit" class="btn" id="next" disabled>Continue</button>
+      <span class="keys" id="keys">Press <kbd>1</kbd>–<kbd>5</kbd> to choose, <kbd>Enter</kbd> to continue, <kbd>Esc</kbd> to go back</span>
+     </div>
+    </form>
+   </div>
+  </section>
+ </div>
+
+ <div class="divider" id="browse-div"><a href="#browse">Or just browse</a></div>
+
+ <div class="browse wrap narrow" id="browse" style="max-width:62rem">
+  <section id="mission" aria-labelledby="h-mission">
+   <p class="eyebrow">About</p>
+   <h2 id="h-mission">University of Chicago Language Center</h2>
+   <p class="lede" style="max-width:42rem">The CLC is a hub of professional development and services for the hundreds of instructors and graduate students that teach the 50+ languages spread across various departments within the university. We also promote language study and increase the visibility of our language offerings, helping students navigate and go beyond the university's language requirements.</p>
+  </section>
+
+  <section id="units" aria-labelledby="h-units">
+   <p class="eyebrow">Two units</p>
+   <h2 id="h-units">Where we help</h2>
+   <div class="units">
+    <article class="unit" id="ola">
+     <span class="est">Since 2016</span>
+     <h3>Office of Language Assessment</h3>
+     <p>Established in 2016, the OLA has centralized all language testing across the University of Chicago campus to ensure the highest quality of tests and testing procedures. Using research and practice from the fields of Applied Linguistics and Language Testing, we develop strategies to expand and integrate the University's language testing and pedagogy programs.</p>
+     <p><a href="#ola">Learn more about the OLA →</a></p>
+    </article>
+    <article class="unit" id="eli">
+     <span class="est">Since 2015</span>
+     <h3>English Language Institute</h3>
+     <p>Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC and partially funded by the Provost's Office.</p>
+     <p><a href="#eli">Learn more about the ELI →</a></p>
+    </article>
+   </div>
+  </section>
+
+  <section id="stories" aria-labelledby="h-stories">
+   <div class="story">
+    <div class="art" role="img" aria-label="Illustration placeholder: colorful hillside village">
+     <svg viewBox="0 0 160 200" preserveAspectRatio="xMidYMid slice" aria-hidden="true"><rect width="160" height="200" fill="#f1e2dc"/><path d="M0 120 Q40 70 90 100 T160 80 V200 H0Z" fill="#c9a39a"/><path d="M0 150 Q50 110 100 135 T160 120 V200 H0Z" fill="#a85f58"/><g fill="#800000"><rect x="22" y="128" width="16" height="14"/><rect x="48" y="138" width="14" height="12"/><rect x="82" y="130" width="18" height="14"/><rect x="112" y="124" width="14" height="12"/></g><circle cx="125" cy="40" r="14" fill="#fff" opacity=".8"/></svg>
+     <span>Photo: student in Korea</span>
+    </div>
+    <div>
+     <p class="eyebrow">Stories</p>
+     <h2 id="h-stories">Where Will Language Study Take You?</h2>
+     <p class="lede">Stories that illustrate how UChicago students use their language abilities in the real world and that highlight our instructors' passion for language teaching.</p>
+     <p><a href="#stories">Read the stories →</a></p>
+     <div class="dotsrow" role="img" aria-label="Story 1 of 9"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+    </div>
+   </div>
+  </section>
+
+  <section id="blog" aria-labelledby="h-blog">
+   <p class="eyebrow">Blog</p>
+   <h2 id="h-blog">The Latest From Our Blog</h2>
+   <ul class="posts">
+    <li><h3><a href="#blog">Setting Ground Rules for AI Use in Language Courses</a></h3>
+     <p class="meta">by Heather Guerrero | Sep 19, 2024 | Instructional Technology</p>
+     <p>In my previous post I presented some very basic elements of AI literacy. Here I'll discuss recommendations for setting ground rules and expectations for student use of generative AI in language courses. First, watch this brief video: Note: I think having students…</p></li>
+    <li><h3><a href="#blog">Generative AI: The Basics and Guardrails</a></h3>
+     <p class="meta">by Heather Guerrero | Sep 6, 2024 | Instructional Technology</p>
+     <p>The University of Chicago recently announced efforts to roll out a new generative AI tool that will give all members of the university community access to the latest AI models. Students (and instructors) may see this as the university issuing a seal of approval on the…</p></li>
+    <li><h3><a href="#blog">Summer Pedagogy Courses Offered for Language Instructors and Educational Staff Alike</a></h3>
+     <p class="meta">by Heather Guerrero | May 8, 2024 | Events, Uncategorized</p>
+     <p>This summer, the University of Chicago Language Center is offering a pair of courses targeted towards language instructors and scholars that aim to shake up the language classroom. Both courses will run during the summer, and promise to be miniature online courses…</p></li>
+   </ul>
+   <p><a href="#blog">« Older Entries</a></p>
+  </section>
+
+  <section id="visit" aria-labelledby="h-visit">
+   <p class="eyebrow">Visit</p>
+   <h2 id="h-visit">Come say hello</h2>
+   <div class="visit">
+    <div><h3>Location</h3><p>Cobb Hall, Suite 211<br>5811 S Ellis Ave<br>Chicago, IL 60637</p><p>We are located on the 2nd floor of Cobb Hall, on the main quadrangle of the University of Chicago campus in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.</p></div>
+    <div><h3>Hours</h3><p>Mon–Fri<br>8:30 AM–5:00 PM</p></div>
+    <div><h3>Contact</h3><p>For questions, reservations, and further info, please contact us by phone or email:</p><p><a href="tel:+17737029772">(773) 702-9772</a><br><a href="mailto:languages@uchicago.edu">languages@uchicago.edu</a></p></div>
+   </div>
+  </section>
+ </div>
+</main>
+
+<footer>
+ <div class="wrap">
+  <p class="wm">The University of Chicago</p>
+  <p>5811 S. Ellis Ave. Cobb Hall, Suite 211, Chicago, IL. 60637 · 773.702.9772 · languages@uchicago.edu</p>
+  <ul>
+   <li><a href="#ola">Office of Language Assessment</a></li>
+   <li><a href="#blog">Mellon Collaborative Partners</a></li>
+   <li><a href="#blog">Language Pedagogy Innovation Initiative</a></li>
+   <li><a href="#eli">English Language Institute</a></li>
+   <li><a href="#top">Accessibility</a></li>
+  </ul>
+  <p>© 2019-2026 The University of Chicago All rights reserved</p>
+  <p>Design exploration. Wizard answers and links are sample content.</p>
+ </div>
+</footer>
+
+<script>
+(function(){
+ var form=document.getElementById('form');
+ if(!form)return;
+ var steps=[].slice.call(form.querySelectorAll('.step'));
+ var back=document.getElementById('back'),next=document.getElementById('next'),keys=document.getElementById('keys');
+ var dots=[].slice.call(document.querySelectorAll('#dots i'));
+ var dotsBox=document.getElementById('dots'),dotLabel=document.getElementById('dotlabel');
+ var lang=document.getElementById('lang');
+ var cur=0,history=[0];
+ var reduce=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+ function val(n){var c=form.querySelector('input[name="'+n+'"]:checked');return c?c.value:'';}
+ function labelOf(n){var c=form.querySelector('input[name="'+n+'"]:checked');if(!c)return '';return c.parentNode.querySelector('label').textContent.replace(/^\d/,'');}
+
+ function show(n,focus){
+  cur=n;
+  steps.forEach(function(s,i){s.hidden=i!==n;});
+  var dotIdx=Math.min(n,2);
+  dots.forEach(function(d,i){d.className=(n===3||i<dotIdx)?'done':(i===dotIdx?'on':'');});
+  var txt=n===3?'Your result':'Step '+(n+1)+' of 3';
+  dotLabel.textContent=txt;dotsBox.setAttribute('aria-label',txt);
+  back.hidden=n===0;
+  next.hidden=n===3;keys.hidden=n>=2;
+  next.textContent=n===2?'See my result':'Continue';
+  update();
+  if(n===3)build();
+  if(focus){
+   var t=steps[n].querySelector('.q');
+   if(n===2){lang.focus();}
+   else if(t){t.focus({preventScroll:false});}
+   if(n===3){var w=document.getElementById('wiz');if(w&&w.scrollIntoView)w.scrollIntoView({behavior:reduce?'auto':'smooth',block:'start'});}
+  }
+ }
+ function update(){
+  if(cur===0)next.disabled=!val('who');
+  else if(cur===1)next.disabled=!val('goal');
+  else next.disabled=false;
+ }
+ function advance(){
+  if(next.disabled)return;
+  var to;
+  if(cur===0)to=1;
+  else if(cur===1)to=(val('goal')==='room'||val('goal')==='visit')?3:2;
+  else if(cur===2)to=3;
+  else return;
+  history.push(to);show(to,true);
+ }
+ function goBack(){
+  if(history.length<2)return;
+  history.pop();show(history[history.length-1],true);
+ }
+ function restart(){
+  form.reset();history=[0];show(0,true);
+ }
+
+ function el(tag,txt,cls){var e=document.createElement(tag);if(txt)e.textContent=txt;if(cls)e.className=cls;return e;}
+ function link(txt,href,cls){var a=el('a',txt,cls||'btn');a.href=href;return a;}
+
+ function build(){
+  var who=val('who'),goal=val('goal'),l=lang.value.trim();
+  var isEnglish=/^english|eal/i.test(l);
+  var box=document.getElementById('result');box.textContent='';
+  var recap=[labelOf('who'),labelOf('goal')];if(l&&(goal==='learn'||goal==='test'||goal==='teach'))recap.push(l);
+  document.getElementById('recap').textContent='You said: '+recap.join(' · ');
+  var h,p=[],acts=[],list=null;
+  var forLang=l?' for '+l:'';
+  if(goal==='learn'&&isEnglish){
+   h='The English Language Institute';
+   p=['Through academic, professional, and intercultural programming, the ELI supports UChicago individuals for whom English is an additional language (EAL). Established in 2015, the ELI is housed in the CLC.'];
+   acts=[['Meet the ELI','#eli']];
+  }else if(goal==='learn'){
+   h=l?'Studying '+l+' at Chicago':'Studying a language at Chicago';
+   p=[(l?l+' is among the':'Chicago offers')+' 50+ languages taught across university departments. The Center does not itself teach courses; it helps you navigate them, find language tables and conversation partners, and go beyond the language requirement.',
+      'A good first step is a placement conversation with the Office of Language Assessment.'];
+   acts=[['Placement and testing','#ola'],['Stories from students','#stories']];
+  }else if(goal==='test'){
+   h='The Office of Language Assessment';
+   p=['Established in 2016, the OLA has centralized all language testing across campus'+(l?', including '+l:'')+', to ensure the highest quality of tests and testing procedures.',
+      'To take a placement exam, contact the OLA through the Center.'];
+   acts=[['About the OLA','#ola'],['Email languages@uchicago.edu','mailto:languages@uchicago.edu']];
+  }else if(goal==='teach'){
+   h='Instructor development';
+   p=['The CLC is a hub of professional development for the hundreds of instructors and graduate students who teach the 50+ languages at the university'+(l?', including '+l:'')+'.',
+      'Start with the blog for pedagogy courses and guidance on generative AI in language classrooms.'];
+   acts=[['Read the blog','#blog'],['Testing support from the OLA','#ola']];
+  }else if(goal==='room'){
+   h='Reserving a room';
+   p=['For reservations, email us and we will help you find a space. The Center is in Cobb Hall, Suite 211.'];
+   list=['Email: languages@uchicago.edu','Phone: (773) 702-9772','Mon–Fri, 8:30 AM–5:00 PM'];
+   acts=[['Email to reserve','mailto:languages@uchicago.edu'],['Hours and location','#visit']];
+  }else{
+   h='Visit us in Cobb Hall';
+   p=['We are on the 2nd floor of Cobb Hall, Suite 211, 5811 S Ellis Ave, on the main quadrangle in Hyde Park. The Ellis Avenue entrance is accessible by wheelchair.'];
+   list=['Mon–Fri, 8:30 AM–5:00 PM','(773) 702-9772','languages@uchicago.edu'];
+   acts=[['Hours and location','#visit']];
+  }
+  if(who==='admin'&&goal!=='visit'&&goal!=='room'){p.push('For departments, we also offer testing services and collaboration on partnerships.');}
+  if(who==='instructor'&&goal==='test'){p.push('Instructors can also find testing support through the OLA.');}
+  box.appendChild(el('h3',h));
+  p.forEach(function(t){box.appendChild(el('p',t));});
+  if(list){var ul=el('ul');list.forEach(function(t){ul.appendChild(el('li',t));});box.appendChild(ul);}
+  var a=el('div',null,'acts');
+  acts.forEach(function(x,i){a.appendChild(link(x[0],x[1],i?'btn ghost':'btn'));});
+  box.appendChild(a);
+  box.appendChild(el('p','The CLC is a hub of professional development and services for the instructors and graduate students who teach 50+ languages across the university, and it promotes language study for everyone.','mission'));
+ }
+
+ form.addEventListener('change',function(e){if(e.target.type==='radio')update();});
+ form.addEventListener('submit',function(e){e.preventDefault();advance();});
+ back.addEventListener('click',goBack);
+ document.getElementById('restart').addEventListener('click',restart);
+
+ document.addEventListener('keydown',function(e){
+  if(e.altKey||e.ctrlKey||e.metaKey)return;
+  var t=e.target,typing=t&&t.tagName==='INPUT'&&t.type==='text';
+  if(e.key==='Escape'&&cur>0&&cur<=3){
+   if(!form.contains(t)&&t!==document.body)return;
+   goBack();return;
+  }
+  if(typing||cur>1)return;
+  if(t&&t!==document.body&&!form.contains(t))return;
+  if(/^[1-9]$/.test(e.key)){
+   var name=cur===0?'who':'goal';
+   var r=form.querySelectorAll('input[name="'+name+'"]')[+e.key-1];
+   if(r){r.checked=true;r.focus();update();e.preventDefault();}
+  }
+ });
+
+ show(0,false);
+})();
+</script>
+</body>
+</html>

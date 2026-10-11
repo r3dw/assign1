@@ -40,6 +40,8 @@ a{color:var(--navy)}
 header.mast{padding:28px 0 0}
 .brand{display:flex;align-items:center;gap:14px;flex-wrap:wrap}
 .seal{width:62px;height:62px;border-radius:50%;background:var(--maroon);color:var(--cream);display:grid;place-items:center;font-family:var(--serif);font-weight:700;font-size:1.6rem;border:3px double var(--cream);box-shadow:0 2px 5px rgba(0,0,0,.35)}
+.seal.emb{position:relative;overflow:hidden;background:#fff;padding:0;flex:none}
+.seal.emb img{position:absolute;width:420px;height:119px;max-width:none;left:-17px;top:-41px}
 .brand h1{margin:0;font-family:var(--serif);font-size:clamp(1.5rem,4vw,2.2rem);color:var(--navy);line-height:1.05}
 .brand small{display:block;font-family:var(--sans);font-size:.78rem;letter-spacing:.18em;text-transform:uppercase;color:#4a3318}
 nav.stickers ul{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:22px 0 0;padding:0}
@@ -97,6 +99,9 @@ h2{font-family:var(--serif);font-size:clamp(1.5rem,3.5vw,2.2rem);color:var(--nav
 .card.fly{transform:translate(120%,-10%) rotate(18deg);opacity:0}
 .pic{border-radius:3px;position:relative;overflow:hidden;display:flex;align-items:flex-end;padding:12px;color:#fff;font-size:.8rem;
   background:linear-gradient(180deg,transparent 40%,rgba(0,0,0,.45)),var(--g)}
+.pic>img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:70% 50%;filter:sepia(.18) contrast(1.05)}
+.pic.has-img span{text-shadow:0 1px 4px rgba(0,0,0,.9),0 0 10px rgba(0,0,0,.6)}
+.pic.has-img::before{display:none}
 .pic::before{content:"";position:absolute;left:0;right:0;bottom:0;height:55%;background:
   linear-gradient(135deg,transparent 48%,rgba(255,255,255,.15) 49% 51%,transparent 52%) 0 0/40px 40px,
   repeating-linear-gradient(90deg,rgba(255,255,255,.18) 0 22px,rgba(0,0,0,.08) 22px 44px);opacity:.5;clip-path:polygon(0 60%,25% 25%,45% 55%,70% 15%,100% 50%,100% 100%,0 100%)}
@@ -220,7 +225,7 @@ footer .copy{grid-column:1/-1;font-size:.8rem;border-top:1px solid #3b4d78;paddi
 <header class="mast">
   <div class="wrap">
     <div class="brand">
-      <div class="seal" aria-hidden="true">C</div>
+      <div class="seal emb"><img src="../assets/logo.jpg" alt="Chicago Language Center emblem" width="420" height="119"></div>
       <div><small>The University of Chicago</small><h1>Chicago Language Center</h1></div>
     </div>
     <nav class="stickers" aria-label="Main">
@@ -386,7 +391,7 @@ footer .copy{grid-column:1/-1;font-size:.8rem;border-top:1px solid #3b4d78;paddi
   var cur=0,n=places.length,cards=[],btns=[];
   places.forEach(function(p,i){
     var c=document.createElement('div');c.className='card';c.setAttribute('role','group');c.setAttribute('aria-roledescription','slide');c.setAttribute('aria-label',(i+1)+' of '+n);
-    c.innerHTML='<div class="pic" role="img" aria-label="Photo placeholder: '+p[1]+'" style="--g:'+p[2]+'"><span>Photo: '+p[1]+'</span></div>'+
+    c.innerHTML='<div class="pic'+(i?'':' has-img')+'" role="img" aria-label="Photo placeholder: '+p[1]+'" style="--g:'+p[2]+'">'+(i?'':'<img src="../assets/student.jpg" alt="A smiling student in front of a colorful hillside village" width="996" height="663">')+'<span>Photo: '+p[1]+'</span></div>'+
       '<div class="msg"><div><b>'+(i?'Greetings from Story '+(i+1):'Greetings from '+p[0])+'</b><small>Where Will Language Study Take You?</small></div>'+
       '<div class="pm" aria-hidden="true"><div>CLC POST<br><i>'+months[i]+'</i><br>HYDE PARK</div></div></div>';
     stack.appendChild(c);cards.push(c);
